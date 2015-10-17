@@ -18,6 +18,8 @@
 #include <vector>   
 #include <map>
 
+#include "ocr.h"
+
 
 
 #ifdef linux
@@ -182,61 +184,6 @@ HBITMAP GetScreenShot(void)
 	return hBitmap;
 }
 
-vector<int> checkPixel(const char *fName, int x, int y) {
-
-	// Loading an image
-	ILboolean result = ilLoadImage(fName);
-	//ILboolean result = ilLoadImage("myjpg.jpg");
-
-
-	if (result)
-	{
-		printf("the image loaded successfully\n");
-	}
-	else
-	{
-		printf("The image failed to load\n");
-
-		ILenum err = ilGetError();
-		printf("the error %d\n", err);
-		printf("string is %s\n", ilGetString(err));
-	}
-
-	int size = ilGetInteger(IL_IMAGE_SIZE_OF_DATA);
-	printf("Data size:  %d\n", size);
-	ILubyte * bytes = ilGetData();
-
-	int w = ilGetInteger(IL_IMAGE_WIDTH);
-	//int h = ilGetInteger(IL_IMAGE_HEIGHT);
-
-	int idx = 4 * (w*y + x);
-
-	printf("%d\n", bytes[idx]);
-	printf("%d\n", bytes[idx+1]);
-	printf("%d\n", bytes[idx+2]);
-	
-	vector <int> ret;
-
-	ret.push_back(bytes[idx]);
-	ret.push_back(bytes[idx+1]);
-	ret.push_back(bytes[idx+2]);
-
-	return ret;
-}
-
-vector <vector<int>> getPixelRGBList(const char *fName, vector<pair<int, int>> pixels) {
-
-	vector <vector<int>> ret;
-		 
-	for (vector<pair<int, int>>::iterator it = pixels.begin(); it != pixels.end(); ++it) {
-		//cout << "Vec: " << it->first << "," << it->second << endl;
-
-		vector<int> temp = checkPixel(fName, it->first, it->second);
-
-		ret.push_back(temp);
-	}
-	return ret;
-}
 
 
 
@@ -345,53 +292,7 @@ void pixelListTest(){
 
 
 
-void pixelListTest2(){
 
-
-	vector<pair<int, int>> pixelList;
-
-	pair<int, int> a1;
-	a1.first = 442;
-	a1.second = 221;
-
-	pair<int, int> a2;
-	a2.first = 442;
-	a2.second = 221;
-
-	pair<int, int> a3;
-	a3.first = 331;
-	a3.second = 12;
-
-
-	pixelList.push_back(a1);
-	pixelList.push_back(a2);
-	pixelList.push_back(a3);
-
-	//show pixel list
-	for (vector<pair<int, int>>::iterator it = pixelList.begin(); it != pixelList.end(); ++it) {
-		cout << "Vec: " << it->first << "," << it->second << endl;
-	}
-
-
-	vector <vector<int>> pixels = getPixelRGBList("test.jpg",pixelList);
-
-	/*
-		for (std::vector <vector<int>>::size_type i = 0; i != pixels.size(); i++){
-		for (std::vector<int>::size_type j = 0; j != pixels.size(); j++){
-
-			cout << pixels[i][j] << ",";
-		}
-	}
-	*/
-
-
-
-}
-
-//const int MAX_RANGE = 5;
-//bool inRange(int value, int mark){
-//	return value >= (mark - MAX_RANGE) && value <= (mark + MAX_RANGE);
-//s}
 
 
 
@@ -527,7 +428,7 @@ int main()
 	
 	
 	//check pixelList function -- pixelListTest is TOO SLOW (uses another func), 
-	//pixelListTest2();
+	pixelListTest2();
 	
 
 

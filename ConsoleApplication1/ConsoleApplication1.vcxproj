@@ -89,6 +89,7 @@
     <ClInclude Include="HandDist.h" />
     <ClInclude Include="CSVRow.h" />
     <ClInclude Include="kolorki.h" />
+    <ClInclude Include="ocr.h" />
     <ClInclude Include="Place.h" />
     <ClInclude Include="Hand.h" />
     <ClInclude Include="il.h" />
