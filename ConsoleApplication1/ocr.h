@@ -123,6 +123,37 @@ vector <vector<int>> getPixelRGBList(const char *fName, vector<pair<int, int>> p
 	return ret;
 }
 
+vector<int> getPixelRGBListForPixel(const char *fName, int x,int y) {
+
+	vector<int> ret;
+	ret = checkPixel(fName, x, y);
+
+	return ret;
+}
+
+void compareFileRGBArrayForCoordinatesTEST(int x1, int y1, int x2, int y2, vector<char*> fNames){
+	
+	
+	for (std::vector<char*>::size_type i = 0; i != fNames.size(); i++) {
+		
+		for (int x = x1; x <= x2; x++){
+
+			for (int y = y1; y <= y2; y++){
+
+				vector<int> ret;
+				ret = checkPixel(fNames[i], x, y);
+
+				cout << "File: " << i << ", Coords: " << x << "," << y << ", RGB: " << ret[0] << "," << ret[1] << endl;
+
+			}
+		}
+
+	}
+
+
+}
+
+
 
 void pixelListTest2(){
 
