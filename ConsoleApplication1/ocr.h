@@ -126,7 +126,7 @@ vector <vector<int>> getPixelRGBList(const char *fName, vector<pair<int, int>> p
 
 void pixelListTest2(){
 
-
+	cout << "CIPA" << endl;
 	vector<pair<int, int>> pixelList;
 
 	pair<int, int> a0;

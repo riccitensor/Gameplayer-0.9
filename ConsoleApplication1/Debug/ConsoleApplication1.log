@@ -1,4 +1,4 @@
-﻿Build started 2015-10-17 15:31:02.
+﻿Build started 2015-10-17 15:43:17.
      1>Project "C:\Users\Michał\Documents\GitHub\misha\ConsoleApplication1\ConsoleApplication1.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\ConsoleApplication1.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
@@ -17,9 +17,9 @@
          Debug\Hand.obj
          Debug\Place.obj
          Debug\stdafx.obj
-     1>LINK : fatal error LNK1104: cannot open file 'DevIL.lib'
-     1>Done Building Project "C:\Users\Michał\Documents\GitHub\misha\ConsoleApplication1\ConsoleApplication1.vcxproj" (Rebuild target(s)) -- FAILED.
+         ConsoleApplication1.vcxproj -> C:\Users\Michał\Documents\GitHub\misha\Debug\ConsoleApplication1.exe
+     1>Done Building Project "C:\Users\Michał\Documents\GitHub\misha\ConsoleApplication1\ConsoleApplication1.vcxproj" (Rebuild target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:07.64
+Time Elapsed 00:00:08.46

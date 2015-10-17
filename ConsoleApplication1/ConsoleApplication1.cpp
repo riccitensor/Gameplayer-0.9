@@ -400,7 +400,7 @@ int main()
 
 	
 	std::vector <std::vector<std::string> >	 ranges = alg_funkcje->readRangesFromFile();
-	
+
 	//----------------------------------------------CALA LISTA RAK
 	for (std::vector<int>::size_type i = 0; i != ranges.size(); i++){
 		int_ranges[alg_funkcje->handToNum(ranges[i][0])] = std::stoi(ranges[i][1]);
