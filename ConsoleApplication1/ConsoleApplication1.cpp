@@ -291,8 +291,22 @@ void pixelListTest(){
 }
 
 
+void testFileRGBs(){
 
+	vector<char*> files;
+	files.push_back("../img/0-test.png");
+	files.push_back("../img/1-test.png");
+	files.push_back("../img/2-test.png");
+	files.push_back("../img/3-test.png");
+	files.push_back("../img/4-test.png");
+	files.push_back("../img/5-test.png");
+	files.push_back("../img/6-test.png");
+	files.push_back("../img/7-test.png");
+	files.push_back("../img/8-test.png");
+	files.push_back("../img/9-test.png");
 
+	compareFileRGBArrayForCoordinatesTEST(171, 175, 204, 210, files);
+}
 
 
 
@@ -430,6 +444,8 @@ int main()
 	//check pixelList function -- pixelListTest is TOO SLOW (uses another func), 
 	pixelListTest2();
 	
+	//test file RGBs
+	testFileRGBs();
 
 
 	getchar();

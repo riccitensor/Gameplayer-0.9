@@ -76,7 +76,7 @@ vector<int> checkPixel(const char *fName, int x, int y) {
 
 	if (result)
 	{
-		printf("the image loaded successfully\n");
+		//printf("the image loaded successfully\n");
 	}
 	else
 	{
@@ -88,7 +88,7 @@ vector<int> checkPixel(const char *fName, int x, int y) {
 	}
 
 	int size = ilGetInteger(IL_IMAGE_SIZE_OF_DATA);
-	printf("Data size:  %d\n", size);
+	//printf("Data size:  %d\n", size);
 	ILubyte * bytes = ilGetData();
 
 	int w = ilGetInteger(IL_IMAGE_WIDTH);
@@ -96,9 +96,9 @@ vector<int> checkPixel(const char *fName, int x, int y) {
 
 	int idx = 4 * (w*y + x);
 
-	printf("%d\n", bytes[idx]);
-	printf("%d\n", bytes[idx + 1]);
-	printf("%d\n", bytes[idx + 2]);
+	//printf("%d\n", bytes[idx]);
+	//printf("%d\n", bytes[idx + 1]);
+	//printf("%d\n", bytes[idx + 2]);
 
 	vector <int> ret;
 
@@ -131,19 +131,21 @@ vector<int> getPixelRGBListForPixel(const char *fName, int x,int y) {
 	return ret;
 }
 
-void compareFileRGBArrayForCoordinatesTEST(int x1, int y1, int x2, int y2, vector<char*> fNames){
+void compareFileRGBArrayForCoordinatesTEST(int x1, int x2, int y1, int y2, vector<char*> fNames){
 	
 	
-	for (std::vector<char*>::size_type i = 0; i != fNames.size(); i++) {
-		
-		for (int x = x1; x <= x2; x++){
 
-			for (int y = y1; y <= y2; y++){
+		
+	for (int x = x1; x <= x2; x++){
+
+		for (int y = y1; y <= y2; y++){
+
+			for (std::vector<char*>::size_type i = 0; i != fNames.size(); i++) {
 
 				vector<int> ret;
 				ret = checkPixel(fNames[i], x, y);
 
-				cout << "File: " << i << ", Coords: " << x << "," << y << ", RGB: " << ret[0] << "," << ret[1] << endl;
+				cout << "File: " << i << ", Coords: " << x << "," << y << ", RGB: " << ret[0] << "," << ret[1] << "," << ret[2] << endl;
 
 			}
 		}
