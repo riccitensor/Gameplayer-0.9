@@ -32,6 +32,10 @@
 Automizer.v12.suo
 *.sdf
 ConsoleApplication1/Debug/ConsoleA.03C351FE.tlog/ConsoleApplication1.lastbuildstate
+ConsoleApplication1/Debug/ConsoleApplication1.Build.CppClean.log
+ConsoleApplication1/Debug/ConsoleApplication1.log
+ConsoleApplication1/Debug/ConsoleApplication1.ilk
+ConsoleApplication1/Debug/ConsoleApplication1.pdb
 *.obj
 ConsoleApplication1/Debug/vc120.pdb
 *.ipch
