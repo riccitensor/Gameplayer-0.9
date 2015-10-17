@@ -198,7 +198,16 @@ void pixelListTest2(){
 	cout<<endl;
 	}*/
 
-	if (inRange(pixels[0][0], 151) && inRange(pixels[0][1], 221) && inRange(pixels[0][2], 255))  cout << "rozpoznano cyfre 0" << endl;
+	if (inRange(pixels[0][0], 151) && inRange(pixels[0][1], 221) && inRange(pixels[0][2], 255)) cout << "rozpoznano cyfre 0" << endl;
+	if (inRange(pixels[1][0], 187) && inRange(pixels[1][1], 114) && inRange(pixels[1][2], 28))  cout << "rozpoznano cyfre 1" << endl;
+	if (inRange(pixels[2][0], 44) && inRange(pixels[2][1], 44) && inRange(pixels[2][2], 85))  cout << "rozpoznano cyfre 2" << endl;
+	if (inRange(pixels[3][0], 152) && inRange(pixels[3][1], 74) && inRange(pixels[3][2], 28))  cout << "rozpoznano cyfre 3" << endl;
+	if (inRange(pixels[4][0], 113) && inRange(pixels[4][1], 27) && inRange(pixels[4][2], 27))  cout << "rozpoznano cyfre 4" << endl;
+	if (inRange(pixels[5][0], 222) && inRange(pixels[5][1], 255) && inRange(pixels[5][2], 255)) cout << "rozpoznano cyfre 5" << endl;
+	if (inRange(pixels[6][0], 152) && inRange(pixels[6][1], 74) && inRange(pixels[6][2], 28))  cout << "rozpoznano cyfre 6" << endl;
+	if (inRange(pixels[7][0], 255) && inRange(pixels[7][1], 192) && inRange(pixels[7][2], 123)) cout << "rozpoznano cyfre 7" << endl;
+	if (inRange(pixels[8][0], 187) && inRange(pixels[8][1], 255) && inRange(pixels[8][2], 255)) cout << "rozpoznano cyfre 8" << endl;
+	if (inRange(pixels[9][0], 75) && inRange(pixels[9][1], 31) && inRange(pixels[9][2], 31))  cout << "rozpoznano cyfre 9" << endl;
 
 
 
