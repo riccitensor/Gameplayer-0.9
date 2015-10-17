@@ -31,3 +31,12 @@
 *.tlog
 *.sdf
 *.suo
+*.tlog
+Automizer.v12.suo
+*.sdf
+ConsoleApplication1/Debug/ConsoleA.03C351FE.tlog/ConsoleApplication1.lastbuildstate
+*.obj
+ConsoleApplication1/Debug/vc120.pdb
+*.ipch
+ConsoleApplication1/Debug/stdafx.obj
+*.idb
