@@ -41,4 +41,5 @@ ConsoleApplication1/Debug/vc120.pdb
 ConsoleApplication1/Debug/stdafx.obj
 *.idb
 Automizer.opensdf
-img test
+img test/*
+Debug/*

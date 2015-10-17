@@ -189,7 +189,7 @@ void pixelListTest2(){
 	}
 
 
-	vector <vector<int>> pixels = getPixelRGBList("test.png", pixelList);
+	vector <vector<int>> pixels = getPixelRGBList("../img/test.png", pixelList);
 	/*for (std::vector <vector<int>>::size_type i = 0; i != pixels.size(); i++){
 	for (std::vector<int>::size_type j = 0; j != pixels.size(); j++){
 
@@ -197,8 +197,9 @@ void pixelListTest2(){
 	}
 	cout<<endl;
 	}*/
+
 	if (inRange(pixels[0][0], 151) && inRange(pixels[0][1], 221) && inRange(pixels[0][2], 255))  cout << "rozpoznano cyfre 0" << endl;
-	//if ((pixels[0][0] == 151) && (pixels[0][1] == 221) && (pixels[0][2] == 255)) cout << "rozpoznano cyfre 0" << endl;
+
 
 
 }
