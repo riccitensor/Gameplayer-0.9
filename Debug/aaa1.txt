@@ -1,0 +1,97 @@
+		/*
+		KODY KART
+
+		2 = 2h			15 = 2d			28 = 2c			41 = 2s
+		..				..				..				..
+
+		13 = Kh			26 = Kd			39 = Kc			52 = Ks
+		14 = Ah			27 = Ad			40 = Ac			53 = As
+
+		*/
+	
+	Przyklad:
+
+	Ad 2s 3c    2d    5h
+	27 41 29    15    5
+
+	1. Ac Kd
+	   40 26
+	2. Kc Qc
+	   39 38
+	3. 2h 6h WINNER
+	   2  6
+
+
+		
+			alg_funkcje->whoWins
+		(27, 41, 29, 15, 5,
+		40, 26,
+		39, 38,
+		2, 6,
+		0, 0,
+		0, 0,
+		0, 0);
+		
+		daje ze kazdy ma uklad 4, mozesz zobaczyc czemu?		
+		
+		Uklady uzyskuje taka funkcjaa, ktora koryzsta z Twojej funcji
+		
+		
+	public: int whatHand(int k1=0,int k2=0,int k3=0,int k4=0,int k5=0,int k6=0,int k7=0){
+
+        karty[1]=k1; 
+        karty[2]=k2;
+        karty[3]=k3;  
+        karty[4]=k4;  
+        karty[5]=k5;
+        karty[6]=k6; 
+        karty[7]=k7;   /* */  
+
+		int x = -1;
+                     
+		if (uklad1()){
+			x = 10;
+			return 10;
+		}
+		if (uklad2()){
+			x = 9;
+			return 9;
+		}
+		if (uklad3()){
+			x = 8;
+			return 8;
+		}
+		if (uklad4()){
+			x = 7;
+			return 7;
+		}
+
+		if (uklad5()){
+			x = 6;
+			return 6;
+		}
+		if (uklad6()){
+			x = 5;
+			return 5;
+		}
+		if (uklad7()){
+			x = 4;
+			return 4;
+		}
+		if (uklad8()){
+			x = 3;
+			return 3;
+		}
+		if (uklad9()){
+			x = 2;
+			return 2;
+		}
+		if (uklad10()){
+			x = 1;
+			return 1;
+		}
+
+		
+
+
+    }

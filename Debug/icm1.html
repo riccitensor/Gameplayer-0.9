@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 TRANSITIONAL//EN">
+<html>
+
+	<head>
+		<title></title>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+<!--
+function go() {
+	MAXPLAYERS = 10;
+	
+	stacks = new Array(MAXPLAYERS);
+	totalChips = 0;
+	for (i = 0; i < MAXPLAYERS; i++) {
+		// the even inputForm elements are the input fields
+		stacks[i] = parseInt(document.inputForm.elements[2*i].value);
+		totalChips += stacks[i];
+	}
+	document.inputForm.total.value = totalChips;
+	
+	totalFinish = new Array(MAXPLAYERS);
+	for (i = 0; i < MAXPLAYERS; i++) {
+		totalFinish[i] = new Array(0,0,0);
+	}
+	getResults(totalFinish, stacks, totalChips);
+	
+	for (i = 0; i < MAXPLAYERS; i++) {
+		EV = .5*totalFinish[i][0] + .3*totalFinish[i][1] + .2*totalFinish[i][2];
+		// the odd inputForm elements are the output fields, despite the name "inputForm"
+		document.inputForm.elements[2*i+1].value = EV;
+	}
+}
+
+function getResults(totalFinish, stacks, totalChips) {
+    //get first place results
+    for (i = 0; i < MAXPLAYERS; i++) {
+        totalFinish[i][0] = stacks[i]/totalChips;
+        totalFinish[i][1] = 0;
+        totalFinish[i][2] = 0;
+    }
+
+    //get second place results
+    for (i = 0; i < MAXPLAYERS; i++) { // i is first
+        if (stacks[i] > 0) {
+            tempTotal = totalChips - stacks[i];
+            for (j = 0; j < MAXPLAYERS; j++) { // j is second
+                if (j != i) {
+                    totalFinish[j][1] += stacks[j]/tempTotal * totalFinish[i][0];
+                }
+            }
+        }
+    }
+
+    //get third place results
+    for (i = 0; i < MAXPLAYERS; i++) { // i is first
+        if (stacks[i] > 0) {
+            for (j = 0; j < MAXPLAYERS; j++) { // j is second
+                if (j != i && stacks[j] > 0) {
+                    tempTotal = totalChips - stacks[i] - stacks[j];
+                    for (k = 0; k < MAXPLAYERS; k++) { // k is third
+                        if (k != i && k != j) {
+                            totalFinish[k][2] += stacks[k]/tempTotal
+                            * totalFinish[i][0] * stacks[j]/(tempTotal+stacks[j]);
+                                
+                            // Probability of k getting third times probability of i 
+                            // getting first times probability of j getting 2nd given 
+                            // i got first.  Get it?
+                        }   
+                    }   
+                }   
+            }   
+        }   
+    }   
+} 
+-->
+</SCRIPT>
+
+	</head>
+	<body>
+<P>
+<FORM NAME="inputForm" method=POST>
+<TABLE>
+<TR>
+<TD>Stack sizes</TD>
+<TD></TD>
+<TD>$EV</TD>
+</TR>
+<TR>
+<TD><INPUT TYPE=TEXT NAME="stack1"  SIZE=10 value="0"></TD>
+<TD> Stack 1 </TD>
+<TD><INPUT TYPE=TEXT NAME=EV1 SIZE=10 value="0" ></TD>
+</TR>
+<TR>
+<TD><INPUT TYPE=TEXT NAME=stack2  SIZE=10 value="0"></TD>
+<TD> Stack 2 </TD>
+<TD><INPUT TYPE=TEXT NAME=EV2 SIZE=10 value="0" ></TD>
+</TR>
+<TR>
+<TD><INPUT TYPE=TEXT NAME=stack3  SIZE=10 value="0"></TD>
+<TD> Stack 3 </TD>
+<TD><INPUT TYPE=TEXT NAME=EV3 SIZE=10 value="0" ></TD>
+</TR>
+<TR>
+<TD><INPUT TYPE=TEXT NAME=stack4  SIZE=10 value="0"></TD>
+<TD> Stack 4 </TD>
+<TD><INPUT TYPE=TEXT NAME=EV4 SIZE=10 value="0" ></TD>
+</TR>
+<TR>
+<TD><INPUT TYPE=TEXT NAME=stack5  SIZE=10 value="0"></TD>
+<TD> Stack 5 </TD>
+<TD><INPUT TYPE=TEXT NAME=EV5 SIZE=10 value="0" ></TD>
+</TR>
+<TR>
+<TD><INPUT TYPE=TEXT NAME=stack6  SIZE=10 value="0"></TD>
+<TD> Stack 6 </TD>
+<TD><INPUT TYPE=TEXT NAME=EV6 SIZE=10 value="0" ></TD>
+</TR>
+<TD><INPUT TYPE=TEXT NAME=stack7  SIZE=10 value="0"></TD>
+<TD> Stack 7 </TD>
+<TD><INPUT TYPE=TEXT NAME=EV7 SIZE=10 value="0" ></TD>
+</TR>
+<TD><INPUT TYPE=TEXT NAME=stack8  SIZE=10 value="0"></TD>
+<TD> Stack 8 </TD>
+<TD><INPUT TYPE=TEXT NAME=EV8 SIZE=10 value="0" ></TD>
+</TR>
+<TD><INPUT TYPE=TEXT NAME=stack9  SIZE=10 value="0"></TD>
+<TD> Stack 9 </TD>
+<TD><INPUT TYPE=TEXT NAME=EV9 SIZE=10 value="0" ></TD>
+</TR>
+<TD><INPUT TYPE=TEXT NAME=stack10  SIZE=10 value="0"></TD>
+<TD> Stack 10 </TD>
+<TD><INPUT TYPE=TEXT NAME=EV10 SIZE=10 value="0" ></TD>
+</TR>
+<TR>
+<TD><INPUT TYPE=TEXT NAME=total SIZE=10 value="0" ></TD>
+<TD> Total </TD>
+<TD><INPUT TYPE="button" VALUE="Compute" onClick="go()"></TD>
+</TR>
+</TABLE>
+</FORM>
+</P>
+	</body>
+</html>
