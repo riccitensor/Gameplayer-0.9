@@ -26,3 +26,8 @@
 *.exe
 *.out
 *.app
+
+*.pch
+*.tlog
+*.sdf
+*.suo
