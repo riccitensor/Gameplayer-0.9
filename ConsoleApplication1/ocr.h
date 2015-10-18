@@ -140,16 +140,16 @@ void compareFileRGBArrayForCoordinatesTEST(int x1, int x2, int y1, int y2, vecto
 
 void pixelListTest2(){
 
-	int check = 0;
-	int bet_pos_1 = 0;
+	int check = 0;  //zmienna ktora bedzie informowala czy liczba jest 1,2,3 czy 4 cyfrowa, jesli check = 2 to wtedy 2 cyfrowa etc
+	int bet_pos_1 = 0; //zmienna oznacza ile podbil gracz na pozycji 1
 	vector<pair<int, int>> pixelList;
 
-	pair<int, int> acheck; //sprawdz czy liczba jest 2 czy 3 cyfrowa
+	pair<int, int> acheck; //sprawdz czy liczba jest 2 czy 3 cyfrowa, zczytuje jakis pixel ktory mi powie z ilu cyfrowa liczba mam do czynienia
 	acheck.first = 181;
 	acheck.second = 207;
 
-	pair<int, int> ap11z2;
-	ap11z2.first = 174;
+	pair<int, int> ap11z2; //ap11z2, nazwa wspolrzednej oznacza: a-nic nie oznacza, p-za literk¹ p jest cyfra ktora informuje o jak¹ pozycje mi chodzi
+	ap11z2.first = 174; //a sekwencja 1z2 oznacza ze jesli to liczba 2 cyfrowa to 1 z 2 wczytuje mi RGB z wspolrzednych z dziesi¹tek, 2 z 2 wspolrzedna z jednosci
 	ap11z2.second = 207;
 
 	pair<int, int> ap12z2;
@@ -157,7 +157,7 @@ void pixelListTest2(){
 	ap12z2.second = 207;
 
 	//-------------------------------
-	pair<int, int> ap11z3;
+	pair<int, int> ap11z3; //analogicznie pozycja 1, wpolrzedne do odczytania RGB z cyfry setek
 	ap11z3.first = 171;
 	ap11z3.second = 207;
 
@@ -177,7 +177,7 @@ void pixelListTest2(){
 
 	pixelList.push_back(ap11z3);
 	pixelList.push_back(ap12z3);
-	pixelList.push_back(ap13z3);
+	pixelList.push_back(ap13z3);  //tu wiesz co sie dzieje
 
 	//show pixel list
 	for (vector<pair<int, int>>::iterator it = pixelList.begin(); it != pixelList.end(); ++it) {
@@ -194,7 +194,7 @@ void pixelListTest2(){
 	cout<<endl;
 	}*/
 
-	if ((pixels[0][0] == pixels[0][1]) && (pixels[0][1] == pixels[0][2]))
+	if ((pixels[0][0] == pixels[0][1]) && (pixels[0][1] == pixels[0][2])) //tu sprawdzam wlasnie z ilu cyfrowa liczba mam do czynienia
 	{
 		check = 2;
 	}
@@ -203,10 +203,10 @@ void pixelListTest2(){
 
 		cout << "liczba jest 3 cyfrowa" << endl;
 		check = 3;
-	}
+	} //oczywiscie pozniej beda jeszcze warunki czy jest to liczba 1 cyfrowa, i warunek dla 4 cyfrowej
 
-	if (check == 2)
-	{
+	if (check == 2) //jesli liczba 2 cyfrowa 
+	{// to ponizej sprawdzam jaka to cyfra znajduje siê na miejscu dziesiatek naszej 2 cyfrowej liczby i odpowiednio j¹ przemnazam i przypisuje jakie to podbicie
 		if (inRange(pixels[1][0], 28) && inRange(pixels[1][1], 114) && inRange(pixels[1][2], 187)) bet_pos_1 = 0 * 10;
 		if (inRange(pixels[1][0], 152) && inRange(pixels[1][1], 74) && inRange(pixels[1][2], 29)) bet_pos_1 = 1 * 10;
 		if (inRange(pixels[1][0], 224) && inRange(pixels[1][1], 224) && inRange(pixels[1][2], 158)) bet_pos_1 = 2 * 10;
@@ -217,7 +217,7 @@ void pixelListTest2(){
 		if (inRange(pixels[1][0], 224) && inRange(pixels[1][1], 158) && inRange(pixels[1][2], 86)) bet_pos_1 = 7 * 10;
 		if (inRange(pixels[1][0], 255) && inRange(pixels[1][1], 221) && inRange(pixels[1][2], 151)) bet_pos_1 = 8 * 10;
 		if (inRange(pixels[1][0], 255) && inRange(pixels[1][1], 255) && inRange(pixels[1][2], 255)) bet_pos_1 = 9 * 10;
-
+		//tu ponizej sprawdzam jaka cyfra znajduje sie na miejscu jednosci i do podbicia dodaje jenosci
 		if (inRange(pixels[2][0], 28) && inRange(pixels[2][1], 114) && inRange(pixels[2][2], 187)) bet_pos_1 = bet_pos_1 + 0;
 		if (inRange(pixels[2][0], 152) && inRange(pixels[2][1], 74) && inRange(pixels[2][2], 29)) bet_pos_1 = bet_pos_1 + 1;
 		if (inRange(pixels[2][0], 224) && inRange(pixels[2][1], 224) && inRange(pixels[2][2], 158)) bet_pos_1 = bet_pos_1 + 2;
@@ -231,7 +231,7 @@ void pixelListTest2(){
 	}
 
 	if (check == 3)
-	{
+	{//analogicznie jak powyzej
 		if (inRange(pixels[3][0], 28)  && inRange(pixels[3][1], 114) && inRange(pixels[3][2], 187)) bet_pos_1 = 0 * 100;
 		if (inRange(pixels[3][0], 152) && inRange(pixels[3][1], 74)  && inRange(pixels[3][2], 29)) bet_pos_1 = 1 * 100;
 		if (inRange(pixels[3][0], 224) && inRange(pixels[3][1], 224) && inRange(pixels[3][2], 158)) bet_pos_1 = 2 * 100;
@@ -264,8 +264,12 @@ void pixelListTest2(){
 		if (inRange(pixels[5][0], 224) && inRange(pixels[5][1], 158) && inRange(pixels[5][2], 86)) bet_pos_1 = bet_pos_1 + 7;
 		if (inRange(pixels[5][0], 255) && inRange(pixels[5][1], 221) && inRange(pixels[5][2], 151)) bet_pos_1 = bet_pos_1 + 8;
 		if (inRange(pixels[5][0], 255) && inRange(pixels[5][1], 255) && inRange(pixels[5][2], 255)) bet_pos_1 = bet_pos_1 + 9;
-	}
+	}//analogicznie bedzie trzeba jeszcze zrobic dla liczby 4 cyfrowej, czyli dojdzie extra 40 linijek kodu
+	//i to wszystko co powyzej tylko dla pozycji gracza na miejscu 1, a mamy 6 pozycji, czylii 600 linijek kodu, ktore powinno daæ siê jakoœ skrocic
+	//wspolrzedne beda ustalane recznie lub przez petlê for
 
+	//a RGB jest juz ustalone na sta³e (oby)
 	cout << "Gracz na pozycji 1 podbil o = " << bet_pos_1 << " zetonow" << endl;
+	
 
 }
