@@ -1,51 +1,26 @@
 // ConsoleApplication1.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 
 #include <iostream>
 #include <stdlib.h>
 #include <windows.h>
 #include <gdiplus.h>
-
 #include <algorithm>
 #include <cmath>
-#include <cstdlib>
-#include <ctime>
-#include <iomanip>
-#include <iostream>
-#include <tuple>
 #include <vector>   
 #include <map>
-
-
-
-
-#ifdef linux
-#include <termios.h>
-#include <sys/io.h>
-#else
-#include <io.h>
-#include <windows.h>
-#include <conio.h>
-#endif
-
-#include <stdlib.h>
 #include <ctime>
 #include <cstdlib>
 #include <fstream>
-#include <vector>
 #include <string>
 #include <sstream>
-#include <algorithm>
 #include <iterator>
-#include <iostream>
 #include <sys/stat.h>
 #include <math.h>
 #include <time.h>
-#include <algorithm>
 
-#include <string>
+
 
 #undef _UNICODE
 #include "il.h"
@@ -123,7 +98,7 @@ vector <vector<int>> getPixelRGBList(const char *fName, vector<pair<int, int>> p
 	return ret;
 }
 
-vector<int> getPixelRGBListForPixel(const char *fName, int x,int y) {
+vector<int> getPixelRGBListForPixel(const char *fName, int x, int y) {
 
 	vector<int> ret;
 	ret = checkPixel(fName, x, y);
@@ -132,10 +107,11 @@ vector<int> getPixelRGBListForPixel(const char *fName, int x,int y) {
 }
 
 void compareFileRGBArrayForCoordinatesTEST(int x1, int x2, int y1, int y2, vector<char*> fNames){
-	
-	
 
-		
+
+	ofstream myfile;
+	myfile.open("../Data/data.txt");
+
 	for (int x = x1; x <= x2; x++){
 
 		for (int y = y1; y <= y2; y++){
@@ -145,12 +121,17 @@ void compareFileRGBArrayForCoordinatesTEST(int x1, int x2, int y1, int y2, vecto
 				vector<int> ret;
 				ret = checkPixel(fNames[i], x, y);
 
-				cout << "File: " << i << ", Coords: " << x << "," << y << ", RGB: " << ret[0] << "," << ret[1] << "," << ret[2] << endl;
+
+
+				myfile << "File: " << i << ", Coords: " << x << "," << y << ", RGB: " << ret[0] << "," << ret[1] << "," << ret[2] << endl;
+
 
 			}
 		}
 
 	}
+
+	myfile.close();
 
 
 }
@@ -159,62 +140,44 @@ void compareFileRGBArrayForCoordinatesTEST(int x1, int x2, int y1, int y2, vecto
 
 void pixelListTest2(){
 
-	cout << "CIPA" << endl;
+	int check = 0;
+	int bet_pos_1 = 0;
 	vector<pair<int, int>> pixelList;
 
-	pair<int, int> a0;
-	a0.first = 172;
-	a0.second = 204;
+	pair<int, int> acheck; //sprawdz czy liczba jest 2 czy 3 cyfrowa
+	acheck.first = 181;
+	acheck.second = 207;
 
-	pair<int, int> a1;
-	a1.first = 175;
-	a1.second = 210;
+	pair<int, int> ap11z2;
+	ap11z2.first = 174;
+	ap11z2.second = 207;
 
-	pair<int, int> a2;
-	a2.first = 173;
-	a2.second = 205;
+	pair<int, int> ap12z2;
+	ap12z2.first = 179;
+	ap12z2.second = 207;
 
-	pair<int, int> a3;
-	a3.first = 175;
-	a3.second = 206;
+	//-------------------------------
+	pair<int, int> ap11z3;
+	ap11z3.first = 171;
+	ap11z3.second = 207;
 
-	pair<int, int> a4;
-	a4.first = 175;
-	a4.second = 205;
-
-	pair<int, int> a5;
-	a5.first = 171;
-	a5.second = 204;
-
-	pair<int, int> a6;
-	a6.first = 175;
-	a6.second = 207;
-
-	pair<int, int> a7;
-	a7.first = 175;
-	a7.second = 204;
-
-	pair<int, int> a8;
-	a8.first = 172;
-	a8.second = 207;
-
-	pair<int, int> a9;
-	a9.first = 171;
-	a9.second = 208;
+	pair<int, int> ap12z3;
+	ap12z3.first = 176;
+	ap12z3.second = 207;
 
 
+	pair<int, int> ap13z3;
+	ap13z3.first = 181;
+	ap13z3.second = 207;
 
-	pixelList.push_back(a0);
-	pixelList.push_back(a1);
-	pixelList.push_back(a2);
-	pixelList.push_back(a3);
-	pixelList.push_back(a4);
-	pixelList.push_back(a5);
-	pixelList.push_back(a6);
-	pixelList.push_back(a7);
-	pixelList.push_back(a8);
-	pixelList.push_back(a9);
 
+	pixelList.push_back(acheck);
+	pixelList.push_back(ap11z2);
+	pixelList.push_back(ap12z2);
+
+	pixelList.push_back(ap11z3);
+	pixelList.push_back(ap12z3);
+	pixelList.push_back(ap13z3);
 
 	//show pixel list
 	for (vector<pair<int, int>>::iterator it = pixelList.begin(); it != pixelList.end(); ++it) {
@@ -231,17 +194,78 @@ void pixelListTest2(){
 	cout<<endl;
 	}*/
 
-	if (inRange(pixels[0][0], 151) && inRange(pixels[0][1], 221) && inRange(pixels[0][2], 255)) cout << "rozpoznano cyfre 0" << endl;
-	if (inRange(pixels[1][0], 187) && inRange(pixels[1][1], 114) && inRange(pixels[1][2], 28))  cout << "rozpoznano cyfre 1" << endl;
-	if (inRange(pixels[2][0], 44) && inRange(pixels[2][1], 44) && inRange(pixels[2][2], 85))  cout << "rozpoznano cyfre 2" << endl;
-	if (inRange(pixels[3][0], 152) && inRange(pixels[3][1], 74) && inRange(pixels[3][2], 28))  cout << "rozpoznano cyfre 3" << endl;
-	if (inRange(pixels[4][0], 113) && inRange(pixels[4][1], 27) && inRange(pixels[4][2], 27))  cout << "rozpoznano cyfre 4" << endl;
-	if (inRange(pixels[5][0], 222) && inRange(pixels[5][1], 255) && inRange(pixels[5][2], 255)) cout << "rozpoznano cyfre 5" << endl;
-	if (inRange(pixels[6][0], 152) && inRange(pixels[6][1], 74) && inRange(pixels[6][2], 28))  cout << "rozpoznano cyfre 6" << endl;
-	if (inRange(pixels[7][0], 255) && inRange(pixels[7][1], 192) && inRange(pixels[7][2], 123)) cout << "rozpoznano cyfre 7" << endl;
-	if (inRange(pixels[8][0], 187) && inRange(pixels[8][1], 255) && inRange(pixels[8][2], 255)) cout << "rozpoznano cyfre 8" << endl;
-	if (inRange(pixels[9][0], 75) && inRange(pixels[9][1], 31) && inRange(pixels[9][2], 31))  cout << "rozpoznano cyfre 9" << endl;
+	if ((pixels[0][0] == pixels[0][1]) && (pixels[0][1] == pixels[0][2]))
+	{
+		check = 2;
+	}
+	else
+	{
 
+		cout << "liczba jest 3 cyfrowa" << endl;
+		check = 3;
+	}
 
+	if (check == 2)
+	{
+		if (inRange(pixels[1][0], 28) && inRange(pixels[1][1], 114) && inRange(pixels[1][2], 187)) bet_pos_1 = 0 * 10;
+		if (inRange(pixels[1][0], 152) && inRange(pixels[1][1], 74) && inRange(pixels[1][2], 29)) bet_pos_1 = 1 * 10;
+		if (inRange(pixels[1][0], 224) && inRange(pixels[1][1], 224) && inRange(pixels[1][2], 158)) bet_pos_1 = 2 * 10;
+		if (inRange(pixels[1][0], 255) && inRange(pixels[1][1], 187) && inRange(pixels[1][2], 114)) bet_pos_1 = 3 * 10;
+		if (inRange(pixels[1][0], 151) && inRange(pixels[1][1], 221) && inRange(pixels[1][2], 187)) bet_pos_1 = 4 * 10;
+		if (inRange(pixels[1][0], 115) && inRange(pixels[1][1], 31) && inRange(pixels[1][2], 31)) bet_pos_1 = 5 * 10;
+		if (inRange(pixels[1][0], 255) && inRange(pixels[1][1], 255) && inRange(pixels[1][2], 221)) bet_pos_1 = 6 * 10;
+		if (inRange(pixels[1][0], 224) && inRange(pixels[1][1], 158) && inRange(pixels[1][2], 86)) bet_pos_1 = 7 * 10;
+		if (inRange(pixels[1][0], 255) && inRange(pixels[1][1], 221) && inRange(pixels[1][2], 151)) bet_pos_1 = 8 * 10;
+		if (inRange(pixels[1][0], 255) && inRange(pixels[1][1], 255) && inRange(pixels[1][2], 255)) bet_pos_1 = 9 * 10;
+
+		if (inRange(pixels[2][0], 28) && inRange(pixels[2][1], 114) && inRange(pixels[2][2], 187)) bet_pos_1 = bet_pos_1 + 0;
+		if (inRange(pixels[2][0], 152) && inRange(pixels[2][1], 74) && inRange(pixels[2][2], 29)) bet_pos_1 = bet_pos_1 + 1;
+		if (inRange(pixels[2][0], 224) && inRange(pixels[2][1], 224) && inRange(pixels[2][2], 158)) bet_pos_1 = bet_pos_1 + 2;
+		if (inRange(pixels[2][0], 255) && inRange(pixels[2][1], 187) && inRange(pixels[2][2], 114)) bet_pos_1 = bet_pos_1 + 3;
+		if (inRange(pixels[2][0], 151) && inRange(pixels[2][1], 221) && inRange(pixels[2][2], 187)) bet_pos_1 = bet_pos_1 + 4;
+		if (inRange(pixels[2][0], 115) && inRange(pixels[2][1], 31) && inRange(pixels[2][2], 31)) bet_pos_1 = bet_pos_1 + 5;
+		if (inRange(pixels[2][0], 255) && inRange(pixels[2][1], 255) && inRange(pixels[2][2], 221)) bet_pos_1 = bet_pos_1 + 6;
+		if (inRange(pixels[2][0], 224) && inRange(pixels[2][1], 158) && inRange(pixels[2][2], 86)) bet_pos_1 = bet_pos_1 + 7;
+		if (inRange(pixels[2][0], 255) && inRange(pixels[2][1], 221) && inRange(pixels[2][2], 151)) bet_pos_1 = bet_pos_1 + 8;
+		if (inRange(pixels[2][0], 255) && inRange(pixels[2][1], 255) && inRange(pixels[2][2], 255)) bet_pos_1 = bet_pos_1 + 9;
+	}
+
+	if (check == 3)
+	{
+		if (inRange(pixels[3][0], 28)  && inRange(pixels[3][1], 114) && inRange(pixels[3][2], 187)) bet_pos_1 = 0 * 100;
+		if (inRange(pixels[3][0], 152) && inRange(pixels[3][1], 74)  && inRange(pixels[3][2], 29)) bet_pos_1 = 1 * 100;
+		if (inRange(pixels[3][0], 224) && inRange(pixels[3][1], 224) && inRange(pixels[3][2], 158)) bet_pos_1 = 2 * 100;
+		if (inRange(pixels[3][0], 255) && inRange(pixels[3][1], 187) && inRange(pixels[3][2], 114)) bet_pos_1 = 3 * 100;
+		if (inRange(pixels[3][0], 151) && inRange(pixels[3][1], 221) && inRange(pixels[3][2], 187)) bet_pos_1 = 4 * 100;
+		if (inRange(pixels[3][0], 115) && inRange(pixels[3][1], 31)  && inRange(pixels[3][2], 31)) bet_pos_1 = 5 * 100;
+		if (inRange(pixels[3][0], 255) && inRange(pixels[3][1], 255) && inRange(pixels[3][2], 221)) bet_pos_1 = 6 * 100;
+		if (inRange(pixels[3][0], 224) && inRange(pixels[3][1], 158) && inRange(pixels[3][2], 86)) bet_pos_1 = 7 * 100;
+		if (inRange(pixels[3][0], 255) && inRange(pixels[3][1], 221) && inRange(pixels[3][2], 151)) bet_pos_1 = 8 * 100;
+		if (inRange(pixels[3][0], 255) && inRange(pixels[3][1], 255) && inRange(pixels[3][2], 255)) bet_pos_1 = 9 * 100;
+
+		if (inRange(pixels[4][0], 28) &&  inRange(pixels[4][1], 114) && inRange(pixels[4][2], 187)) bet_pos_1 = bet_pos_1 + 0;
+		if (inRange(pixels[4][0], 152) && inRange(pixels[4][1], 74)  && inRange(pixels[4][2], 29)) bet_pos_1 = bet_pos_1 + 10;
+		if (inRange(pixels[4][0], 224) && inRange(pixels[4][1], 224) && inRange(pixels[4][2], 158)) bet_pos_1 = bet_pos_1 + 20;
+		if (inRange(pixels[4][0], 255) && inRange(pixels[4][1], 187) && inRange(pixels[4][2], 114)) bet_pos_1 = bet_pos_1 + 30;
+		if (inRange(pixels[4][0], 151) && inRange(pixels[4][1], 221) && inRange(pixels[4][2], 187)) bet_pos_1 = bet_pos_1 + 40;
+		if (inRange(pixels[4][0], 115) && inRange(pixels[4][1], 31)  && inRange(pixels[4][2], 31)) bet_pos_1 = bet_pos_1 + 50;
+		if (inRange(pixels[4][0], 255) && inRange(pixels[4][1], 255) && inRange(pixels[4][2], 221)) bet_pos_1 = bet_pos_1 + 60;
+		if (inRange(pixels[4][0], 224) && inRange(pixels[4][1], 158) && inRange(pixels[4][2], 86)) bet_pos_1 = bet_pos_1 + 70;
+		if (inRange(pixels[4][0], 255) && inRange(pixels[4][1], 221) && inRange(pixels[4][2], 151)) bet_pos_1 = bet_pos_1 + 80;
+		if (inRange(pixels[4][0], 255) && inRange(pixels[4][1], 255) && inRange(pixels[4][2], 255)) bet_pos_1 = bet_pos_1 + 90;
+
+		if (inRange(pixels[5][0], 28)  && inRange(pixels[5][1], 114) && inRange(pixels[5][2], 187)) bet_pos_1 = bet_pos_1 + 0;
+		if (inRange(pixels[5][0], 152) && inRange(pixels[5][1], 74)  && inRange(pixels[5][2], 29)) bet_pos_1 = bet_pos_1 + 1;
+		if (inRange(pixels[5][0], 224) && inRange(pixels[5][1], 224) && inRange(pixels[5][2], 158)) bet_pos_1 = bet_pos_1 + 2;
+		if (inRange(pixels[5][0], 255) && inRange(pixels[5][1], 187) && inRange(pixels[5][2], 114)) bet_pos_1 = bet_pos_1 + 3;
+		if (inRange(pixels[5][0], 151) && inRange(pixels[5][1], 221) && inRange(pixels[5][2], 187)) bet_pos_1 = bet_pos_1 + 4;
+		if (inRange(pixels[5][0], 115) && inRange(pixels[5][1], 31)  && inRange(pixels[5][2], 31)) bet_pos_1 = bet_pos_1 + 5;
+		if (inRange(pixels[5][0], 255) && inRange(pixels[5][1], 255) && inRange(pixels[5][2], 221)) bet_pos_1 = bet_pos_1 + 6;
+		if (inRange(pixels[5][0], 224) && inRange(pixels[5][1], 158) && inRange(pixels[5][2], 86)) bet_pos_1 = bet_pos_1 + 7;
+		if (inRange(pixels[5][0], 255) && inRange(pixels[5][1], 221) && inRange(pixels[5][2], 151)) bet_pos_1 = bet_pos_1 + 8;
+		if (inRange(pixels[5][0], 255) && inRange(pixels[5][1], 255) && inRange(pixels[5][2], 255)) bet_pos_1 = bet_pos_1 + 9;
+	}
+
+	cout << "Gracz na pozycji 1 podbil o = " << bet_pos_1 << " zetonow" << endl;
 
 }
