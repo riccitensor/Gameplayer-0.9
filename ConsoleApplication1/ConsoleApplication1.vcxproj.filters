@@ -81,6 +81,12 @@
     <ClInclude Include="ocr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HandEval.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Showdown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -93,6 +99,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Place.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HandEval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Showdown.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

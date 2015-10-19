@@ -155,6 +155,33 @@ void compareFileRGBArrayForCoordinatesTEST(int x1, int y1, int x2, int y2, vecto
 
 
 
+bool reducer(int x1, int y1, int y2, const char* file){
+	
+	//z gory w dol, y1 > y2
+		for (int y = y1; y >= y2; y--){
+
+			vector<int> ret;
+			//czyt pixel
+			ret = checkPixel(file, x1, y);
+
+			//r=g=b
+			if (ret[0] == ret[1] && ret[1] == ret[2]){
+				continue;
+			}
+			else{
+				return true;
+			}
+
+		}
+		//gdy ani raz tru
+		return false;
+
+}
+
+
+
+
+
 void pixelListTest2(){
 
 	cout << "CIPA" << endl;

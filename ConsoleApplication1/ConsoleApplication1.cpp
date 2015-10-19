@@ -20,6 +20,8 @@
 
 #include "ocr.h"
 
+#include "Showdown.h"
+#include "HandEval.h"
 
 
 #ifdef linux
