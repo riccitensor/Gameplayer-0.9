@@ -19,6 +19,7 @@
 #include <sys/stat.h>
 #include <math.h>
 #include <time.h>
+#include <tuple>
 
 
 
@@ -162,6 +163,38 @@ bool reducer(int x1, int y1, int y2, const char* file){
 }
 
 
+
+
+vector < tuple <int, int, int, int, int> > readIndicatorsFromFile(const char *fn){
+
+	ifstream file;
+	file.open(fn);
+	string line;
+	int a[5]; int i=0;
+
+	cout << " LETS START" << endl;
+
+	vector < tuple <int, int, int, int, int> > mt;
+
+	while (getline(file, line))
+	{
+		std::stringstream   linestream(line);
+		std::string         value;
+
+		while (getline(linestream, value, ';'))
+		{
+			std::cout << "Value(" << value << ")\n";
+			a[i] = std::stoi(value);
+			i++;
+		}
+		i = 0;
+
+		mt.push_back(make_tuple(a[0],a[1],a[2],a[3],a[4]));
+
+	}
+
+	return mt;
+}
 
 
 

@@ -449,6 +449,19 @@ int main()
 	//test file RGBs
 	testFileRGBs();
 
+	vector < tuple <int, int, int, int, int> > indicator_table;
+	indicator_table = readIndicatorsFromFile("coords.txt");
+
+	for (std::vector<int>::size_type i = 0; i != indicator_table.size(); i++) {
+			std::cout << 
+				std::get<0>(indicator_table[i]) << "," <<
+				std::get<1>(indicator_table[i]) << "," <<
+				std::get<2>(indicator_table[i]) << "," <<
+				std::get<3>(indicator_table[i]) << "," <<
+				std::get<4>(indicator_table[i]) << endl;
+
+	}
+
 
 	getchar();
 }
