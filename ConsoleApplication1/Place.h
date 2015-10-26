@@ -19,6 +19,11 @@ public:
 	int stack;
 
 	/*
+	Range
+	*/
+	int range;
+
+	/*
 	Typ miejsca
 	*/
 	bool posBB;
@@ -38,8 +43,15 @@ public:
 	double getM();
 	void setM(double newm);
 	int getStack();
+	void setStack(int stack);
+	int getRange();
+	void setRange(int stack);
+	void setPosition(int pos);
 
 public:
+	Place();
+	Place(int id, int stack, int range);
+		
 	void show();
 	bool isActive();
 

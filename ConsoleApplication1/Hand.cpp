@@ -6,26 +6,26 @@
 
 using namespace std;
 
-Hand::Hand(Place places[numOfPlaces], int BB, int SB, int pot, int ante, int board[5][2], int myhand[2][2]){
+Hand::Hand(Place places[numOfPlaces], int BB, int SB, int pot, int ante, int board[5]){
 	
 	for (int i = 0; i < numOfPlaces; i++){
 		this->places[i] = places[i];
 	}
 
-	for (int i = 0; i < 2; i++){
-		for (int j = 0; j < 5; j++){
-			this->board[j][i] = board[j][i];
-		}
+
+	for (int j = 0; j < 5; j++){
+		this->board[j] = board[j];
 	}
+
 	
 	this->ante = ante;
 	this->BB = BB;
 	this->SB = SB;
 	this->pot = pot;
-	this->myHand[0][0] = myhand[0][0];
-	this->myHand[0][1] = myhand[0][1];
-	this->myHand[1][0] = myhand[1][0];
-	this->myHand[1][1] = myhand[1][1];
+	//this->myHand[0][0] = myhand[0][0];
+	//this->myHand[0][1] = myhand[0][1];
+	//this->myHand[1][0] = myhand[1][0];
+	//this->myHand[1][1] = myhand[1][1];
 
 	for (int i = 0; i < 6; i++){
 		places[i].setM(places[i].getStack() / this->BB);
@@ -172,13 +172,7 @@ int Hand::whoStartsPost(){
 void Hand::handInfo(){
 
 	cout << "Stakes: " << this->SB << "/" << this->BB << "$ Ante: " << this->ante << endl;
-	cout << "HAND: " << getHandSignature(this->myHand[0][0], this->myHand[0][1])
-		<< getHandSignature(this->myHand[1][0], this->myHand[1][1]) << endl;
-	cout << "Board F1: " <<  getHandSignature(this->board[0][0], this->board[0][1]) 
-		 << getHandSignature(this->board[1][0], this->board[1][1]) 
-		 << getHandSignature(this->board[2][0], this->board[2][1]) << " --- " 
-		 << getHandSignature(this->board[3][0], this->board[3][1]) << " --- "
-		 << getHandSignature(this->board[4][0], this->board[4][1]) << endl;
+	cout << " ADD HANDS AND BOARD INFO!!" << endl;
 	cout << "POT: " << this->pot << endl;
 
 	for (int i = 0; i < 6; i++){

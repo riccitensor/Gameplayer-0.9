@@ -18,6 +18,7 @@ public:
 	miejsca przy stole
 	*/
 	Place places[numOfPlaces];
+
 	
 	/*
 	miejsca przy stole
@@ -73,7 +74,7 @@ public:
 	pot
 	*/
 
-	int board[5][2];
+	int board[5];
 
 
 public:
@@ -87,11 +88,12 @@ public:
 	4 - LJ
 	5 - BTN
 	*/
-	Hand(Place places[numOfPlaces], int BB, int SB, int pot, int ante, int board[5][2], int myhand[2][2]);
+	Hand(Place places[numOfPlaces], int BB, int SB, int pot, int ante, int board[5]);
 
 public:
 
-	double getM(int pos);
+	double getM(int pos); 
+ 
 
 	void handInfo();
 	int whoStartsPre();

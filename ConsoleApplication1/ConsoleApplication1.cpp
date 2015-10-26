@@ -20,7 +20,7 @@
 
 #include "ocr.h"
 
-#include "Showdown.h"
+
 #include "HandEval.h"
 
 
@@ -51,12 +51,6 @@
 #include "function.h"
 function *funkcje;
 
-
-#include "baza.h"
-baza *base;
-
-#include "kolorki.h"
-kolorki *kolory;
 
 #include "algo_funkcje.h"
 algo_funkcje *alg_funkcje;
@@ -348,18 +342,15 @@ int main()
 
 	//test a game
 	//gameTest();
-	
-	kolory = new kolorki();
 
 
 	funkcje = new function();
-	base = new baza();
+
 
 	algo_funkcje *alg_funkcje;
 	alg_funkcje = new algo_funkcje();
 
-	alg_funkcje->zeruj();
-	alg_funkcje->debug = 1;
+
 
 	algo_porownanie *alg_porownanie;
 	alg_porownanie = new algo_porownanie();
@@ -402,16 +393,6 @@ int main()
 
 
 	*/
-	cout << "WHO WINS TEST" << endl;
-
-	alg_funkcje->whoWins
-		(27, 41, 29, 15, 5,
-		40, 26,
-		39, 38,
-		2, 6,
-		0, 0,
-		0, 0,
-		0, 0);
 
 
 	
@@ -444,12 +425,13 @@ int main()
 	
 	
 	//check pixelList function -- pixelListTest is TOO SLOW (uses another func), 
-	pixelListTest2();
+	//pixelListTest2();
 	
 	//test file RGBs
-	testFileRGBs();
+	//testFileRGBs();
 
-	vector < tuple <int, int, int, int, int> > indicator_table;
+	/*
+		vector < tuple <int, int, int, int, int> > indicator_table;
 	indicator_table = readIndicatorsFromFile("coords.txt");
 
 	for (std::vector<int>::size_type i = 0; i != indicator_table.size(); i++) {
@@ -461,6 +443,42 @@ int main()
 				std::get<4>(indicator_table[i]) << endl;
 
 	}
+	*/
+	Place places[6];
+
+	places[0].setPosition(0);
+	places[0].setStack(300);
+	places[0].setRange(20);
+
+	places[0].setPosition(1);
+	places[0].setStack(500);
+	places[0].setRange(34);
+
+	places[0].setPosition(2);
+	places[0].setStack(222);
+	places[0].setRange(66);
+
+	places[0].setPosition(3);
+	places[0].setStack(111);
+	places[0].setRange(22);
+
+	places[0].setPosition(4);
+	places[0].setStack(345);
+	places[0].setRange(45);
+
+	places[0].setPosition(5);
+	places[0].setStack(321);
+	places[0].setRange(10);
+
+	int BB = 20;
+	int SB = 10;
+	int pot = 100;
+	int ante = 10;
+	int board[5] = { 10, 17, 33, 35, 40 };
+	Hand *hand = new Hand(places, BB, SB, pot, ante, board);
+
+
+
 
 
 	getchar();

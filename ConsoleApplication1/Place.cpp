@@ -6,6 +6,18 @@
 
 using namespace std;
 
+
+Place::Place(){
+
+}
+
+Place::Place(int id, int stack, int range){
+	this->placeId = id;
+	this->stack = stack;
+	this->range = range;
+
+}
+
 double Place::getM(){
 	return M;
 }
@@ -15,8 +27,25 @@ void Place::setM(double newm){
 }
 
 int Place::getStack(){
-	return stack;
+	return this->stack;
 }
+
+int Place::getRange(){
+	return this->range;
+}
+
+void Place::setStack(int stack){
+	 this->stack = stack;
+}
+
+void Place::setRange(int range){
+	this->range = range;
+}
+
+void Place::setPosition(int pos){
+	this->placeId = pos;
+}
+
 
 void Place::show(){
 

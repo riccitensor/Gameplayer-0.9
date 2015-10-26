@@ -40,7 +40,7 @@ void gameTest(){
 	MY ZAWSZE SIEDZIMY PRZZY STOLIKU 
 	*/
 
-	int board[5][2] = { { 8, 4 }, { 12, 4 }, { 13, 4 }, { 11, 2 }, { 4, 1 } };
+	int board[5]= { 12,13,14,15,16};
 
 
 	int myhand[2][2] = { { 12, 2 }, { 3, 1 } };
@@ -93,7 +93,7 @@ void gameTest(){
 
 
 
-	Hand *myHand = new Hand(places, 60, 30, 170, 5, board, myhand);
+	Hand *myHand = new Hand(places, 60, 30, 170, 5, board);
 
 	myHand->handInfo();
 	
