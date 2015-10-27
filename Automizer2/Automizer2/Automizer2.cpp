@@ -490,41 +490,34 @@ int main()
 
 	for (int i = 0; i < 13; i++){
 		for (int j = 0; j < 4; j++){
-			if (player[i1][j1] != true){
+			if (player[i][j] != true){
 
-				player[i1][j1] = false;
+				player[i][j] = false;
 			}
 		}
 	}
+	cout << "TESCIK" << endl;
+	for (int i = 0; i < 13; i++){
+		for (int j = 0; j < 4; j++){
+			if (player[i][j] ==true){
+				cout << "(" << i << "," << j << ")";
+			}
+			
+
+		}
+	}
+
 
 	cout << "TEST KONWERTEROW:" << endl;
 
-	for (int i = 0; i < 13; i++){
-		for (int j = 0; j < 4; j++){
-			if (player[i][j] == true){
+	vector<int> test = alg_funkcje->matrix2cards(player);
+	for (std::vector<int>::size_type i = 0; i != test.size(); i++) {
+		cout << test[i] << " - " << alg_funkcje->NumToString(test[i])<<endl;
 
-				cout << alg_funkcje->NumToString(alg_funkcje->convert(j * 13 + i)) << "-";
-				
-			}
-		}
 	}
 
-
-	//cout << "W TABICY JEST:" << endl;
-	//alg_funkcje->showMatrixCards(player);
-
-	/*
-	vector<int> h = whatHand(player);
-	for (std::vector<int>::size_type i = 0; i != h.size(); i++) {
-	std::cout << h[i] << endl;
-	}
-	*/
-
-	//for (int i = 0; i < 10; i++){
-
-	//testWhatHand();
 	
-	vector<int> c = whatHand(rrr);
+	vector<int> c = whatHand(player);
 	for (std::vector<int>::size_type i = 0; i != c.size(); i++) {
 		if (i == 0) std::cout << ranka(c[i]) << endl; else
 			std::cout << fig(c[i]) << "  ";
@@ -533,7 +526,7 @@ int main()
 	
 
 	cout << endl;
-	//}
+
 
 
 	getchar();

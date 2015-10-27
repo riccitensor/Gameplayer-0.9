@@ -123,10 +123,10 @@ string show(bool a[13][4])
 				if (i == 10) karta = "CZTERY.";
 				if (i == 11) karta = "TRZY.";
 				if (i == 12) karta = "DWA.";
-				if (i == 0) kolor = "HEARTS.";
-				if (i == 1) kolor = "DIAMOND.";
-				if (i == 2) kolor = "CLUBS.";
-				if (i == 3) kolor = "SPADES.";
+				if (j == 0) kolor = "HEARTS.";
+				if (j== 1) kolor = "DIAMOND.";
+				if (j == 2) kolor = "CLUBS.";
+				if (j == 3) kolor = "SPADES.";
 			}
 	hand = karta + kolor;
 	return hand;

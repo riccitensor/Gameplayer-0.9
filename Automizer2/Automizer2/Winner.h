@@ -11,32 +11,6 @@
 using namespace std;
 
 
-bool  rrr[13][4];
-
-void testWhatHand(){
-
-	int wylosowanych = 0;
-	int karta[17];
-
-	do//losowanie 17 kart sposrod 52
-	{
-		int liczba = wylosuj();
-		if (czyBylaWylosowana(liczba, karta, wylosowanych) == false)
-		{
-			int x, y;
-			karta[wylosowanych] = liczba;
-			x = liczba % 13;
-			y = liczba / 13;
-
-			if (wylosowanych >= 0 && wylosowanych < 7) rrr[x][y] = true;
-
-
-			wylosowanych++;
-		} //if
-	} while (wylosowanych < 7);
-	// koniec losowania
-}
-
 
 vector<int> whatHand(
 
@@ -60,6 +34,17 @@ vector<int> whatHand(
 	*/
 	){
 
+	/*cout << "WEW FUNKCJI" << endl;
+	for (int i = 0; i < 13; i++){
+		for (int j = 0; j < 4; j++){
+			if (player[i][j] == true){
+				cout << "(" << i << "," << j << ")";
+			}
+
+
+		}
+	}*/
+
 	//kicker[0] bedzie informowal o kolorze pokera, flusha, stright flusha, wartosc 1 to h, 2 to d, 3 to c, 4 to s
 	//kicker [1]...kicker [5] to wysokosc karty pierwszej, drugiej, trzeciej o ile jest kickerem, przez wysokosc rozumiem 0 to as, 1 to krol, etc
 
@@ -72,31 +57,24 @@ vector<int> whatHand(
 	bool rank[10];  //ranking ukladow, dla true oznacza ze w rozdaniu pojawil sie ten uklad, mozna dodac drugi wymiar ktory bedzie okreslal dla ktorego gracza padl ten uklad
 	int blok[10][4];  //do dla straight flusha, sprawdzam czy karty sa po kolei, jest 10 takich blokow, np od As do T, od K do 9, ... od 8 do 4 etc
 	int blok_s[10];  // to przygotowalem dla strita, ale okazalo sie ze troche trudniej
-	int ranking[10]; //to licznik, ile padlo ukladow w zadanej liczbie iteracji
-	int figura_a = 0;
-	int figura_b = 0;
 
-
-	int karta[17]; //losujemy karty bez powtorzen, 5 wspolnych i po 2 dla 2 graczy, lacznie 9
-	int wylosowanych = 0;//sprawdzanie ile juz zostalo wylosowanych roznych kart
-	int iteracja = 0;
 
 	int suma_figura[13]; //ogolnie mamy macierz, karty od A do 2 uszeregowane kolorami, tu sprawdzam ilo zosta³o wylosowanych tych samych figur, czyli sumuje 1 z danego wiersza
 	int suma_kolor[4]; //sumuje 1 z danej kolumny, jesli karta zosta³a wylosowana do w macierzy pojawia siê true, jesli nie pozostaje false
 
-	//ponizej zerowanie zmiennych, nie pamietam czy jest lepszy sposob
+
 	int test = 0;
 	for (int i = 0; i < 10; i++)
 	{
-		rank[i] = 0; ranking[i] = 0;
+		rank[i] = 0; 
 	}
 
 	//G£OWNY PROGRAM !!!
 
-	srand(time(NULL));
+
 	//do
 	//{
-	wylosowanych = 0;
+
 	//ponizej zerowanie zmiennych, to potem mozna wywalic, ale ze sa iteracje to musze zerowac zmienne
 	for (int i = 0; i < 4; i++) suma_kolor[i] = 0;
 	for (int i = 0; i < 6; i++) kicker[i] = -1;
@@ -104,6 +82,8 @@ vector<int> whatHand(
 		suma_figura[j] = 0; sprawdz[j] = 0;
 
 	}
+
+
 	for (int i = 0; i < 10; i++)
 		for (int j = 0; j < 4; j++)
 		{
@@ -111,8 +91,7 @@ vector<int> whatHand(
 			blok_s[i] = 0;
 		}
 
-	//for (int i = 0; i < 4; i++)
-	//	for (int j = 0; j < 13; j++) player[j][i] = false;
+
 	for (int i = 0; i < 10; i++) {
 		rank[i] = 0;
 	}
@@ -120,23 +99,6 @@ vector<int> whatHand(
 	// koniec zerowania zmiennych
 
 
-	do//losowanie 17 kart sposrod 52
-	{
-		int liczba = wylosuj();
-		if (czyBylaWylosowana(liczba, karta, wylosowanych) == false)
-		{
-			int x, y;
-			karta[wylosowanych] = liczba;
-			x = liczba % 13;
-			y = liczba / 13;
-
-			if (wylosowanych >= 0 && wylosowanych < 7) player[x][y] = true;
-
-
-			wylosowanych++;
-		} //if
-	} while (wylosowanych < 17);
-	// koniec losowania
 
 
 
@@ -375,7 +337,6 @@ vector<int> whatHand(
 		}
 
 
-		iteracja++;
 
 		if (rank[1] == true) cout << "Straight Flush";
 		if (rank[2] == true) cout << "4 of Kind";
@@ -387,16 +348,12 @@ vector<int> whatHand(
 		if (rank[8] == true) cout << "1 Pair";
 		if (rank[9] == true) cout << "High Card";
 
-		cout << "  Kicker: ";
 		for (int i = 0; i < 6; i++)
 		{
 
 			if (kicker[i] == -1); else cout << fig(kicker[i]) << "  ";
 		}
 		cout << endl;
-
-	//} while (iteracja<50);
-	//}while (rank[1] == false);
 
 		
 		int r = 0;

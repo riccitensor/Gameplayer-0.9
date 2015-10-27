@@ -309,178 +309,98 @@ class algo_funkcje {
 
 	}
 
-	public: int convert(int a){
 
-		int converter[52];
-		converter[0] = 14;
-		converter[1] = 13;
-		converter[2] = 12;
-		converter[3] = 11;
-		converter[4] = 10;
-		converter[5] = 9;
-		converter[6] = 8;
-		converter[7] = 7;
-		converter[8] = 6;
-		converter[9] = 5;
-		converter[10] = 4;
-		converter[11] = 3;
-		converter[12] = 2;
-
-		converter[13] = 27;
-		converter[14] = 26;
-		converter[15] = 25;
-		converter[16] = 24;
-		converter[17] = 23;
-		converter[18] = 22;
-		converter[19] = 21;
-		converter[20] = 20;
-		converter[21] = 19;
-		converter[22] = 18;
-		converter[23] = 17;
-		converter[24] = 16;
-		converter[25] = 15;
-
-		converter[26] = 40;
-		converter[27] = 39;
-		converter[28] = 38;
-		converter[29] = 37;
-		converter[30] = 36;
-		converter[31] = 35;
-		converter[32] = 34;
-		converter[33] = 33;
-		converter[34] = 32;
-		converter[35] = 31;
-		converter[36] = 30;
-		converter[37] = 29;
-		converter[38] = 28;
-
-		converter[39] = 53;
-		converter[40] = 52;
-		converter[41] = 51;
-		converter[42] = 50;
-		converter[43] = 49;
-		converter[44] = 48;
-		converter[45] = 47;
-		converter[46] = 46;
-		converter[47] = 45;
-		converter[48] = 44;
-		converter[49] = 43;
-		converter[50] = 42;
-		converter[51] = 41;
-
-		return converter[a];
-	}
-
-	public: void showMatrixCards(bool m[13][4]){
+	
+	vector<int> matrix2cards(bool input[13][4]){
 
 
-		/*
-		KODY KART
+		int tab[13][4];
 
-		2 = 2h			15 = 2d			28 = 2c			41 = 2s
-		..				..				..				..
-
-		13 = Kh			26 = Kd			39 = Kc			52 = Ks
-		14 = Ah			27 = Ad			40 = Ac			53 = As
-
-		*/
-
-		int temp[7];
-		int hand[7];
-		int counter = 0;
-
+		tab[0][0] = 14;
+		tab[1][0] = 13;
+		tab[2][0] = 12;
+		tab[3][0] = 11;
+		tab[4][0] = 10;
+		tab[5][0] = 9;
+		tab[6][0] = 8;
+		tab[7][0] = 7;
+		tab[8][0] = 6;
+		tab[9][0] = 5;
+		tab[10][0] = 4;
+		tab[11][0] = 3;
+		tab[12][0] = 2;
+		tab[0][1] = 27;
+		tab[1][1] = 26;
+		tab[2][1] = 25;
+		tab[3][1] = 24;
+		tab[4][1] = 23;
+		tab[5][1] = 22;
+		tab[6][1] = 21;
+		tab[7][1] = 20;
+		tab[8][1] = 19;
+		tab[9][1] = 18;
+		tab[10][1] = 17;
+		tab[11][1] = 16;
+		tab[12][1] = 15;
+		tab[0][2] = 40;
+		tab[1][2] = 39;
+		tab[2][2] = 38;
+		tab[3][2] = 37;
+		tab[4][2] = 36;
+		tab[5][2] = 35;
+		tab[6][2] = 34;
+		tab[7][2] = 33;
+		tab[8][2] = 32;
+		tab[9][2] = 31;
+		tab[10][2] = 30;
+		tab[11][2] = 29;
+		tab[12][2] = 28;
+		tab[0][3] = 53;
+		tab[1][3] = 52;
+		tab[2][3] = 51;
+		tab[3][3] = 50;
+		tab[4][3] = 49;
+		tab[5][3] = 48;
+		tab[6][3] = 47;
+		tab[7][3] = 46;
+		tab[8][3] = 45;
+		tab[9][3] = 44;
+		tab[10][3] = 43;
+		tab[11][3] = 42;
+		tab[12][3] = 41;
 		
-
+		vector<int> a;
 
 		for (int i = 0; i < 13; i++){
 			for (int j = 0; j < 4; j++){
-				
-				//karty
-				if (m[i][j] == true && counter < 7){
-					
-					temp[counter] = j * 13 + i;
-					cout << counter << ": " << temp[counter] << endl;
-					hand[counter] = convert(temp[counter]);
-					counter++;
+				if (input[i][j] == true){
 
+					a.push_back(tab[i][j]);
 
-				}
-				if (counter > 7){
-					cout << "BLAD counter >7" << endl;
 				}
 			}
 		}
 
-
-		for (int i = 0; i < 7; i++){
-			cout << NumToString(hand[i]) << "-";
-		}
+		return a;
 
 	}
 
+
+
+
 	public: int whoWins(int k1 = 0, int k2 = 0, int k3 = 0, int k4 = 0, int k5 = 0, 
-		int k6 = 0, int k7 = 0, 
-		int k8 = 0, int k9 = 0,
-		int k10 = 0, int k11 = 0,
-		int k12 = 0, int k13 = 0,
-		int k14 = 0, int k15 = 0,
-		int k16 = 0, int k17 = 0
+		int k6 = 0, int k7 = 0
 
 		){
 		
-		int a1 = whatHand(k1, k2, k3, k4, k5, k6, k7);
-		if (k6 == 0 || k7 == 0) a1 = -1;
-		int a2 = whatHand(k1, k2, k3, k4, k5, k8, k9);
-		if (k8 == 0 || k9 == 0) a2 = -1;
-		int a3 = whatHand(k1, k2, k3, k4, k5, k10, k11);
-		if (k10 == 0 || k11 == 0) a3 = -1;
-		int a4 = whatHand(k1, k2, k3, k4, k5, k12, k13);
-		if (k12 == 0 || k13 == 0) a4 = -1;
-		int a5 = whatHand(k1, k2, k3, k4, k5, k14, k15);
-		if (k14 == 0 || k15 == 0) a5 = -1;
-		int a6 = whatHand(k1, k2, k3, k4, k5, k16, k17);
-		if (k16 == 0 || k17 == 0) a6 = -1;
-
-		int hands[6];
-		hands[0] = a1;
-		hands[1] = a2;
-		hands[2] = a3;
-		hands[3] = a4;
-		hands[4] = a5;
-		hands[5] = a6;
 
 		 
 		cout << "Flop:" << printCard(k1) + printCard(k2) + printCard(k3) << endl;
 		cout << "T:" << printCard(k4) << endl;
 		cout << "R:" << printCard(k5) << endl;
 
-		cout << "UKLAD 1: " << a1 << endl;
-		cout << "UKLAD 2: " << a2 << endl;
-		cout << "UKLAD 3: " << a3 << endl;
-		cout << "UKLAD 4: " << a4 << endl;
-		cout << "UKLAD 5: " << a5 << endl;
-		cout << "UKLAD 6: " << a6 << endl;
-
-		printHand(k6, k7);
-		printHand(k8, k9);
-		printHand(k10, k11);
-		printHand(k12, k13);
-		printHand(k14, k15);
-		printHand(k16, k17);
-
 
 		/*
-		KODY KART
-
-		2 = 2h			15 = 2d			28 = 2c			41 = 2s
-		..				..				..				..
-
-		13 = Kh			26 = Kd			39 = Kc			52 = Ks
-		14 = Ah			27 = Ad			40 = Ac			53 = As
-
-		*/
-
-
 		int maximum = hands[0];
 		int winid = -1;
 
@@ -496,7 +416,12 @@ class algo_funkcje {
 		}
 
 		cout << "WINNER: " << winid << endl;
-		return maximum;
+
+
+		*/
+
+
+		return 1;
 	}
 
 	void shuffle(int *arr, size_t n)
