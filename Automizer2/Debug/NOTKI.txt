@@ -24,3 +24,28 @@
 			std::cout << fig(c[i]) << "  ";
 
 	}
+
+
+	//--------------------------------------------------------LOSOWANIE WEKTOR
+	int count = 0;
+	for (int a = 0; a < 50 && count <7; a++){
+		
+		i1 = rand() % 13;
+		j1 = rand() % 4;
+		if (player[i1][j1] != true){
+
+			player[i1][j1] = true;
+			count++;
+		}
+	
+
+	}
+
+	for (int i = 0; i < 13; i++){
+		for (int j = 0; j < 4; j++){
+			if (player[i][j] != true){
+
+				player[i][j] = false;
+			}
+		}
+	}

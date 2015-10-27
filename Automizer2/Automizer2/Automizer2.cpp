@@ -421,32 +421,47 @@ int main()
 	srand(time(NULL));
 
 
-	//--------------------------------------------------------LOSOWANIE TESTOWEGO MATRIXA
-	int count = 0;
-	for (int a = 0; a < 50 && count <7; a++){
-		
-		i1 = rand() % 13;
-		j1 = rand() % 4;
-		if (player[i1][j1] != true){
+	/*
+	KODY KART - MICHAL
 
-			player[i1][j1] = true;
-			count++;
-		}
+	2 = 2h			15 = 2d			28 = 2c			41 = 2s
+	..				..				..				..
+
+	13 = Kh			26 = Kd			39 = Kc			52 = Ks
+	14 = Ah			27 = Ad			40 = Ac			53 = As
+
+	*/
 	
+	/*
+	9 - high card
+	8 - 1 pair
+	7 - 2 pairs
+	6 - set
+	5 - straight
+	4 - flush
+	3 - FH
+	2 - quads
+	1 - straight flush
+	
+	*/
+
+
+
+	int a[7];
+	a[0] = 27;
+	a[1] = 26;
+	a[2] = 53;
+	a[3] = 2;
+	a[4] = 3;
+	a[5] = 40;
+	a[6] = 7;
+
+	vector<int> b = whatHand(a);
+
+	for (std::vector<int>::size_type i = 0; i != b.size(); i++) {
+		cout << b[i] <<  endl;
 
 	}
-
-	for (int i = 0; i < 13; i++){
-		for (int j = 0; j < 4; j++){
-			if (player[i][j] != true){
-
-				player[i][j] = false;
-			}
-		}
-	}
-
-	
-
 
 	getchar();
 }

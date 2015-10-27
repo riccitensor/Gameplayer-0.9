@@ -308,8 +308,6 @@ class algo_funkcje {
 		return cards[num];
 
 	}
-
-
 	
 	vector<int> matrix2cards(bool input[13][4]){
 

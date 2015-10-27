@@ -14,7 +14,7 @@ using namespace std;
 
 vector<int> whatHand(
 
-	bool player[13][4]
+	int seven_cards[7]
 
 	/*
 
@@ -34,6 +34,9 @@ vector<int> whatHand(
 	*/
 	){
 
+
+
+
 	/*cout << "WEW FUNKCJI" << endl;
 	for (int i = 0; i < 13; i++){
 		for (int j = 0; j < 4; j++){
@@ -49,10 +52,10 @@ vector<int> whatHand(
 	//kicker [1]...kicker [5] to wysokosc karty pierwszej, drugiej, trzeciej o ile jest kickerem, przez wysokosc rozumiem 0 to as, 1 to krol, etc
 
 	int kicker[6] = { 0, 0, 0, 0, 0, 0 };
-
+	bool player[13][4];
 	int sprawdz[13];
 	bool stop;
-
+	int konwersja = 0;
 	bool rank[10];  //ranking ukladow, dla true oznacza ze w rozdaniu pojawil sie ten uklad, mozna dodac drugi wymiar ktory bedzie okreslal dla ktorego gracza padl ten uklad
 	int blok[10][4];  //do dla straight flusha, sprawdzam czy karty sa po kolei, jest 10 takich blokow, np od As do T, od K do 9, ... od 8 do 4 etc
 	int blok_s[10];  // to przygotowalem dla strita, ale okazalo sie ze troche trudniej
@@ -74,9 +77,15 @@ vector<int> whatHand(
 	//ponizej zerowanie zmiennych, to potem mozna wywalic, ale ze sa iteracje to musze zerowac zmienne
 	for (int i = 0; i < 4; i++) suma_kolor[i] = 0;
 	for (int i = 0; i < 6; i++) kicker[i] = -1;
-	for (int j = 0; j < 13; j++) {
-		suma_figura[j] = 0; sprawdz[j] = 0;
+	for (int i = 0; i < 13; i++)
+	{
+		suma_figura[i] = 0; 
+		sprawdz[i] = 0;
+		for (int j = 0; j < 4; j++)
+		{
+			player[i][j] = false;
 
+		}
 	}
 
 
@@ -92,9 +101,65 @@ vector<int> whatHand(
 		rank[i] = 0;
 	}
 	stop = false;
+	
 	// koniec zerowania zmiennych
 
-
+	for (int i = 0; i < 7; i++)
+	{
+		konwersja = seven_cards[i];
+		if (konwersja == 14) player[0][0] = true;
+		if (konwersja == 13) player[1][0] = true;
+		if (konwersja == 12) player[2][0] = true;
+		if (konwersja == 11) player[3][0] = true;
+		if (konwersja == 10) player[4][0] = true;
+		if (konwersja == 9) player[5][0] = true;
+		if (konwersja == 8) player[6][0] = true;
+		if (konwersja == 7) player[7][0] = true;
+		if (konwersja == 6) player[8][0] = true;
+		if (konwersja == 5) player[9][0] = true;
+		if (konwersja == 4) player[10][0] = true;
+		if (konwersja == 3) player[11][0] = true;
+		if (konwersja == 2) player[12][0] = true;
+		if (konwersja == 27) player[0][1] = true;
+		if (konwersja == 26) player[1][1] = true;
+		if (konwersja == 25) player[2][1] = true;
+		if (konwersja == 24) player[3][1] = true;
+		if (konwersja == 23) player[4][1] = true;
+		if (konwersja == 22) player[5][1] = true;
+		if (konwersja == 21) player[6][1] = true;
+		if (konwersja == 20) player[7][1] = true;
+		if (konwersja == 19) player[8][1] = true;
+		if (konwersja == 18) player[9][1] = true;
+		if (konwersja == 17) player[10][1] = true;
+		if (konwersja == 16) player[11][1] = true;
+		if (konwersja == 15) player[12][1] = true;
+		if (konwersja == 40) player[0][2] = true;
+		if (konwersja == 39) player[1][2] = true;
+		if (konwersja == 38) player[2][2] = true;
+		if (konwersja == 37) player[3][2] = true;
+		if (konwersja == 36) player[4][2] = true;
+		if (konwersja == 35) player[5][2] = true;
+		if (konwersja == 34) player[6][2] = true;
+		if (konwersja == 33) player[7][2] = true;
+		if (konwersja == 32) player[8][2] = true;
+		if (konwersja == 31) player[9][2] = true;
+		if (konwersja == 30) player[10][2] = true;
+		if (konwersja == 29) player[11][2] = true;
+		if (konwersja == 28) player[12][2] = true;
+		if (konwersja == 53) player[0][3] = true;
+		if (konwersja == 52) player[1][3] = true;
+		if (konwersja == 51) player[2][3] = true;
+		if (konwersja == 50) player[3][3] = true;
+		if (konwersja == 49) player[4][3] = true;
+		if (konwersja == 48) player[5][3] = true;
+		if (konwersja == 47) player[6][3] = true;
+		if (konwersja == 46) player[7][3] = true;
+		if (konwersja == 45) player[8][3] = true;
+		if (konwersja == 44) player[9][3] = true;
+		if (konwersja == 43) player[10][3] = true;
+		if (konwersja == 42) player[11][3] = true;
+		if (konwersja == 41) player[12][3] = true;
+	}
 
 
 
@@ -338,6 +403,7 @@ vector<int> whatHand(
 				ret.push_back(kicker[i]);
 			}
 
+			wyswietl(player);
 
 	return ret;
 }
