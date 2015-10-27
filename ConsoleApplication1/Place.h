@@ -47,6 +47,8 @@ public:
 	int getRange();
 	void setRange(int stack);
 	void setPosition(int pos);
+	int getActive();
+	void setActive(int a);
 
 public:
 	Place();

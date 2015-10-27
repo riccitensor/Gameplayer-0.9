@@ -240,6 +240,70 @@ class algo_funkcje {
 		return c;
 	}
 
+	public: int showMatrixCards(bool m[13][4]){
+
+
+		/*
+		KODY KART
+
+		2 = 2h			15 = 2d			28 = 2c			41 = 2s
+		..				..				..				..
+
+		13 = Kh			26 = Kd			39 = Kc			52 = Ks
+		14 = Ah			27 = Ad			40 = Ac			53 = As
+
+		*/
+
+		int temp[7];
+		int counter = 0;
+
+		int converter[52];
+		converter[0] = 14;
+		converter[1] = 13;
+		converter[2] = 12;
+		converter[3] = 11;
+		converter[4] = 10;
+		converter[5] = 9;
+		converter[6] = 8;
+		converter[7] = 7;
+		converter[8] = 6;
+		converter[9] = 5;
+		converter[10] = 4;
+		converter[11] = 3;
+		converter[12] = 2;
+
+		converter[13] = 27;
+		converter[14] = 28;
+		converter[15] = 29;
+		converter[16] = 30;
+		converter[17] = 31;
+		converter[18] = 9;
+		converter[19] = 8;
+		converter[20] = 7;
+		converter[21] = 6;
+		converter[22] = 5;
+		converter[23] = 4;
+		converter[24] = 3;
+		converter[25] = 2;
+
+
+
+		for (int i = 0; i < 13; i++){
+			for (int j = 0; j < 4; j++){
+				
+				//karty
+				if (m[i][j] == true){
+					
+					temp[counter] = j * 13 + i;
+					counter++;
+
+				}
+			}
+		}
+
+
+	}
+
 	public: int whoWins(int k1 = 0, int k2 = 0, int k3 = 0, int k4 = 0, int k5 = 0, 
 		int k6 = 0, int k7 = 0, 
 		int k8 = 0, int k9 = 0,

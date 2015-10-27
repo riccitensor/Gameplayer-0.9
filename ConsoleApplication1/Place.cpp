@@ -34,6 +34,14 @@ int Place::getRange(){
 	return this->range;
 }
 
+int Place::getActive(){
+	return this->active;
+}
+
+void Place::setActive(int a){
+	this->active = a;
+}
+
 void Place::setStack(int stack){
 	 this->stack = stack;
 }

@@ -1,17 +1,32 @@
-﻿Build started 2015-10-25 00:43:45.
-     1>Project "D:\Projekty\6_graczy\6_graczy\6_graczy.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 2015-10-26 21:45:03.
+     1>Project "C:\Users\Michał\Documents\GitHub\misha\6_graczy\6_graczy\6_graczy.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt 6_graczy.cpp stdafx.cpp
          stdafx.cpp
          6_graczy.cpp
-     1>d:\projekty\6_graczy\6_graczy\6_graczy.cpp(52): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(53): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(59): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(149): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(153): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(157): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(161): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(192): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(200): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(203): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(210): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(240): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(244): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(285): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(294): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(324): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(328): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(352): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(358): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(374): error C2065: 'kicker' : undeclared identifier
+     1>c:\users\michał\documents\github\misha\6_graczy\6_graczy\6_graczy.cpp(380): error C2065: 'kicker' : undeclared identifier
          Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Projekty\6_graczy\Debug\6_graczy.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Projekty\6_graczy\Debug\6_graczy.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Projekty\6_graczy\Debug\6_graczy.lib" /MACHINE:X86 Debug\6_graczy.obj
-         Debug\stdafx.obj
-         6_graczy.vcxproj -> D:\Projekty\6_graczy\Debug\6_graczy.exe
-     1>Done Building Project "D:\Projekty\6_graczy\6_graczy\6_graczy.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "C:\Users\Michał\Documents\GitHub\misha\6_graczy\6_graczy\6_graczy.vcxproj" (Rebuild target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.99
+Time Elapsed 00:00:01.65

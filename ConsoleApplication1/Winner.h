@@ -3,20 +3,59 @@
 
 #include <iostream>
 #include <ctime>
-#include "funkcje.h"
+#include "WinnerFunc.h"
 #include <string>
+#include <cmath>
+#include <vector>
 
 using namespace std;
 
 
-int whatHand(
-	
+bool  rrr[13][4];
+
+void testWhatHand(){
+
+	int wylosowanych = 0;
+	int karta[17];
+
+	do//losowanie 17 kart sposrod 52
+	{
+		int liczba = wylosuj();
+		if (czyBylaWylosowana(liczba, karta, wylosowanych) == false)
+		{
+			int x, y;
+			karta[wylosowanych] = liczba;
+			x = liczba % 13;
+			y = liczba / 13;
+
+			if (wylosowanych >= 0 && wylosowanych < 7) rrr[x][y] = true;
+
+
+			wylosowanych++;
+		} //if
+	} while (wylosowanych < 7);
+	// koniec losowania
+}
+
+
+vector<int> whatHand(
+
 	bool player[13][4]
 
 	/*
 
 	kazdy gracz ma reke, losowane bez powtorzen, konwertowane na matrix Slawka
-	W TABLICY JEST SIEDEM KART GRACZA = 2 UNIKALNE JEGO i PIEC WSPOLNYCH
+	W TABLICY JEST SIEDEM KART GRACZA = 2 UNIKALNE JEGO i PIEC
+	dla gracza matrixa losujemy 5 kart z boardu bo na poaczatku jego tablica bedzie miala tylko dwa TRUE!!!!!!!!!!!!!!!!!!!!!!!
+	TA FUNKCJA DA SIE WYWOLAC 6 RAZY ALE TRZEBA PAMIETAC CO WYLOSOWAISMY DLA POPRZEDNIKOW RANGOW
+	TRZEBA PAMIETAC ZE PRZY LOSOWANIU ZAWSZE TRZEBA MOC WYLOSOWAC RECE
+	P1 10%
+	P2 20%
+	P3 30%
+	P4 40%
+	P5 50%
+	P6 60%
+
 
 	*/
 	){
@@ -24,7 +63,7 @@ int whatHand(
 	//kicker[0] bedzie informowal o kolorze pokera, flusha, stright flusha, wartosc 1 to h, 2 to d, 3 to c, 4 to s
 	//kicker [1]...kicker [5] to wysokosc karty pierwszej, drugiej, trzeciej o ile jest kickerem, przez wysokosc rozumiem 0 to as, 1 to krol, etc
 
-	int kicker[6] = { 0, 0, 0, 0, 0, 0 }; 
+	int kicker[6] = { 0, 0, 0, 0, 0, 0 };
 
 	int sprawdz[13];
 	bool stop = 0;
@@ -55,8 +94,8 @@ int whatHand(
 	//G£OWNY PROGRAM !!!
 
 	srand(time(NULL));
-	do
-	{
+
+	
 		wylosowanych = 0;
 		//ponizej zerowanie zmiennych, to potem mozna wywalic, ale ze sa iteracje to musze zerowac zmienne
 		for (int i = 0; i < 4; i++) suma_kolor[i] = 0;
@@ -72,31 +111,16 @@ int whatHand(
 				blok_s[i] = 0;
 			}
 
-		for (int i = 0; i < 4; i++)
-			for (int j = 0; j < 13; j++) player[j][i] = false;
+		//for (int i = 0; i < 4; i++)
+		//	for (int j = 0; j < 13; j++) player[j][i] = false;
 		for (int i = 0; i < 10; i++) {
 			rank[i] = 0;
 		}
-		stop = 0;
+		
 		// koniec zerowania zmiennych
 
-
-		do//losowanie 17 kart sposrod 52
-		{
-			int liczba = wylosuj();
-			if (czyBylaWylosowana(liczba, karta, wylosowanych) == false)
-			{
-				int x, y;
-				karta[wylosowanych] = liczba;
-				x = liczba % 13;
-				y = liczba / 13;
-
-				if (wylosowanych >= 0 && wylosowanych < 7) player[x][y] = true;
-
-				wylosowanych++;
-			} //if
-		} while (wylosowanych < 17);
-		// koniec losowania
+		//x = liczba % 13;
+		//y = liczba / 13;
 
 
 
@@ -105,6 +129,7 @@ int whatHand(
 			for (int j = 0; j < 13; j++)
 				if (player[j][i] == true)
 				{
+			
 					suma_kolor[i]++;//sumuje ile kart jest w danych kolorze
 					suma_figura[j]++;//sumuje jaka jest liczba danej figury
 					if (j >= 0 && j < 5) blok[0][i]++;//tworze bloki dla STRAIGHT FLUSHA, jesli wartosc bloku rowna siê 5 tzn ze jest zapelniony caly blok, czyli karty sa po kolei
@@ -143,55 +168,38 @@ int whatHand(
 			}
 
 
-		wyswietl(player);  //WYSWIETLANIE kart gracza
+	
 
 
 		//STRAIGHT FLUSH
-		if (rank[0] == false)
-		{
-			for (int i = 0; i < 10; i++)
-				for (int j = 0; j < 4; j++)
-				{
-					if (blok[i][j] == 5)
-					{
 
-						cout << "GRACZ A posiada=STRAIGHT FLUSH! " << fig(i) << "Kolor to " << kolor(j) << endl;
-						rank[1] = true;
-						stop = 1;
-						break;
-					}
-					if (stop == 1) break;
-				}
+		for (int i = 0; i < 40; i++)
+		{
+			if (blok[(int) floor(i / 4)][i % 4] == 5)
+			{
+				rank[1] = true;
+				kicker[0] = (int)floor(i / 4);
+				break;
+			}
 		}
+		
+
 
 		//KARETA
-		stop = 0;
 		for (int i = 0; i < 13; i++)
 			if (suma_figura[i] == 4)
 			{
-
 				rank[2] = true;
-
 				//kickery dla karety
-				kicker[1] = i;//jaka kareta
+				kicker[0] = i;//jaka kareta
 
-
-				for (int a = 0; a < 13; a++)
-				{
-					if (stop == 1) break;
-					for (int b = 0; b < 4; b++)
-					{
-						if ((player[a][b] == true) && (a != kicker[1]))
+				for (int a = 0; a < 52; a++)		
+						if ((player[(int)floor(a / 4)][a%4] == true) && (a != kicker[0]))
 						{
-							stop = 1;
-							kicker[2] = a;
-						}
-						if (stop == 1) break;
-					}
-
-
-				}
-				cout << "GRACZ A posiada=4 of KIND! " << fig(kicker[1]) << "Kickery to: " << fig(kicker[2]) << endl;
+							kicker[1] = (int)floor(a / 4);
+							break;
+						}				
+				break;
 			}
 
 		//STRAIGHT
@@ -201,20 +209,20 @@ int whatHand(
 
 				if (blok_s[i] == 5)
 				{
-					cout << "GRACZ A posiada=STRAIGHT! " << fig(i) << endl;
-					rank[5] = true; break;
+					kicker[0] = i;
+					rank[5] = true; 
+					break;
 				}
-
 		}
 
 		//FLUSH
-		if (rank[0] == false && rank[1] == false)
+		if (rank[1] == false)
+		{
 			for (int i = 0; i < 4; i++)
 				if (suma_kolor[i] >= 5)
 				{
-					int zlicz = 1;
-					cout << "GRACZ A posiada=FLUSH! " << "Kickery to: ";
 					rank[4] = true;
+					int zlicz = 0;
 
 					for (int a = 0; a < 13; a++)
 					{
@@ -225,28 +233,24 @@ int whatHand(
 							zlicz++;
 						}
 					}
-					cout << fig(kicker[1]) << " " << fig(kicker[2]) << " " << fig(kicker[3]) << " " << fig(kicker[4]) << " " << fig(kicker[5]) << endl;
-
 				}
-
-
+		}
 
 		//FULL HOUSE
 		if (rank[2] == false)
 		{
-			int check = 0;
 			for (int i = 0; i < 13; i++)
 			{
 				if (suma_figura[i] == 3)
 					for (int j = 0; j < 13; j++)
 						if ((j != i) && (suma_figura[j] >= 2))
 						{
-							cout << "GRACZ A posiada=FULL HOUSE! " << fig(i) << " na " << fig(j) << endl;
 							rank[3] = true;
-							check = 1;
+							kicker[0] = i;
+							kicker[1] = j;
 							break;
 						}
-				if (check == 1) break;
+				break;
 			}
 		}
 		//SET
@@ -258,24 +262,17 @@ int whatHand(
 			{
 				if (suma_figura[i] == 3)
 				{
-
-					for (int a = 0; a < 13; a++)
+					kicker[0] = i;
+					for (int a = 0; a < 52; a++)
 					{
-						for (int b = 0; b < 4; b++)
-						{
-
-							if ((player[a][b] == true) && (i != a))
+						if ((player[(int)floor(a / 4)][a % 4] == true) && (i != (int)floor(a / 4)))
 							{
-								kicker[zlicz] = a;
+								kicker[zlicz] = (int)floor(a / 4);
 								zlicz++;
-							}
-						}
+							}						
 						if (zlicz == 3) break;
 					}
-
 					rank[6] = true;
-					cout << "GRACZ A posiada=3 of KIND! " << fig(i);
-					cout << "Kickery to: " << fig(kicker[1]) << " " << fig(kicker[2]) << endl;
 					break;
 				}
 			}
@@ -283,8 +280,8 @@ int whatHand(
 
 
 		//2 PAIRS
-		stop = 0;
-		if ((rank[6] == false) && (rank[5] == false) && (rank[4] == false) && (rank[3] == false) && (rank[0] == false) && (rank[1] == false) && (rank[2] == false))
+	
+		if ((rank[6] == false) && (rank[5] == false) && (rank[4] == false) && (rank[3] == false) && (rank[2] == false) && (rank[1] == false) && (rank[2] == false))
 		{
 			for (int i = 0; i < 13; i++)
 				if (suma_figura[i] == 2)
@@ -292,27 +289,19 @@ int whatHand(
 					for (int j = 0; j < 13; j++)
 						if ((j != i) && (suma_figura[j] == 2))
 						{
-							cout << "GRACZ A posiada=2 PAIR! " << fig(i) << " i " << fig(j);
 							rank[7] = true;
-
-
-							for (int a = 0; a < 13; a++)
-							{
-								for (int b = 0; b < 4; b++)
+							kicker[0] = i;
+							kicker[1] = j;
+							for (int a = 0; a < 52; a++)
+							{						
+								if ((player[(int)floor(a / 4)][a % 4] == true) && ((int)floor(a / 4) != i) && ((int)floor(a / 4) != j))
 								{
-									if ((player[a][b] == true) && (a != i) && (a != j))
-									{
-										stop = 1;
-										break;
-									}
-									kicker[1] = a;
+									kicker[2] = (int)floor(a / 4);
+									break;
 								}
-								if (stop == 1) break;
 							}
-							cout << "Kickery to: " << fig(kicker[1]) << endl;
 							break;
 						}
-
 					break;
 				}
 
@@ -320,72 +309,69 @@ int whatHand(
 
 		//1 PAIR
 
-		if ((rank[7] == false) && (rank[6] == false) && (rank[5] == false) && (rank[4] == false) && (rank[0] == false) && (rank[1] == false) && (rank[2] == false) && (rank[3] == false))
+		if ((rank[7] == false) && (rank[6] == false) && (rank[5] == false) && (rank[4] == false) && (rank[3] == false) && (rank[2] == false) && (rank[1] == false))
 		{
+			
 			int zlicz = 1;
 			for (int i = 0; i < 13; i++)
 				if (suma_figura[i] == 2)
 				{
-					for (int a = 0; a < 13; a++)
+				
+					kicker[0] = i;
+					for (int a = 0; a < 52; a++)
 					{
-						for (int b = 0; b < 4; b++)
-						{
-
-							if ((player[a][b] == true) && (i != a))
+						if ((player[(int)floor(a / 4)][a % 4] == true) && (i != (int)floor(a / 4)))
 							{
-								kicker[zlicz] = a;
+								kicker[zlicz] = (int)floor(a / 4);
 								zlicz++;
 							}
-						}
+						
 						if (zlicz == 4) break;
 					}
-					cout << "GRACZ A posiada=1 PAIR! " << fig(i) << "Kickery to: " << fig(kicker[1]) << " " << fig(kicker[2]) << " " << fig(kicker[3]) << endl;
 					rank[8] = true;
+					break;
 				}
 		}
 
 		//HIGH CARD
-		if ((rank[0] == false) && (rank[1] == false) && (rank[2] == false) && (rank[3] == false) && (rank[4] == false) && (rank[5] == false) && (rank[6] == false) && (rank[7] == false) && (rank[8] == false))
+		if ( (rank[1] == false) && (rank[2] == false) && (rank[3] == false) && (rank[4] == false) && (rank[5] == false) && (rank[6] == false) && (rank[7] == false) && (rank[8] == false))
 		{
-			int zlicz = 1;
-			for (int a = 0; a < 13; a++)
+			int zlicz = 0;
+			for (int a = 0; a < 52; a++)
 			{
-				for (int b = 0; b < 4; b++)
-				{
 
-					if (player[a][b] == true)
+				if (player[(int)floor(a / 4)][a%4] == true)
 					{
-						kicker[zlicz] = a;
+						kicker[zlicz] = (int)floor(a / 4);
 						zlicz++;
 					}
-				}
 				if (zlicz == 6) break;
 			}
-			cout << "GRACZ A posiada=HIGH CARD! Kickery to:" << fig(kicker[1]) << " " << fig(kicker[2]) << " " << fig(kicker[3]) << " " << fig(kicker[4]) << " " << fig(kicker[5]) << endl;
 			rank[9] = true;
-
 		}
 
 
-		iteracja++;
-	} while (iteracja < 50000);
-
-}
-
-
-int _tmain(int argc, _TCHAR* argv[])
-{
-
-	//gracz 1; 0 - AS, 1 - KROL, 2 - DAMA .... 12 - Dwójka; druga wspolrzeda to 4 kolory, hearts, clubs, spades, diamonds
-	bool player1[13][4];
-	bool player2[13][4];
-	bool player3[13][4];
-	bool player4[13][4];
-	bool player5[13][4];
-	bool player6[13][4];
 	
-	
-	getchar();
+	int r = 0;
 
+	for (int i = 1; i < 10; i++){
+		if (rank[i] == true) {
+
+			r = i;
+		}
+	}
+
+	for (int i = 0; i < 6; i++){
+
+	}
+
+	vector<int> ret;
+	ret.push_back(r);
+	for (int i = 0; i < 6; i++){
+		ret.push_back(kicker[i]);
+	}
+
+
+	return ret;
 }
 

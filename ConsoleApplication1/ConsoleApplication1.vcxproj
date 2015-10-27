@@ -88,6 +88,8 @@
     <ClInclude Include="HandDist.h" />
     <ClInclude Include="CSVRow.h" />
     <ClInclude Include="HandEval.h" />
+    <ClInclude Include="WinnerFunc.h" />
+    <ClInclude Include="Winner.h" />
     <ClInclude Include="ocr.h" />
     <ClInclude Include="Place.h" />
     <ClInclude Include="Hand.h" />

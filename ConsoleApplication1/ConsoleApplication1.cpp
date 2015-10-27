@@ -19,6 +19,7 @@
 #include <map>
 
 #include "ocr.h"
+#include "Winner.h"
 
 
 #include "HandEval.h"
@@ -320,8 +321,6 @@ void testFileRGBs(){
 
 
 
-
-
 //range list
 std::map <int, int> int_ranges;
 
@@ -446,29 +445,41 @@ int main()
 	*/
 	Place places[6];
 
+	//place 0
 	places[0].setPosition(0);
 	places[0].setStack(300);
 	places[0].setRange(20);
+	places[0].setActive(1);//-----------------------------------ACTIVE
 
-	places[0].setPosition(1);
-	places[0].setStack(500);
-	places[0].setRange(34);
+	//place 1
+	places[1].setPosition(1);
+	places[1].setStack(500);
+	places[1].setRange(34);
+	places[1].setActive(0);
 
-	places[0].setPosition(2);
-	places[0].setStack(222);
-	places[0].setRange(66);
+	//place 2
+	places[2].setPosition(2);
+	places[2].setStack(222);
+	places[2].setRange(66);
+	places[2].setActive(1);//-----------------------------------ACTIVE
 
-	places[0].setPosition(3);
-	places[0].setStack(111);
-	places[0].setRange(22);
+	//place 3
+	places[3].setPosition(3);
+	places[3].setStack(111);
+	places[3].setRange(22);
+	places[3].setActive(0);
 
-	places[0].setPosition(4);
-	places[0].setStack(345);
-	places[0].setRange(45);
+	//place 4
+	places[4].setPosition(4);
+	places[4].setStack(345);
+	places[4].setRange(45);
+	places[4].setActive(0);
 
-	places[0].setPosition(5);
-	places[0].setStack(321);
-	places[0].setRange(10);
+	//place 5
+	places[5].setPosition(5);
+	places[5].setStack(321);
+	places[5].setRange(10);
+	places[5].setActive(1);//-----------------------------------ACTIVE
 
 	int BB = 20;
 	int SB = 10;
@@ -477,8 +488,42 @@ int main()
 	int board[5] = { 10, 17, 33, 35, 40 };
 	Hand *hand = new Hand(places, BB, SB, pot, ante, board);
 
+	bool player[13][4];
 
+	player[0][0] = true;
 
+	player[2][1] = true;
+
+	player[5][2] = true;
+
+	player[3][3] = true;
+	
+	player[4][3] = true;
+
+	player[5][3] = true;
+
+	player[10][1] = true;
+	wyswietl(player);
+	
+	/*
+	vector<int> h = whatHand(player);
+	for (std::vector<int>::size_type i = 0; i != h.size(); i++) {
+		std::cout << h[i] << endl; 
+	}
+	*/
+
+	for (int i = 0; i < 10; i++){
+
+		testWhatHand();
+
+		vector<int> c = whatHand(rrr);
+		for (std::vector<int>::size_type i = 0; i != c.size(); i++) {
+			if (i == 0) std::cout << ranka(c[i]) << endl; else
+				std::cout << fig(c[i]) << "  ";
+			
+		}
+		cout << endl;
+	}
 
 
 	getchar();
