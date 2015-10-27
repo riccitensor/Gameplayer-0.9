@@ -51,8 +51,7 @@ vector<int> whatHand(
 	int kicker[6] = { 0, 0, 0, 0, 0, 0 };
 
 	int sprawdz[13];
-	bool stop = 0;
-	int hej = 0;
+	bool stop;
 
 	bool rank[10];  //ranking ukladow, dla true oznacza ze w rozdaniu pojawil sie ten uklad, mozna dodac drugi wymiar ktory bedzie okreslal dla ktorego gracza padl ten uklad
 	int blok[10][4];  //do dla straight flusha, sprawdzam czy karty sa po kolei, jest 10 takich blokow, np od As do T, od K do 9, ... od 8 do 4 etc
@@ -71,9 +70,6 @@ vector<int> whatHand(
 
 	//G£OWNY PROGRAM !!!
 
-
-	//do
-	//{
 
 	//ponizej zerowanie zmiennych, to potem mozna wywalic, ale ze sa iteracje to musze zerowac zmienne
 	for (int i = 0; i < 4; i++) suma_kolor[i] = 0;
@@ -95,7 +91,7 @@ vector<int> whatHand(
 	for (int i = 0; i < 10; i++) {
 		rank[i] = 0;
 	}
-	stop = 0;
+	stop = false;
 	// koniec zerowania zmiennych
 
 
@@ -143,21 +139,8 @@ vector<int> whatHand(
 				if (j == 12) { blok_s[8]++; blok_s[9]++; sprawdz[j]++; }
 			}
 		}
-	cout << "\nTUTAJ mi wyswieTL TOCo WyswieTla " << endl;
-	for (int z = 0; z < 52 ; z++) 
-	{
-		if (player[(int)floor(z / 4)][z % 4] == true)
-		{
-			cout << "player[" << (int)floor(z / 4) << "][" << z % 4 << "] = ";
-			cout << fig((int)floor(z / 4)) << " " << kolor(z % 4) << endl;
-		}
-	}
 
-		//wyswietl(player);  //WYSWIETLANIE kart gracza
-		//cout << "  -  ";
-
-
-		//STRAIGHT FLUSH
+		//STRAIGHT FLUSH---------------------------------------------------
 
 		for (int i = 0; i < 40; i++)
 		{
@@ -169,9 +152,7 @@ vector<int> whatHand(
 			}
 		}
 
-
-
-		//KARETA
+		//KARETA---------------------------------------------------
 		for (int i = 0; i < 13; i++)
 			if (suma_figura[i] == 4)
 			{
@@ -188,7 +169,7 @@ vector<int> whatHand(
 				break;
 			}
 
-		//STRAIGHT
+		//STRAIGHT---------------------------------------------------
 		if ((suma_kolor[0] < 5) && (suma_kolor[1] < 5) && (suma_kolor[2] < 5) && (suma_kolor[3] < 5))
 		{
 			for (int i = 0; i < 10; i++)
@@ -201,7 +182,7 @@ vector<int> whatHand(
 				}
 		}
 
-		//FLUSH
+		//FLUSH---------------------------------------------------
 		if (rank[1] == false)
 		{
 			for (int i = 0; i < 4; i++)
@@ -222,7 +203,7 @@ vector<int> whatHand(
 				}
 		}
 
-		//FULL HOUSE
+		//FULL HOUSE---------------------------------------------------
 		if (rank[2] == false)
 		{
 			for (int i = 0; i < 13; i++)
@@ -239,7 +220,8 @@ vector<int> whatHand(
 				break;
 			}
 		}
-		//SET
+
+		//SET---------------------------------------------------
 
 		if ((rank[5] == false) && (rank[4] == false) && (rank[3] == false) && (rank[2] == false) && (rank[1] == false))
 		{
@@ -265,7 +247,7 @@ vector<int> whatHand(
 		}
 
 
-		//2 PAIRS
+		//2 PAIRS---------------------------------------------------
 
 		if ((rank[6] == false) && (rank[5] == false) && (rank[4] == false) && (rank[3] == false) && (rank[2] == false) && (rank[1] == false) && (rank[2] == false))
 		{
@@ -293,7 +275,7 @@ vector<int> whatHand(
 
 		}//end 2 pairs
 
-		//1 PAIR
+		//1 PAIR---------------------------------------------------
 
 		if ((rank[7] == false) && (rank[6] == false) && (rank[5] == false) && (rank[4] == false) && (rank[3] == false) && (rank[2] == false) && (rank[1] == false))
 		{
@@ -319,7 +301,7 @@ vector<int> whatHand(
 				}
 		}
 
-		//HIGH CARD
+		//HIGH CARD---------------------------------------------------
 		if ((rank[1] == false) && (rank[2] == false) && (rank[3] == false) && (rank[4] == false) && (rank[5] == false) && (rank[6] == false) && (rank[7] == false) && (rank[8] == false))
 		{
 			int zlicz = 0;
@@ -336,50 +318,26 @@ vector<int> whatHand(
 			rank[9] = true;
 		}
 
+			//	zapisanie rankingow i kickerow do wektora
+			int r = 0;
 
+			for (int i = 1; i < 10; i++){
+				if (rank[i] == true) {
 
-		if (rank[1] == true) cout << "Straight Flush";
-		if (rank[2] == true) cout << "4 of Kind";
-		if (rank[3] == true) cout << "Full House";
-		if (rank[4] == true) cout << "Flush";
-		if (rank[5] == true) cout << "Straight";
-		if (rank[6] == true) cout << "3 of Kind";
-		if (rank[7] == true) cout << "2 Pair";
-		if (rank[8] == true) cout << "1 Pair";
-		if (rank[9] == true) cout << "High Card";
+					r = i;
+				}
+			}
 
-		for (int i = 0; i < 6; i++)
-		{
+			for (int i = 0; i < 6; i++){
 
-			if (kicker[i] == -1); else cout << fig(kicker[i]) << "  ";
-		}
-		cout << endl;
+			}
 
-		
-		int r = 0;
+			vector<int> ret;
+			ret.push_back(r);
+			for (int i = 0; i < 6; i++){
+				ret.push_back(kicker[i]);
+			}
 
-	for (int i = 1; i < 10; i++){
-		if (rank[i] == true) {
-
-			r = i;
-		}
-	}
-
-	for (int i = 0; i < 6; i++){
-
-	}
-
-	vector<int> ret;
-	ret.push_back(r);
-	for (int i = 0; i < 6; i++){
-		ret.push_back(kicker[i]);
-	}
-
-	for (std::vector<int>::size_type i = 0; i != ret.size(); i++) {
-		 std::cout << "TO ZWRACA:" << ret[i]<<"-"<<endl;
-	}
-
-	
 
 	return ret;
 }

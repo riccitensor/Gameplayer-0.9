@@ -74,7 +74,7 @@ using namespace Gdiplus;
 
 
 /*
-KODY KART
+KODY KART - MICHAL
 
 2 = 2h			15 = 2d			28 = 2c			41 = 2s
 ..				..				..				..
@@ -303,22 +303,7 @@ void testFileRGBs(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//range list
+//------------------------------------------------------TU ZAPISANE SA RECE Z DANYCH RANGOW
 std::map <int, int> int_ranges;
 
 
@@ -336,37 +321,14 @@ int main()
 	//HBITMAP hBitmap = GetScreenShot();
 	//saveScreenshotToFile(L"output.png", hBitmap);
 
-	//test a game
-	//gameTest();
-
-
-	funkcje = new function();
-
 
 	algo_funkcje *alg_funkcje;
 	alg_funkcje = new algo_funkcje();
 
 
-
-	algo_porownanie *alg_porownanie;
-	alg_porownanie = new algo_porownanie();
-
-	//---------------------------------------------------------TESTY KTO WYGRAL------------------
-
-	/*
-	KODY KART
-
-	2 = 2h			15 = 2d			28 = 2c			41 = 2s
-	..				..				..				..
-
-	13 = Kh			26 = Kd			39 = Kc			52 = Ks
-	14 = Ah			27 = Ad			40 = Ac			53 = As
-
-	*/
-
 	
 	
-			std::vector <std::vector<std::string> >	 ranges = alg_funkcje->readRangesFromFile();
+	std::vector <std::vector<std::string> >	 ranges = alg_funkcje->readRangesFromFile();
 
 	//----------------------------------------------CALA LISTA RAK
 	for (std::vector<int>::size_type i = 0; i != ranges.size(); i++){
@@ -385,24 +347,6 @@ int main()
 	
 
 	
-	
-
-	
-
-
-
-	//-----------------------------------------------EQUITY CALC	
-	//alg_funkcje->equityvsRange(23, 24, 2);
-
-
-	//----------------------------------------TEST KONWERSJI RAK
-	/*
-	cout << "Reka: AhQc"
-	<< "Kod+10: "
-	<< alg_funkcje->handToNum("AhQc")
-	<< " OWROTNIE: "
-	<<alg_funkcje->NumToHand(2448)<<endl;
-	*/
 
 
 	//check pixelList function -- pixelListTest is TOO SLOW (uses another func), 
@@ -425,6 +369,8 @@ int main()
 
 	}
 	*/
+
+	//-------------------------------------------------------CALA REKA Z KLASY HAND
 	Place places[6];
 
 	//place 0
@@ -474,6 +420,8 @@ int main()
 	int i1, j1;
 	srand(time(NULL));
 
+
+	//--------------------------------------------------------LOSOWANIE TESTOWEGO MATRIXA
 	int count = 0;
 	for (int a = 0; a < 50 && count <7; a++){
 		
@@ -496,37 +444,8 @@ int main()
 			}
 		}
 	}
-	cout << "TESCIK" << endl;
-	for (int i = 0; i < 13; i++){
-		for (int j = 0; j < 4; j++){
-			if (player[i][j] ==true){
-				cout << "(" << i << "," << j << ")";
-			}
-			
-
-		}
-	}
-
-
-	cout << "TEST KONWERTEROW:" << endl;
-
-	vector<int> test = alg_funkcje->matrix2cards(player);
-	for (std::vector<int>::size_type i = 0; i != test.size(); i++) {
-		cout << test[i] << " - " << alg_funkcje->NumToString(test[i])<<endl;
-
-	}
 
 	
-	vector<int> c = whatHand(player);
-	for (std::vector<int>::size_type i = 0; i != c.size(); i++) {
-		if (i == 0) std::cout << ranka(c[i]) << endl; else
-			std::cout << fig(c[i]) << "  ";
-
-	}
-	
-
-	cout << endl;
-
 
 
 	getchar();

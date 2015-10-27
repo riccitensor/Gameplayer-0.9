@@ -1,0 +1,26 @@
+	
+	//----------------------------------------TEST KONWERSJI RAK
+	/*
+	cout << "Reka: AhQc"
+	<< "Kod+10: "
+	<< alg_funkcje->handToNum("AhQc")
+	<< " OWROTNIE: "
+	<<alg_funkcje->NumToHand(2448)<<endl;
+	*/
+
+
+	cout << "TEST KONWERTEROW:" << endl;
+
+	vector<int> test = alg_funkcje->matrix2cards(player);
+	for (std::vector<int>::size_type i = 0; i != test.size(); i++) {
+		cout << test[i] << " - " << alg_funkcje->NumToString(test[i])<<endl;
+
+	}
+
+
+	vector<int> c = whatHand(player);
+	for (std::vector<int>::size_type i = 0; i != c.size(); i++) {
+		if (i == 0) std::cout << ranka(c[i]) << endl; else
+			std::cout << fig(c[i]) << "  ";
+
+	}
