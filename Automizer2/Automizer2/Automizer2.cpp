@@ -446,22 +446,38 @@ int main()
 	*/
 
 
+	vector<int> cards = drawAllCards(53, 52);
 
-	int a[7];
-	a[0] = 27;
-	a[1] = 26;
-	a[2] = 53;
-	a[3] = 2;
-	a[4] = 3;
-	a[5] = 40;
-	a[6] = 7;
+/*	for (std::vector<int>::size_type j = 0; j != cards.size(); j++) {
+		cout << cards[j] << " - ";
+	}
+	cout << endl;
 
-	vector<int> b = whatHand(a);
+	vector<vector<int>> buckets = cardBuckets(cards);*/
+
+		/*
+	for (std::vector<vector<int>>::size_type i = 0; i != buckets.size(); i++) {
+		
+		cout <<"Bucket " << i << endl;
+
+		for (std::vector<int>::size_type j = 0; j != buckets[i].size(); j++) {
+			cout << buckets[i][j] << " - ";
+		}
+		cout << endl;
+	}
+
+	
+	*/
+
+	/*
+	vector<int> b = whatHand(karty);
+
 
 	for (std::vector<int>::size_type i = 0; i != b.size(); i++) {
 		cout << b[i] <<  endl;
-
 	}
+	*/
+
 
 	getchar();
 }

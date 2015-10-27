@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include <iostream>
 #include <ctime>
+#include <vector>
+
 using namespace std;
 
-bool czyBylaWylosowana(int iLiczba, int tab[], int ile)
+
+bool czyBylaWylosowana(int iLiczba, vector<int> tab, int ile)
 {
 	if (ile <= 0)
 		return false;
@@ -22,7 +25,7 @@ bool czyBylaWylosowana(int iLiczba, int tab[], int ile)
 
 int wylosuj()
 {
-	return(rand() % 52);
+	return(rand() % 52+2);
 }
 
 void wyswietl(bool gracz[13][4])

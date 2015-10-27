@@ -12,6 +12,128 @@ using namespace std;
 
 
 
+/*
+LOSUJE 17 ROZNYCH KART Z 50 KART, MUSI WIEDZIEC TYLKO O MOJEJ RECE
+*/
+vector<int> drawAllCards(
+	/*
+	Moja reka jako integer
+	*/
+	int myHand1,
+	int myHand2
+	
+){
+
+		
+	vector<int> karta;
+	int wylosowanych = 0;
+	do//losowanie 17 kart sposrod 52-----------------------------------------POWINNO BYC 52 MINUS 2 KARTY NASZE!!!!!!!!!!!!
+	{
+		int liczba = wylosuj();
+		if (czyBylaWylosowana(liczba, karta, wylosowanych) == false)
+		{
+
+			karta.push_back(liczba);
+			//cout << karta[wylosowanych] << endl;
+
+			wylosowanych++;
+		} //if
+	} while (wylosowanych < 17);
+
+	
+	return karta;
+}
+
+/*
+Pobiera wektor 17tu kart, robi 6 wektorow po 7kart dla graczy
+*/
+/*
+vector<vector<int>> cardBuckets(vector<int> tab){
+	
+	vector<int> board;
+
+	vector<int> player1;
+	vector<int> player2;
+	vector<int> player3;
+
+	vector<int> player4;
+	vector<int> player5;
+	vector<int> player6;
+
+	vector<vector<int>> ret;
+
+	for (int i = 0; i < 5; i++) {
+		board[i] = tab[i];
+	}
+
+
+	//P1
+	for (int  i = 5; i < 7; i++) {
+		player1[i] = tab[i];
+	}
+	for (int  i = 0; i < 5; i++) {
+		player1.push_back(board[i]);
+	}
+	
+	//P2
+	for (int i = 7; i < 9; i++) {
+		player2[i] = tab[i];
+	}
+	for (int i = 0; i < 5; i++) {
+		player2.push_back(board[i]);
+	}
+
+	for (int i = 5; i < 7; i++) {
+		cout << player2[i];
+	}
+
+	//P3
+	for (int i = 9; i < 11; i++) {
+		player3[i] = tab[i];
+	}
+	for (int i = 0; i < 5; i++) {
+		player3.push_back(board[i]);
+	}
+
+	//P4
+	for (int i = 11; i < 13; i++) {
+		player4[i] = tab[i];
+	}
+	for (int i = 0; i < 5; i++) {
+		player4.push_back(board[i]);
+	}
+
+	//P5
+	for (int i = 13; i < 15; i++) {
+		player5[i] = tab[i];
+	}
+	for (int i = 0; i < 5; i++) {
+		player5.push_back(board[i]);
+	}
+
+	//P6
+	for (int i = 15; i < 17; i++) {
+		player6[i] = tab[i];
+	}
+	for (int i = 0; i < 5; i++) {
+		player6.push_back(board[i]);
+	}
+
+	//ret.push_back(board);
+
+	ret.push_back(player1);
+	ret.push_back(player2);
+	ret.push_back(player3);
+
+	ret.push_back(player4);
+	ret.push_back(player5);
+	ret.push_back(player6);
+
+	return ret;
+}
+*/
+
+
 vector<int> whatHand(
 
 	int seven_cards[7]

@@ -385,7 +385,6 @@ class algo_funkcje {
 
 
 
-
 	public: int whoWins(int k1 = 0, int k2 = 0, int k3 = 0, int k4 = 0, int k5 = 0, 
 		int k6 = 0, int k7 = 0
 
