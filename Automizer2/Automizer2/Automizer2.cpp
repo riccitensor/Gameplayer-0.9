@@ -46,10 +46,6 @@
 #include <time.h>
 #include <algorithm>
 
-#include "function.h"
-function *funkcje;
-
-
 #include "algo_funkcje.h"
 algo_funkcje *alg_funkcje;
 
@@ -413,12 +409,14 @@ int main()
 	int SB = 10;
 	int pot = 100;
 	int ante = 10;
-	int board[5] = { 10, 17, 33, 35, 40 };
+
+
+	vector<int> board;
+
 	Hand *hand = new Hand(places, BB, SB, pot, ante, board);
 
 	bool player[13][4];
-	int i1, j1;
-	srand(time(NULL));
+	srand((unsigned int) time(NULL));
 
 
 	/*
@@ -448,35 +446,143 @@ int main()
 
 	vector<int> cards = drawAllCards(53, 52);
 
-/*	for (std::vector<int>::size_type j = 0; j != cards.size(); j++) {
+	/*for (std::vector<int>::size_type j = 0; j != cards.size(); j++) {
 		cout << cards[j] << " - ";
+	}
+	cout << endl;*/
+
+
+	vector<int>::const_iterator first = cards.begin() + 0;
+	vector<int>::const_iterator last = cards.begin() + 5;
+	vector<int> commoncards(first, last);
+
+	board = commoncards;
+
+	/*for (std::vector<int>::size_type j = 0; j != board.size(); j++) {
+		cout << board[j] << " - ";
+	}
+	cout << endl;*/
+
+	vector<int> player1 = board;
+	vector<int> player2 = board;
+	vector<int> player3 = board;
+
+	vector<int> player4 = board;
+	vector<int> player5 = board;
+	vector<int> player6 = board;
+
+
+//---------------------------------------------player1
+	vector<int>::const_iterator first1 = cards.begin() + 5;
+	vector<int>::const_iterator last1 = cards.begin() + 7;
+	vector<int> p1(first1, last1);
+
+	vector<int>::const_iterator first2 = cards.begin() + 7;
+	vector<int>::const_iterator last2 = cards.begin() + 9;
+	vector<int> p2(first2, last2);
+
+	vector<int>::const_iterator first3 = cards.begin() + 9;
+	vector<int>::const_iterator last3 = cards.begin() + 11;
+	vector<int> p3(first3, last3);
+
+	vector<int>::const_iterator first4 = cards.begin() + 11;
+	vector<int>::const_iterator last4 = cards.begin() + 13;
+	vector<int> p4(first4, last4);
+
+	vector<int>::const_iterator first5 = cards.begin() + 13;
+	vector<int>::const_iterator last5 = cards.begin() + 15;
+	vector<int> p5(first5, last5);
+
+	vector<int>::const_iterator first6 = cards.begin() + 15;
+	vector<int>::const_iterator last6 = cards.begin() + 17;
+	vector<int> p6(first6, last6);
+
+
+	player1.insert(player1.end(), p1.begin(), p1.end());
+	player2.insert(player2.end(), p2.begin(), p2.end());
+	player3.insert(player3.end(), p3.begin(), p3.end());
+	player4.insert(player4.end(), p4.begin(), p4.end());
+	player5.insert(player5.end(), p5.begin(), p5.end());
+	player6.insert(player6.end(), p6.begin(), p6.end());
+
+	int hand1[7];
+	int hand2[7];
+	int hand3[7];
+	int hand4[7];
+	int hand5[7];
+	int hand6[7];
+
+	for (int i = 0; i < 7; i++) {
+		hand1[i] = player1[i];
+		hand2[i] = player2[i];
+		hand3[i] = player3[i];
+
+		hand4[i] = player4[i];
+		hand5[i] = player5[i];
+		hand6[i] = player6[i];
+
+	}
+
+	vector<int> whathand1 = whatHand(hand1);
+	vector<int> whathand2 = whatHand(hand2);
+	vector<int> whathand3 = whatHand(hand3);
+	vector<int> whathand4 = whatHand(hand4);
+	vector<int> whathand5 = whatHand(hand5);
+	vector<int> whathand6 = whatHand(hand6);
+	cout << endl;
+	cout << "Player1: "  ;
+	for (std::vector<int>::size_type i = 0; i != whathand1.size(); i++) {
+		if (i == 0) cout << ranka(whathand1[i]) << " ";
+		if (i>0) cout << fig(whathand1[i]) << " ";
 	}
 	cout << endl;
 
-	vector<vector<int>> buckets = cardBuckets(cards);*/
+	cout << "Player2: ";
+	for (std::vector<int>::size_type i = 0; i != whathand2.size(); i++) {
+		if (i == 0) cout << ranka(whathand2[i]) << " ";
+		if (i>0) cout << fig(whathand2[i]) << " ";
+	}
+	cout << endl;
 
-		/*
-	for (std::vector<vector<int>>::size_type i = 0; i != buckets.size(); i++) {
+	cout << "Player3: ";
+	for (std::vector<int>::size_type i = 0; i != whathand3.size(); i++) {
+		if (i == 0) cout << ranka(whathand3[i]) << " ";
+		if (i>0) cout << fig(whathand3[i]) << " ";
+	}
+	cout << endl;
+
+	cout << "Player4: ";
+	for (std::vector<int>::size_type i = 0; i != whathand4.size(); i++) {
+		if (i == 0) cout << ranka(whathand4[i]) << " ";
+		if (i>0) cout << fig(whathand4[i]) << " ";
+	}
+	cout << endl;
+
+	cout << "Player5: ";
+	for (std::vector<int>::size_type i = 0; i != whathand5.size(); i++) {
+		if (i == 0) cout << ranka(whathand5[i]) << " ";
+		if (i>0) cout << fig(whathand5[i]) << " ";
+	}
+	cout << endl;
+
+	cout << "Player6: ";
+	for (std::vector<int>::size_type i = 0; i != whathand6.size(); i++) {
 		
-		cout <<"Bucket " << i << endl;
-
-		for (std::vector<int>::size_type j = 0; j != buckets[i].size(); j++) {
-			cout << buckets[i][j] << " - ";
-		}
-		cout << endl;
+		if (i==0) cout << ranka(whathand6[i]) << " ";
+		if (i>0) cout << fig(whathand6[i]) << " ";
 	}
+	cout << endl;
 
-	
-	*/
+	int ww = whoWins(
+		whathand1,
+		whathand2,
+		whathand3,
+		whathand4,
+		whathand5,
+		whathand6
+		);
 
-	/*
-	vector<int> b = whatHand(karty);
-
-
-	for (std::vector<int>::size_type i = 0; i != b.size(); i++) {
-		cout << b[i] <<  endl;
-	}
-	*/
+	cout << "Wygral gracz: " << ww << endl;
 
 
 	getchar();

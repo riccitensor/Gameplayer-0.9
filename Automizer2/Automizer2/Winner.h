@@ -44,95 +44,6 @@ vector<int> drawAllCards(
 	return karta;
 }
 
-/*
-Pobiera wektor 17tu kart, robi 6 wektorow po 7kart dla graczy
-*/
-/*
-vector<vector<int>> cardBuckets(vector<int> tab){
-	
-	vector<int> board;
-
-	vector<int> player1;
-	vector<int> player2;
-	vector<int> player3;
-
-	vector<int> player4;
-	vector<int> player5;
-	vector<int> player6;
-
-	vector<vector<int>> ret;
-
-	for (int i = 0; i < 5; i++) {
-		board[i] = tab[i];
-	}
-
-
-	//P1
-	for (int  i = 5; i < 7; i++) {
-		player1[i] = tab[i];
-	}
-	for (int  i = 0; i < 5; i++) {
-		player1.push_back(board[i]);
-	}
-	
-	//P2
-	for (int i = 7; i < 9; i++) {
-		player2[i] = tab[i];
-	}
-	for (int i = 0; i < 5; i++) {
-		player2.push_back(board[i]);
-	}
-
-	for (int i = 5; i < 7; i++) {
-		cout << player2[i];
-	}
-
-	//P3
-	for (int i = 9; i < 11; i++) {
-		player3[i] = tab[i];
-	}
-	for (int i = 0; i < 5; i++) {
-		player3.push_back(board[i]);
-	}
-
-	//P4
-	for (int i = 11; i < 13; i++) {
-		player4[i] = tab[i];
-	}
-	for (int i = 0; i < 5; i++) {
-		player4.push_back(board[i]);
-	}
-
-	//P5
-	for (int i = 13; i < 15; i++) {
-		player5[i] = tab[i];
-	}
-	for (int i = 0; i < 5; i++) {
-		player5.push_back(board[i]);
-	}
-
-	//P6
-	for (int i = 15; i < 17; i++) {
-		player6[i] = tab[i];
-	}
-	for (int i = 0; i < 5; i++) {
-		player6.push_back(board[i]);
-	}
-
-	//ret.push_back(board);
-
-	ret.push_back(player1);
-	ret.push_back(player2);
-	ret.push_back(player3);
-
-	ret.push_back(player4);
-	ret.push_back(player5);
-	ret.push_back(player6);
-
-	return ret;
-}
-*/
-
 
 vector<int> whatHand(
 
@@ -341,11 +252,13 @@ vector<int> whatHand(
 		}
 
 		//FULL HOUSE---------------------------------------------------
-		if (rank[2] == false)
+		if ((rank[2] == false) && (rank[1] == false))
 		{
 			for (int i = 0; i < 13; i++)
 			{
 				if (suma_figura[i] == 3)
+				{
+					cout << "FULL HOUSE OKO" << endl;
 					for (int j = 0; j < 13; j++)
 						if ((j != i) && (suma_figura[j] >= 2))
 						{
@@ -354,7 +267,9 @@ vector<int> whatHand(
 							kicker[1] = j;
 							break;
 						}
-				break;
+					break;
+				}
+				
 			}
 		}
 
@@ -367,6 +282,7 @@ vector<int> whatHand(
 			{
 				if (suma_figura[i] == 3)
 				{
+					cout << "SET OKO" << endl;
 					kicker[0] = i;
 					for (int a = 0; a < 52; a++)
 					{
@@ -475,7 +391,9 @@ vector<int> whatHand(
 				ret.push_back(kicker[i]);
 			}
 
+			cout << "Player:\t";
 			wyswietl(player);
+			cout << endl;
 
 	return ret;
 }
@@ -492,24 +410,28 @@ int whoWins(
 	int value_hand[6] = { 0, 0, 0, 0, 0, 0 };
 
 	for (int i = 0; i < 6; i++)
-		if (p1[i] >= 0) value_hand[0] = p1[i] * pow(10,5-i);
+		if (p1[i] >= 0) {value_hand[0] = value_hand[0]+ p1[i] * (int)pow(10, 5 - i);}
 	for (int i = 0; i < 6; i++)
-		if (p2[i] >= 0) value_hand[1] = p2[i] * pow(10, 5 - i);
+		if (p2[i] >= 0) value_hand[1] = value_hand[1]+p2[i] * (int)pow(10, 5 - i);
 	for (int i = 0; i < 6; i++)
-		if (p3[i] >= 0) value_hand[2] = p3[i] * pow(10, 5 - i);
+		if (p3[i] >= 0) value_hand[2] = value_hand[2]+p3[i] * (int)pow(10, 5 - i);
 	for (int i = 0; i < 6; i++)
-		if (p4[i] >= 0) value_hand[3] = p4[i] * pow(10, 5 - i);
+		if (p4[i] >= 0) value_hand[3] = value_hand[3]+ p4[i] * (int)pow(10, 5 - i);
 	for (int i = 0; i < 6; i++)
-		if (p5[i] >= 0) value_hand[4] = p5[i] * pow(10, 5 - i);
+		if (p5[i] >= 0) value_hand[4] = value_hand[4]+ p5[i] * (int)pow(10, 5 - i);
 	for (int i = 0; i < 6; i++)
-		if (p6[i] >= 0) value_hand[5] = p6[i] * pow(10, 5 - i);
+		if (p6[i] >= 0) value_hand[5] = value_hand[5] +p6[i] * (int)pow(10, 5 - i);
 
+	int win = 0;
 	min = value_hand[0];
 	for (int i = 1; i<6; i++) //
-		if (min>value_hand[i])
-			min = i;
+		if (min >= value_hand[i])
+		{
+			min = value_hand[i];
+			win = i;
+		}
 	//podaje numer gracza przy stole ktory wygral rozdanie
-	return min;
+	return win+1;
 
 
 }

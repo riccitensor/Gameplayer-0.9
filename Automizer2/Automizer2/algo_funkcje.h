@@ -421,21 +421,6 @@ class algo_funkcje {
 		return 1;
 	}
 
-	void shuffle(int *arr, size_t n)
-	{
-		if (n > 1)
-		{
-			size_t i;
-			srand(time(NULL));
-			for (i = 0; i < n - 1; i++)
-			{
-				size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
-				int t = arr[j];
-				arr[j] = arr[i];
-				arr[i] = t;
-			}
-		}
-	}
 
 
 	std::vector<std::string> getNextLineAndSplitIntoTokens(std::istream& str)
@@ -490,72 +475,6 @@ class algo_funkcje {
 		return v;
 	}
 
-
-
-
-	public: int equityvsRange(int h1, int h2, 
-		int range1 = 0, int range2 = 0, int range3= 0,
-		int range4 = 0, int range5 = 0, int range6 = 0){
-
-		//wylistowac range dla zakresow przykladowych
-		
-		//dla reki dla wszystkich boardow dla wszystkich rak z zakres policzyc jak czesto wygraja
-
-		int temp[52]; int board[5];	
-
-		
-
-		//-----------------------------------------------losuj reke z zakresu
-
-
-		
-
-		//-----------------------------------------------dla 10000 boardow
-
-		for (int b = 0; b < 50000; b++){
-
-
-
-			//-----------------------------------------------losuj board
-			for (int i = 0; i < 52; i++){
-				temp[i] = i;
-			}
-			shuffle(temp, 52);
-
-			int count = 0;
-
-			for (int i = 0; i < 52; i++){
-
-				if (temp[i] != h1 && temp[i] != h2){
-
-					if (count < 5){
-						board[count] = temp[i];
-						count++;
-					}
-
-				}
-
-			}
-			cout << "BOARD: ";
-			 
-			for (int i = 0; i < 5; i++){
-				cout << board[i]+10<<"-";
-			}
-
-
-
-			//-----------------------------------------------losujesz reke
-
-
-			//-----------------------------------------------who wins
-			//whoWins(board[0], board[1], board[2], board[3], board[4],
-			//	reka[0], reka[1], )
-
-			getchar();
-		}
-
-		return 1;
-	}
 
 				
 

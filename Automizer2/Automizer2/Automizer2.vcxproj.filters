@@ -48,9 +48,6 @@
     <ClInclude Include="devil_internal_exports.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="function.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Hand.h">
       <Filter>Header Files</Filter>
     </ClInclude>

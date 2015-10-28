@@ -6,16 +6,14 @@
 
 using namespace std;
 
-Hand::Hand(Place places[numOfPlaces], int BB, int SB, int pot, int ante, int board[5]){
+Hand::Hand(Place places[numOfPlaces], int BB, int SB, int pot, int ante, vector<int> b){
 	
 	for (int i = 0; i < numOfPlaces; i++){
 		this->places[i] = places[i];
 	}
 
 
-	for (int j = 0; j < 5; j++){
-		this->board[j] = board[j];
-	}
+	this->board = b;
 
 	
 	this->ante = ante;

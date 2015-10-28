@@ -40,7 +40,13 @@ void gameTest(){
 	MY ZAWSZE SIEDZIMY PRZZY STOLIKU 
 	*/
 
-	int board[5]= { 12,13,14,15,16};
+	vector<int> board;
+	board.push_back(12);
+	board.push_back(13);
+	board.push_back(14);
+	board.push_back(15);
+	board.push_back(16);
+
 
 
 	int myhand[2][2] = { { 12, 2 }, { 3, 1 } };

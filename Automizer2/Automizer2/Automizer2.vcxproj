@@ -83,7 +83,6 @@
     <ClInclude Include="algo_porownanie.h" />
     <ClInclude Include="CSVRow.h" />
     <ClInclude Include="devil_internal_exports.h" />
-    <ClInclude Include="function.h" />
     <ClInclude Include="Hand.h" />
     <ClInclude Include="HandMap.h" />
     <ClInclude Include="ilut_config.h" />

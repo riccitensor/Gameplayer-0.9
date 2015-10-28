@@ -9,7 +9,7 @@
 
 const int numOfPlaces = 6;
 
-
+using namespace std;
 
 class Hand{
 
@@ -48,7 +48,7 @@ public:
 	pot
 	*/
 
-	int board[5];
+	vector<int> board;
 
 
 public:
@@ -62,7 +62,7 @@ public:
 	4 - LJ
 	5 - BTN
 	*/
-	Hand(Place places[numOfPlaces], int BB, int SB, int pot, int ante, int board[5]);
+	Hand(Place places[numOfPlaces], int BB, int SB, int pot, int ante, vector<int> board);
 
 public:
 
