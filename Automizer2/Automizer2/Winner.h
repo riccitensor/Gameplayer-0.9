@@ -230,7 +230,7 @@ vector<int> whatHand(
 	{
 		konwersja = seven_cards[i];
 		for (int j = 2; j<54; j++)
-			if (konwersja == 13 * (2 * (int)floor((j - 2) / 13) + 1) + 3 - j) player[(int)floor((j - 2) / 4)][(j - 2) % 4] = true;
+			if (konwersja == (13 * (2 * (int)floor((j - 2) / 13) + 1) + 3 - j)) player[(j - 2) % 13][(int)floor((j - 2) / 13)] = true;
 	}
 
 
