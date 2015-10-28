@@ -52,7 +52,6 @@ vector<int> whatHand(
 
 	/*
 
-	kazdy gracz ma reke, losowane bez powtorzen, konwertowane na matrix Slawka
 	W TABLICY JEST SIEDEM KART GRACZA = 2 UNIKALNE JEGO i PIEC
 	dla gracza matrixa losujemy 5 kart z boardu bo na poaczatku jego tablica bedzie miala tylko dwa TRUE!!!!!!!!!!!!!!!!!!!!!!!
 	TA FUNKCJA DA SIE WYWOLAC 6 RAZY ALE TRZEBA PAMIETAC CO WYLOSOWAISMY DLA POPRZEDNIKOW RANGOW
@@ -68,19 +67,6 @@ vector<int> whatHand(
 	*/
 	){
 
-
-
-
-	/*cout << "WEW FUNKCJI" << endl;
-	for (int i = 0; i < 13; i++){
-		for (int j = 0; j < 4; j++){
-			if (player[i][j] == true){
-				cout << "(" << i << "," << j << ")";
-			}
-
-
-		}
-	}*/
 
 	//kicker[0] bedzie informowal o kolorze pokera, flusha, stright flusha, wartosc 1 to h, 2 to d, 3 to c, 4 to s
 	//kicker [1]...kicker [5] to wysokosc karty pierwszej, drugiej, trzeciej o ile jest kickerem, przez wysokosc rozumiem 0 to as, 1 to krol, etc
@@ -98,8 +84,6 @@ vector<int> whatHand(
 	int suma_figura[13]; //ogolnie mamy macierz, karty od A do 2 uszeregowane kolorami, tu sprawdzam ilo zosta³o wylosowanych tych samych figur, czyli sumuje 1 z danego wiersza
 	int suma_kolor[4]; //sumuje 1 z danej kolumny, jesli karta zosta³a wylosowana do w macierzy pojawia siê true, jesli nie pozostaje false
 
-
-	int test = 0;
 	for (int i = 0; i < 10; i++)
 	{
 		rank[i] = 0; 
@@ -112,28 +96,26 @@ vector<int> whatHand(
 	for (int i = 0; i < 4; i++) suma_kolor[i] = 0;
 	for (int i = 0; i < 6; i++) kicker[i] = -1;
 	for (int i = 0; i < 13; i++)
-	{
-		suma_figura[i] = 0; 
-		sprawdz[i] = 0;
-		for (int j = 0; j < 4; j++)
 		{
-			player[i][j] = false;
+			suma_figura[i] = 0; 
+			sprawdz[i] = 0;
+			for (int j = 0; j < 4; j++)
+				{
+					player[i][j] = false;
 
+				}
 		}
-	}
-
 
 	for (int i = 0; i < 10; i++)
+	{
 		for (int j = 0; j < 4; j++)
 		{
 			blok[i][j] = 0;
 			blok_s[i] = 0;
 		}
-
-
-	for (int i = 0; i < 10; i++) {
 		rank[i] = 0;
 	}
+
 	stop = false;
 	
 	// koniec zerowania zmiennych
@@ -147,7 +129,7 @@ vector<int> whatHand(
 
 
 
-	//sumowanie
+	//sumowanie dla straifght flush
 	for (int i = 0; i < 4; i++)
 		for (int j = 0; j < 13; j++)
 			if (player[j][i] == true)
@@ -166,7 +148,6 @@ vector<int> whatHand(
 				if ((j >= 9 && j < 13) || (j == 0)) blok[9][i]++;
 			}
 	//sumowanie dla strita
-
 	for (int j = 0; j < 13; j++)
 		for (int i = 0; i < 4; i++)
 		{
@@ -190,7 +171,6 @@ vector<int> whatHand(
 		}
 
 		//STRAIGHT FLUSH---------------------------------------------------
-
 		for (int i = 0; i < 40; i++)
 		{
 			if (blok[(int)floor(i / 4)][i % 4] == 5)
@@ -275,7 +255,6 @@ vector<int> whatHand(
 		}
 
 		//SET---------------------------------------------------
-
 		if ((rank[5] == false) && (rank[4] == false) && (rank[3] == false) && (rank[2] == false) && (rank[1] == false))
 		{
 			int zlicz = 1;
@@ -302,7 +281,6 @@ vector<int> whatHand(
 
 
 		//2 PAIRS---------------------------------------------------
-
 		if ((rank[6] == false) && (rank[5] == false) && (rank[4] == false) && (rank[3] == false) && (rank[2] == false) && (rank[1] == false) && (rank[2] == false))
 		{
 			for (int i = 0; i < 13; i++)
@@ -330,7 +308,6 @@ vector<int> whatHand(
 		}//end 2 pairs
 
 		//1 PAIR---------------------------------------------------
-
 		if ((rank[7] == false) && (rank[6] == false) && (rank[5] == false) && (rank[4] == false) && (rank[3] == false) && (rank[2] == false) && (rank[1] == false))
 		{
 
@@ -375,16 +352,16 @@ vector<int> whatHand(
 			//	zapisanie rankingow i kickerow do wektora
 			int r = 0;
 
-			for (int i = 1; i < 10; i++){
-				if (rank[i] == true) {
+			for (int i = 1; i < 10; i++)
+				{
+					if (rank[i] == true) 
+					{
 
-					r = i;
+						r = i;
+					}
 				}
-			}
 
-			for (int i = 0; i < 6; i++){
-
-			}
+	
 
 			vector<int> ret;
 			ret.push_back(r);

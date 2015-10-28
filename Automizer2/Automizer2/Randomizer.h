@@ -106,12 +106,11 @@ vector<int> randomHandFromRange(vector<int> range){
 
 
 
-	cout << "KARTA: " << fir << "," << sec << endl;
+	std::cout << "KARTA: " << fir << "," << sec << endl;
 
 	vector<int> ret;
 	ret.push_back(fir);
 	ret.push_back(sec);
 	return ret;
 }
-
 

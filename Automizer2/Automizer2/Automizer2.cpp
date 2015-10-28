@@ -375,13 +375,24 @@ int main()
 	Place *pl = new Place();
 	pl = hand->getPlaces();
 
+	//cout << "Stack:" << pl[0].getStack()<<endl;
+	//alg_funkcje->showVector(pl[0].getRange());
+	
+	/*
+	NIEAKTYWNI GRACZE MAJA RANGE OD 60 - 100%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! STRATEGIA ZALEZY OD M
+	*/
+
+	//uzyte karty (wczesniej wylosowane)
+	vector<int> used;
+
 	//wszyscy przy stole
-	for (int i = 0; i < 6; i++){
-
-		//losowanie TYLKO dla aktywnych
-
-
-	}
+	//for (int i = 0; i < 6; i++){
+		
+	//	do{
+	//		vector<int> hand = randomHandFromRange(pl[i].getRange());
+	//	} while (hand)
+		
+	//}
 
 
 
