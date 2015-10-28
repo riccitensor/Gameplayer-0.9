@@ -189,3 +189,8 @@ void Hand::handInfo(){
 
 }
 
+Place* Hand::getPlaces(){
+
+	return this->places;
+
+}

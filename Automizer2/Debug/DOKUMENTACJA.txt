@@ -1,0 +1,24 @@
+
+	/*
+	KODY KART - MICHAL
+
+	2 = 2h			15 = 2d			28 = 2c			41 = 2s
+	..				..				..				..
+
+	13 = Kh			26 = Kd			39 = Kc			52 = Ks
+	14 = Ah			27 = Ad			40 = Ac			53 = As
+
+	*/
+	
+	/*
+	9 - high card
+	8 - 1 pair
+	7 - 2 pairs
+	6 - set
+	5 - straight
+	4 - flush
+	3 - FH
+	2 - quads
+	1 - straight flush
+	
+	*/

@@ -26,6 +26,17 @@
 	}
 
 
+	/*for (std::vector<int>::size_type j = 0; j != board.size(); j++) {
+		cout << board[j] << " - ";
+	}
+	cout << endl;*/
+
+	/*for (std::vector<int>::size_type j = 0; j != cards.size(); j++) {
+		cout << cards[j] << " - ";
+	}
+	cout << endl;*/
+
+
 	//--------------------------------------------------------LOSOWANIE WEKTOR
 	int count = 0;
 	for (int a = 0; a < 50 && count <7; a++){

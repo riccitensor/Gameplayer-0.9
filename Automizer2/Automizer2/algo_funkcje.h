@@ -2,7 +2,6 @@
 #define	ALGO_H
 #endif
 
-#include "CSVRow.h"
 
 class algo_funkcje {
 
@@ -11,21 +10,15 @@ class algo_funkcje {
 
 	}	
 
-
-	public: int findMax(int n, ...)
-	{
-		int i, val, largest;
-		va_list vl;
-		va_start(vl, n);
-		largest = va_arg(vl, int);
-		for (i = 1; i<n; i++)
-		{
-			val = va_arg(vl, int);
-			largest = (largest>val) ? largest : val;
+	public: void showVector(vector<int> a){
+		for (std::vector<int>::size_type i = 0; i != a.size(); i++) {
+			cout << a[i] << endl;
 		}
-		va_end(vl);
-		return largest;
 	}
+
+
+
+
 	public: string printCard(int a){
 
 
@@ -464,14 +457,16 @@ class algo_funkcje {
 	public: vector <int> handsForRange(map <int, int> ranges, int range){
 
 		vector <int> v;
+		int debug = 0;
 		
 		for (std::map <int, int>::iterator i = ranges.begin(); i != ranges.end(); ++i){
-			if (i->second < range){
+			if (i->second <= range){
+				debug++;
 				v.push_back(i->first);
 			}
-			
-		}
 
+		}
+		cout << "For range:" << range << " lines: " << debug << endl;
 		return v;
 	}
 

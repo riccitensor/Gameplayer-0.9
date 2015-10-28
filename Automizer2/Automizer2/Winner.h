@@ -1,5 +1,6 @@
-// Porownywanie_ukladow.cpp : Defines the entry point for the console application.
-//
+#ifndef WIN
+#define	WIN
+#endif
 
 #include <iostream>
 #include <ctime>

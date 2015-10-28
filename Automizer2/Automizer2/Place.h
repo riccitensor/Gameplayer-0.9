@@ -1,9 +1,15 @@
+#ifndef PLACE
+#define	PLACE
+#endif
+
 #include <iostream>
 #include <stdlib.h>
 #include <windows.h>
 
 #include <string>
+#include <vector>
 
+using namespace std;
 
 class Place{
 
@@ -21,7 +27,7 @@ public:
 	/*
 	Range
 	*/
-	int range;
+	vector<int> range;
 
 	/*
 	Typ miejsca
@@ -44,15 +50,15 @@ public:
 	void setM(double newm);
 	int getStack();
 	void setStack(int stack);
-	int getRange();
-	void setRange(int stack);
+	vector<int> getRange();
+	void setRange(vector<int> range);
 	void setPosition(int pos);
 	int getActive();
 	void setActive(int a);
 
 public:
 	Place();
-	Place(int id, int stack, int range);
+	Place(int id, int stack, vector<int> range);
 		
 	void show();
 	bool isActive();

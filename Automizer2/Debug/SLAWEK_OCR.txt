@@ -1,0 +1,29 @@
+	//check pixel
+	//vector <int> a = checkPixel("test.png", 136, 196);
+	//cout << "RGB:" << a[0] << "," << a[1] << "," << a[2] << endl;
+
+	//save screenshot
+	//HBITMAP hBitmap = GetScreenShot();
+	//saveScreenshotToFile(L"output.png", hBitmap);
+
+
+	//check pixelList function -- pixelListTest is TOO SLOW (uses another func), 
+	//pixelListTest2();
+
+	//test file RGBs
+	//testFileRGBs();
+
+	/*
+	vector < tuple <int, int, int, int, int> > indicator_table;
+	indicator_table = readIndicatorsFromFile("coords.txt");
+
+	for (std::vector<int>::size_type i = 0; i != indicator_table.size(); i++) {
+	std::cout <<
+	std::get<0>(indicator_table[i]) << "," <<
+	std::get<1>(indicator_table[i]) << "," <<
+	std::get<2>(indicator_table[i]) << "," <<
+	std::get<3>(indicator_table[i]) << "," <<
+	std::get<4>(indicator_table[i]) << endl;
+
+	}
+	*/

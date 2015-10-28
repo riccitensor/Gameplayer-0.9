@@ -39,12 +39,6 @@
     <ClInclude Include="algo_funkcje.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="algo_porownanie.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CSVRow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="devil_internal_exports.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -61,6 +55,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WinnerFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Randomizer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

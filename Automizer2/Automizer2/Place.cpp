@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include <iostream>
+#include <vector>
 
 #include "Place.h"
 
@@ -11,7 +12,7 @@ Place::Place(){
 
 }
 
-Place::Place(int id, int stack, int range){
+Place::Place(int id, int stack, vector<int> range){
 	this->placeId = id;
 	this->stack = stack;
 	this->range = range;
@@ -30,7 +31,7 @@ int Place::getStack(){
 	return this->stack;
 }
 
-int Place::getRange(){
+vector<int> Place::getRange(){
 	return this->range;
 }
 
@@ -46,7 +47,7 @@ void Place::setStack(int stack){
 	 this->stack = stack;
 }
 
-void Place::setRange(int range){
+void Place::setRange(vector<int> range){
 	this->range = range;
 }
 

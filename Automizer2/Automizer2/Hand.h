@@ -1,3 +1,7 @@
+#ifndef HAND
+#define	HAND
+#endif
+
 #include <iostream>
 #include <stdlib.h>
 #include <windows.h>
@@ -72,6 +76,9 @@ public:
 	void handInfo();
 	int whoStartsPre();
 	int whoStartsPost();
+
+	Place* getPlaces();
+	int setPlaces(Place place[6]);
 
 
 };

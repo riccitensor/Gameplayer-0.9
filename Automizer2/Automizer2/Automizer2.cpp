@@ -1,5 +1,8 @@
-// ConsoleApplication1.cpp : Defines the entry point for the console application.
-//
+#ifndef AUTO
+#define	AUTO
+
+#include "algo_funkcje.h"
+#endif
 
 #include "stdafx.h"
 
@@ -20,6 +23,7 @@
 
 #include "ocr.h"
 #include "Winner.h"
+#include "Randomizer.h"
 
 
 #ifdef linux
@@ -46,14 +50,7 @@
 #include <time.h>
 #include <algorithm>
 
-#include "algo_funkcje.h"
 algo_funkcje *alg_funkcje;
-
-#include "algo_porownanie.h"
-algo_porownanie *alg_porownanie;
-
-
-
 
 #include "Equity.h"
 
@@ -299,72 +296,23 @@ void testFileRGBs(){
 }
 
 
-//------------------------------------------------------TU ZAPISANE SA RECE Z DANYCH RANGOW
-std::map <int, int> int_ranges;
-
-
 
 int main()
 {
 	ilInit();
 	printf("DevIL has been initialized\n");
 
-	//check pixel
-	//vector <int> a = checkPixel("test.png", 136, 196);
-	//cout << "RGB:" << a[0] << "," << a[1] << "," << a[2] << endl;
-
-	//save screenshot
-	//HBITMAP hBitmap = GetScreenShot();
-	//saveScreenshotToFile(L"output.png", hBitmap);
-
-
 	algo_funkcje *alg_funkcje;
 	alg_funkcje = new algo_funkcje();
 
+	//wcztujemy zakresy
+	readRanges();
 
-	
-	
-	std::vector <std::vector<std::string> >	 ranges = alg_funkcje->readRangesFromFile();
-
-	//----------------------------------------------CALA LISTA RAK
-	for (std::vector<int>::size_type i = 0; i != ranges.size(); i++){
-
-		int_ranges[alg_funkcje->handToNum(ranges[i][0])] = std::stoi(ranges[i][1]);
-
+	vector<int> reka = randomHandFromRange(range18);
+	for (int i = 0; i < 2; i++){
+		cout << "Reka: " << reka[i] << endl;
 	}
 
-	//-----------------------------------------------KONKRETNE ZAKRESY
-	vector <int> range27 = alg_funkcje->handsForRange(int_ranges, 5);
-
-	
-	for (std::vector<int>::size_type i = 0; i != range27.size(); i++){
-		//cout << range27[i] << "(" << alg_funkcje->NumToHand(range27[i]) << ")" << ",";
-	}
-	
-
-	
-
-
-	//check pixelList function -- pixelListTest is TOO SLOW (uses another func), 
-	//pixelListTest2();
-
-	//test file RGBs
-	//testFileRGBs();
-
-	/*
-	vector < tuple <int, int, int, int, int> > indicator_table;
-	indicator_table = readIndicatorsFromFile("coords.txt");
-
-	for (std::vector<int>::size_type i = 0; i != indicator_table.size(); i++) {
-	std::cout <<
-	std::get<0>(indicator_table[i]) << "," <<
-	std::get<1>(indicator_table[i]) << "," <<
-	std::get<2>(indicator_table[i]) << "," <<
-	std::get<3>(indicator_table[i]) << "," <<
-	std::get<4>(indicator_table[i]) << endl;
-
-	}
-	*/
 
 	//-------------------------------------------------------CALA REKA Z KLASY HAND
 	Place places[6];
@@ -372,37 +320,37 @@ int main()
 	//place 0
 	places[0].setPosition(0);
 	places[0].setStack(300);
-	places[0].setRange(20);
+	places[0].setRange(range18);
 	places[0].setActive(1);//-----------------------------------ACTIVE
 
 	//place 1
 	places[1].setPosition(1);
 	places[1].setStack(500);
-	places[1].setRange(34);
+	places[1].setRange(range26);
 	places[1].setActive(0);
 
 	//place 2
 	places[2].setPosition(2);
 	places[2].setStack(222);
-	places[2].setRange(66);
+	places[2].setRange(range34);
 	places[2].setActive(1);//-----------------------------------ACTIVE
 
 	//place 3
 	places[3].setPosition(3);
 	places[3].setStack(111);
-	places[3].setRange(22);
+	places[3].setRange(range6);
 	places[3].setActive(0);
 
 	//place 4
 	places[4].setPosition(4);
 	places[4].setStack(345);
-	places[4].setRange(45);
+	places[4].setRange(range6);
 	places[4].setActive(0);
 
 	//place 5
 	places[5].setPosition(5);
 	places[5].setStack(321);
-	places[5].setRange(10);
+	places[5].setRange(range74);
 	places[5].setActive(1);//-----------------------------------ACTIVE
 
 	int BB = 20;
@@ -417,39 +365,29 @@ int main()
 
 	bool player[13][4];
 	srand((unsigned int) time(NULL));
-
-
-	/*
-	KODY KART - MICHAL
-
-	2 = 2h			15 = 2d			28 = 2c			41 = 2s
-	..				..				..				..
-
-	13 = Kh			26 = Kd			39 = Kc			52 = Ks
-	14 = Ah			27 = Ad			40 = Ac			53 = As
-
-	*/
 	
-	/*
-	9 - high card
-	8 - 1 pair
-	7 - 2 pairs
-	6 - set
-	5 - straight
-	4 - flush
-	3 - FH
-	2 - quads
-	1 - straight flush
+	//alg_funkcje->showVector(hand->getPlaces()[0].getRange());
+
+
+
 	
-	*/
+
+	Place *pl = new Place();
+	pl = hand->getPlaces();
+
+	//wszyscy przy stole
+	for (int i = 0; i < 6; i++){
+
+		//losowanie TYLKO dla aktywnych
+
+
+	}
+
+
+
 
 
 	vector<int> cards = drawAllCards(53, 52);
-
-	/*for (std::vector<int>::size_type j = 0; j != cards.size(); j++) {
-		cout << cards[j] << " - ";
-	}
-	cout << endl;*/
 
 
 	vector<int>::const_iterator first = cards.begin() + 0;
@@ -457,11 +395,6 @@ int main()
 	vector<int> commoncards(first, last);
 
 	board = commoncards;
-
-	/*for (std::vector<int>::size_type j = 0; j != board.size(); j++) {
-		cout << board[j] << " - ";
-	}
-	cout << endl;*/
 
 	vector<int> player1 = board;
 	vector<int> player2 = board;
