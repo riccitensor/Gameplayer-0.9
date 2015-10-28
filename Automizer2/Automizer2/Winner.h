@@ -480,7 +480,7 @@ vector<int> whatHand(
 	return ret;
 }
 
-int *whoWins(
+int whoWins(
 	vector<int> p1,
 	vector<int> p2,
 	vector<int> p3,
@@ -488,9 +488,28 @@ int *whoWins(
 	vector<int> p5,
 	vector<int> p6
 	){
+	int min = 0;
+	int value_hand[6] = { 0, 0, 0, 0, 0, 0 };
 
-	int ret[6];
+	for (int i = 0; i < 6; i++)
+		if (p1[i] >= 0) value_hand[0] = p1[i] * pow(10,5-i);
+	for (int i = 0; i < 6; i++)
+		if (p2[i] >= 0) value_hand[1] = p2[i] * pow(10, 5 - i);
+	for (int i = 0; i < 6; i++)
+		if (p3[i] >= 0) value_hand[2] = p3[i] * pow(10, 5 - i);
+	for (int i = 0; i < 6; i++)
+		if (p4[i] >= 0) value_hand[3] = p4[i] * pow(10, 5 - i);
+	for (int i = 0; i < 6; i++)
+		if (p5[i] >= 0) value_hand[4] = p5[i] * pow(10, 5 - i);
+	for (int i = 0; i < 6; i++)
+		if (p6[i] >= 0) value_hand[5] = p6[i] * pow(10, 5 - i);
+
+	min = value_hand[0];
+	for (int i = 1; i<6; i++) //
+		if (min>value_hand[i])
+			min = i;
+	//podaje numer gracza przy stole ktory wygral rozdanie
+	return min;
 
 
-	return ret;
 }
