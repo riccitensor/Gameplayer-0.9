@@ -530,3 +530,17 @@ vector<int> whatHand(
 	return ret;
 }
 
+int *whoWins(
+	vector<int> p1,
+	vector<int> p2,
+	vector<int> p3,
+	vector<int> p4,
+	vector<int> p5,
+	vector<int> p6
+	){
+
+	int ret[6];
+
+
+	return ret;
+}

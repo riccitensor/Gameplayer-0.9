@@ -1,4 +1,4 @@
-﻿Build started 2015-10-28 00:49:14.
+﻿Build started 2015-10-28 09:10:13.
      1>Project "C:\Users\Michał\Documents\GitHub\misha\Automizer2\Automizer2\Automizer2.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\Automizer2.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
@@ -7,6 +7,7 @@
          Place.cpp
          Hand.cpp
          Automizer2.cpp
+     1>c:\users\michał\documents\github\misha\automizer2\automizer2\winner.h(545): warning C4172: returning address of local variable or temporary
      1>c:\users\michał\documents\github\misha\automizer2\automizer2\function.h(47): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\michał\documents\github\misha\automizer2\automizer2\algo_funkcje.h(429): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>c:\users\michał\documents\github\misha\automizer2\automizer2\automizer2.cpp(421): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
@@ -24,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:09.46
+Time Elapsed 00:00:07.90
