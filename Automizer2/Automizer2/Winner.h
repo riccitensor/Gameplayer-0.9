@@ -229,58 +229,8 @@ vector<int> whatHand(
 	for (int i = 0; i < 7; i++)
 	{
 		konwersja = seven_cards[i];
-		if (konwersja == 14) player[0][0] = true;
-		if (konwersja == 13) player[1][0] = true;
-		if (konwersja == 12) player[2][0] = true;
-		if (konwersja == 11) player[3][0] = true;
-		if (konwersja == 10) player[4][0] = true;
-		if (konwersja == 9) player[5][0] = true;
-		if (konwersja == 8) player[6][0] = true;
-		if (konwersja == 7) player[7][0] = true;
-		if (konwersja == 6) player[8][0] = true;
-		if (konwersja == 5) player[9][0] = true;
-		if (konwersja == 4) player[10][0] = true;
-		if (konwersja == 3) player[11][0] = true;
-		if (konwersja == 2) player[12][0] = true;
-		if (konwersja == 27) player[0][1] = true;
-		if (konwersja == 26) player[1][1] = true;
-		if (konwersja == 25) player[2][1] = true;
-		if (konwersja == 24) player[3][1] = true;
-		if (konwersja == 23) player[4][1] = true;
-		if (konwersja == 22) player[5][1] = true;
-		if (konwersja == 21) player[6][1] = true;
-		if (konwersja == 20) player[7][1] = true;
-		if (konwersja == 19) player[8][1] = true;
-		if (konwersja == 18) player[9][1] = true;
-		if (konwersja == 17) player[10][1] = true;
-		if (konwersja == 16) player[11][1] = true;
-		if (konwersja == 15) player[12][1] = true;
-		if (konwersja == 40) player[0][2] = true;
-		if (konwersja == 39) player[1][2] = true;
-		if (konwersja == 38) player[2][2] = true;
-		if (konwersja == 37) player[3][2] = true;
-		if (konwersja == 36) player[4][2] = true;
-		if (konwersja == 35) player[5][2] = true;
-		if (konwersja == 34) player[6][2] = true;
-		if (konwersja == 33) player[7][2] = true;
-		if (konwersja == 32) player[8][2] = true;
-		if (konwersja == 31) player[9][2] = true;
-		if (konwersja == 30) player[10][2] = true;
-		if (konwersja == 29) player[11][2] = true;
-		if (konwersja == 28) player[12][2] = true;
-		if (konwersja == 53) player[0][3] = true;
-		if (konwersja == 52) player[1][3] = true;
-		if (konwersja == 51) player[2][3] = true;
-		if (konwersja == 50) player[3][3] = true;
-		if (konwersja == 49) player[4][3] = true;
-		if (konwersja == 48) player[5][3] = true;
-		if (konwersja == 47) player[6][3] = true;
-		if (konwersja == 46) player[7][3] = true;
-		if (konwersja == 45) player[8][3] = true;
-		if (konwersja == 44) player[9][3] = true;
-		if (konwersja == 43) player[10][3] = true;
-		if (konwersja == 42) player[11][3] = true;
-		if (konwersja == 41) player[12][3] = true;
+		for (int j = 2; j<54; j++)
+			if (konwersja == 13 * (2 * (int)floor((j - 2) / 13) + 1) + 3 - j) player[(int)floor((j - 2) / 4)][(j - 2) % 4] = true;
 	}
 
 
