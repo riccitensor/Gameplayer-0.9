@@ -47,9 +47,10 @@ public:
 	int active;
 
 	/*
-	Moja reka
+	Moja reka -- zawiera board
 	*/
 	vector<int> hand;
+	
 
 	double getM();
 	void setM(double newm);

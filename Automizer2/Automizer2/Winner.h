@@ -48,7 +48,7 @@ vector<int> drawAllCards(
 
 vector<int> whatHand(
 
-	int seven_cards[7]
+	vector<int> seven_cards
 
 	/*
 
@@ -370,7 +370,8 @@ vector<int> whatHand(
 			}
 
 			cout << "Player:\t";
-			wyswietl(player);
+			wyswietl(player); //wyswietla rece gracza w postaci np Ad
+			for (int i=1; i<10; i++) if (rank[i]==true) cout << ranka(i);
 			cout << endl;
 
 	return ret;

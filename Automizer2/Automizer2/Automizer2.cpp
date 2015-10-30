@@ -317,19 +317,19 @@ int main()
 	//place 0
 	places[0].setPosition(0);
 	places[0].setStack(300);
-	places[0].setRange(range18);
+	places[0].setRange(range6);
 	places[0].setActive(1);//-----------------------------------ACTIVE
 
 	//place 1
 	places[1].setPosition(1);
 	places[1].setStack(500);
-	places[1].setRange(range26);
+	places[1].setRange(range6);
 	places[1].setActive(0);
 
 	//place 2
 	places[2].setPosition(2);
 	places[2].setStack(222);
-	places[2].setRange(range34);
+	places[2].setRange(range6);
 	places[2].setActive(1);//-----------------------------------ACTIVE
 
 	//place 3
@@ -347,7 +347,7 @@ int main()
 	//place 5
 	places[5].setPosition(5);
 	places[5].setStack(321);
-	places[5].setRange(range74);
+	places[5].setRange(range6);
 	places[5].setActive(1);//-----------------------------------ACTIVE
 
 	int BB = 20;
@@ -358,11 +358,6 @@ int main()
 	vector<int> board;
 
 	Hand *hand = new Hand(places, BB, SB, pot, ante, board);
-
-	Place *pl = new Place();
-	pl = hand->getPlaces();
-
-
 
 
 	/*
@@ -384,7 +379,7 @@ int main()
 
 		do{
 			//pobieramy dla zakresu
-			h = randomHandFromRange(pl[i].getRange());
+			h = randomHandFromRange(hand->getPlaces()[i].getRange());
 
 			//obie kartyz reki
 			k1 = h[0];
@@ -400,7 +395,7 @@ int main()
 		temp.push_back(k1);
 		temp.push_back(k2);
 
-		cout << convert(k1) << convert(k2) << endl;
+		cout << convert(k1) <<" "<< convert(k2) << endl;
 
 		places[i].setHand(temp);
 
@@ -409,7 +404,7 @@ int main()
 		used.push_back(k2);
 
 	}
-
+	
 	
 	//5 kart z boardu
 	for (int i = 0; i < 5; i++){
@@ -427,18 +422,66 @@ int main()
 
 		} while (isInVector(used, k));
 
+		//dodajemy wylosowana karta do used
+		used.push_back(k);
+
 		//dodajemy do boardu
 		board.push_back(k);
 	}
 	//ustalamy board
 	hand->setBoard(board);
 
-	vector<int> b = hand->getBoard();
+	vector<int> b1 = hand->getBoard();
 	cout << "BOARD" << endl;
-	for (std::vector<int>::size_type i = 0; i != b.size(); i++) {
-		cout << convert(b[i]) << endl;
-
+	for (std::vector<int>::size_type i = 0; i != b1.size(); i++) {
+		cout << convert(b1[i]) << " ";	
 	}
+	cout << endl;
+	
+
+
+
+	//board
+	vector<int> b = hand->getBoard();
+
+
+	
+
+	//rece
+	vector<int> h0 = places[0].getHand();
+	h0.insert(h0.end(), b.begin(), b.end());
+	vector<int> h1 = places[1].getHand();
+	h1.insert(h1.end(), b.begin(), b.end());
+	vector<int> h2 = places[2].getHand();
+	h2.insert(h2.end(), b.begin(), b.end());
+	vector<int> h3 = places[3].getHand();
+	h3.insert(h3.end(), b.begin(), b.end());
+	vector<int> h4 = places[4].getHand();
+	h4.insert(h4.end(), b.begin(), b.end());
+	vector<int> h5 = places[5].getHand();
+	h5.insert(h5.end(), b.begin(), b.end());
+						
+
+
+	vector<int> a0 = whatHand(h0);
+	vector<int> a1 = whatHand(h1);
+	vector<int> a2 = whatHand(h2);
+	vector<int> a3 = whatHand(h3);
+	vector<int> a4 = whatHand(h4);
+	vector<int> a5 = whatHand(h5);
+
+
+	int ww = whoWins(
+		a0,
+		a1,
+		a2,
+		a3,
+		a4,
+		a5
+		);
+
+	cout << "Wygral gracz: " << ww << endl;
+
 
 
 	getchar();
