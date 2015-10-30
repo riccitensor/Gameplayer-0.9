@@ -311,12 +311,6 @@ int main()
 	//wcztujemy zakresy
 	readRanges();
 
-	vector<int> reka = randomHandFromRange(range18);
-	for (int i = 0; i < 2; i++){
-		cout << "Reka: " << reka[i] << endl;
-	}
-
-
 	//-------------------------------------------------------CALA REKA Z KLASY HAND
 	Place places[6];
 
@@ -361,81 +355,15 @@ int main()
 	int pot = 100;
 	int ante = 10;
 
-
 	vector<int> board;
 
 	Hand *hand = new Hand(places, BB, SB, pot, ante, board);
 
-
-	
-	//pobieranaie zakresu dla danej pozycji
-	//alg_funkcje->showVector(hand->getPlaces()[0].getRange());
-
-
-
-	
-
 	Place *pl = new Place();
 	pl = hand->getPlaces();
 
-	//cout << "Stack:" << pl[0].getStack()<<endl;
-	//alg_funkcje->showVector(pl[0].getRange());
 
 
-
-
-
-
-	vector<int> cards = drawAllCards(53, 52);
-
-
-	vector<int>::const_iterator first = cards.begin() + 0;
-	vector<int>::const_iterator last = cards.begin() + 5;
-	vector<int> commoncards(first, last);
-
-	board = commoncards;
-
-	vector<int> player1 = board;
-	vector<int> player2 = board;
-	vector<int> player3 = board;
-
-	vector<int> player4 = board;
-	vector<int> player5 = board;
-	vector<int> player6 = board;
-
-
-//---------------------------------------------player1
-	vector<int>::const_iterator first1 = cards.begin() + 5;
-	vector<int>::const_iterator last1 = cards.begin() + 7;
-	vector<int> p1(first1, last1);
-
-	vector<int>::const_iterator first2 = cards.begin() + 7;
-	vector<int>::const_iterator last2 = cards.begin() + 9;
-	vector<int> p2(first2, last2);
-
-	vector<int>::const_iterator first3 = cards.begin() + 9;
-	vector<int>::const_iterator last3 = cards.begin() + 11;
-	vector<int> p3(first3, last3);
-
-	vector<int>::const_iterator first4 = cards.begin() + 11;
-	vector<int>::const_iterator last4 = cards.begin() + 13;
-	vector<int> p4(first4, last4);
-
-	vector<int>::const_iterator first5 = cards.begin() + 13;
-	vector<int>::const_iterator last5 = cards.begin() + 15;
-	vector<int> p5(first5, last5);
-
-	vector<int>::const_iterator first6 = cards.begin() + 15;
-	vector<int>::const_iterator last6 = cards.begin() + 17;
-	vector<int> p6(first6, last6);
-
-
-	player1.insert(player1.end(), p1.begin(), p1.end());
-	player2.insert(player2.end(), p2.begin(), p2.end());
-	player3.insert(player3.end(), p3.begin(), p3.end());
-	player4.insert(player4.end(), p4.begin(), p4.end());
-	player5.insert(player5.end(), p5.begin(), p5.end());
-	player6.insert(player6.end(), p6.begin(), p6.end());
 
 	/*
 	NIEAKTYWNI GRACZE MAJA RANGE OD 60 - 100%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! STRATEGIA ZALEZY OD M
@@ -462,7 +390,7 @@ int main()
 			k1 = h[0];
 			k2 = h[1];
 			bool test = isInVector(used, h[0]) || isInVector(used, h[1]);
-			cout << "Test;" << convert(k1)  << convert(k2) << "--->" << test<< endl;
+			//cout << "Test;" << convert(k1)  << convert(k2) << "--->" << test<< endl;
 
 			
 		} while (isInVector(used, h[0]) || isInVector(used, h[1]));
@@ -472,8 +400,7 @@ int main()
 		temp.push_back(k1);
 		temp.push_back(k2);
 
-		cout << convert(k1) << endl;
-		cout << convert(k2) << endl;
+		cout << convert(k1) << convert(k2) << endl;
 
 		places[i].setHand(temp);
 
@@ -483,12 +410,35 @@ int main()
 
 	}
 
+	
+	//5 kart z boardu
+	for (int i = 0; i < 5; i++){
 
-	  //readRanges();
+		int k;
+		//losowanie boardu
+		do{
 
-	//std::vector <std::vector<std::string> > a = alg_funkcje->readRangesFromFile();
+			//pobieramy dla zakresu
+			k = rand() % 52 + 2;
+
+			//bool test = isInVector(used, h[0]) || isInVector(used, h[1]);
+			//cout << "Test;" << convert(k1)  << convert(k2) << "--->" << test<< endl;
 
 
+		} while (isInVector(used, k));
+
+		//dodajemy do boardu
+		board.push_back(k);
+	}
+	//ustalamy board
+	hand->setBoard(board);
+
+	vector<int> b = hand->getBoard();
+	cout << "BOARD" << endl;
+	for (std::vector<int>::size_type i = 0; i != b.size(); i++) {
+		cout << convert(b[i]) << endl;
+
+	}
 
 
 	getchar();

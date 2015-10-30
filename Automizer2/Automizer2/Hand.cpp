@@ -194,3 +194,12 @@ Place* Hand::getPlaces(){
 	return this->places;
 
 }
+
+void Hand::setBoard(vector<int> board){
+
+	this->board = board;
+
+}
+vector<int> Hand::getBoard(){
+	return this->board;
+}

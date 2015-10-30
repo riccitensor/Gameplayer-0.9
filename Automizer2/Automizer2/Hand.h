@@ -80,5 +80,8 @@ public:
 	Place* getPlaces();
 	int setPlaces(Place place[6]);
 
+	void setBoard(vector<int> board);
+	vector<int> getBoard();
+
 
 };
