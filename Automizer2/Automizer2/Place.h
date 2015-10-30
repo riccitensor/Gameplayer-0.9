@@ -46,15 +46,27 @@ public:
 	*/
 	int active;
 
+	/*
+	Moja reka
+	*/
+	vector<int> hand;
+
 	double getM();
 	void setM(double newm);
+
 	int getStack();
 	void setStack(int stack);
+
 	vector<int> getRange();
 	void setRange(vector<int> range);
+
 	void setPosition(int pos);
+
 	int getActive();
 	void setActive(int a);
+
+	vector<int> getHand();
+	void setHand(vector<int>);
 
 public:
 	Place();

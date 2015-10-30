@@ -52,9 +52,11 @@ void readRanges()
 	ranges = a->readRangesFromFile();
 
 	//----------------------------------------------CALA LISTA RAK
-	for (std::vector<int>::size_type i = 0; i != ranges.size(); i++){
+	//for (std::vector<int>::size_type i = 0; i != ranges.size(); i++){
+	for (int i = 0; i != ranges.size(); i++){
 
 		int_ranges[a->handToNum(ranges[i][0])] = std::stoi(ranges[i][1]);
+		//cout << a->handToNum(ranges[i][0]) << "->>>" << int_ranges[a->handToNum(ranges[i][0])] << endl;
 	}
 
 	//-----------------------------------------------KONKRETNE ZAKRESY
@@ -94,8 +96,8 @@ void readRanges()
 
 }
 vector<int> randomHandFromRange(vector<int> range){
-	srand(time(NULL));
-	int num = rand() % range.size() + 1;
+
+	int num = rand() % range.size();
 	int karta = range[num];
 
 	int sec = karta % 100;
@@ -106,7 +108,7 @@ vector<int> randomHandFromRange(vector<int> range){
 
 
 
-	std::cout << "KARTA: " << fir << "," << sec << endl;
+	//std::cout << "KARTA: " << fir << "," << sec << endl;
 
 	vector<int> ret;
 	ret.push_back(fir);

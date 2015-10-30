@@ -2,6 +2,7 @@
 #define	AUTO
 
 #include "algo_funkcje.h"
+
 #endif
 
 #include "stdafx.h"
@@ -299,6 +300,8 @@ void testFileRGBs(){
 
 int main()
 {
+	srand((unsigned int)time(NULL));
+
 	ilInit();
 	printf("DevIL has been initialized\n");
 
@@ -363,9 +366,9 @@ int main()
 
 	Hand *hand = new Hand(places, BB, SB, pot, ante, board);
 
-	bool player[13][4];
-	srand((unsigned int) time(NULL));
+
 	
+	//pobieranaie zakresu dla danej pozycji
 	//alg_funkcje->showVector(hand->getPlaces()[0].getRange());
 
 
@@ -377,22 +380,7 @@ int main()
 
 	//cout << "Stack:" << pl[0].getStack()<<endl;
 	//alg_funkcje->showVector(pl[0].getRange());
-	
-	/*
-	NIEAKTYWNI GRACZE MAJA RANGE OD 60 - 100%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! STRATEGIA ZALEZY OD M
-	*/
 
-	//uzyte karty (wczesniej wylosowane)
-	vector<int> used;
-
-	//wszyscy przy stole
-	//for (int i = 0; i < 6; i++){
-		
-	//	do{
-	//		vector<int> hand = randomHandFromRange(pl[i].getRange());
-	//	} while (hand)
-		
-	//}
 
 
 
@@ -449,84 +437,58 @@ int main()
 	player5.insert(player5.end(), p5.begin(), p5.end());
 	player6.insert(player6.end(), p6.begin(), p6.end());
 
-	int hand1[7];
-	int hand2[7];
-	int hand3[7];
-	int hand4[7];
-	int hand5[7];
-	int hand6[7];
+	/*
+	NIEAKTYWNI GRACZE MAJA RANGE OD 60 - 100%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! STRATEGIA ZALEZY OD M
+	*/
 
-	for (int i = 0; i < 7; i++) {
-		hand1[i] = player1[i];
-		hand2[i] = player2[i];
-		hand3[i] = player3[i];
+	//karta 2 do 53
 
-		hand4[i] = player4[i];
-		hand5[i] = player5[i];
-		hand6[i] = player6[i];
+
+	//uzywane rece
+	vector<int> used;
+
+	//wszyscy przy stole
+	for (int i = 0; i < 6; i++){
+
+		int k1;
+		int k2;
+		vector<int> h;
+
+		do{
+			//pobieramy dla zakresu
+			h = randomHandFromRange(pl[i].getRange());
+
+			//obie kartyz reki
+			k1 = h[0];
+			k2 = h[1];
+			bool test = isInVector(used, h[0]) || isInVector(used, h[1]);
+			cout << "Test;" << convert(k1)  << convert(k2) << "--->" << test<< endl;
+
+			
+		} while (isInVector(used, h[0]) || isInVector(used, h[1]));
+
+		//ustalamy rece graczom
+		vector<int> temp;
+		temp.push_back(k1);
+		temp.push_back(k2);
+
+		cout << convert(k1) << endl;
+		cout << convert(k2) << endl;
+
+		places[i].setHand(temp);
+
+		//dodajemy obie karty reki do USED
+		used.push_back(k1);
+		used.push_back(k2);
 
 	}
 
-	vector<int> whathand1 = whatHand(hand1);
-	vector<int> whathand2 = whatHand(hand2);
-	vector<int> whathand3 = whatHand(hand3);
-	vector<int> whathand4 = whatHand(hand4);
-	vector<int> whathand5 = whatHand(hand5);
-	vector<int> whathand6 = whatHand(hand6);
-	cout << endl;
-	cout << "Player1: "  ;
-	for (std::vector<int>::size_type i = 0; i != whathand1.size(); i++) {
-		if (i == 0) cout << ranka(whathand1[i]) << " ";
-		if (i>0) cout << fig(whathand1[i]) << " ";
-	}
-	cout << endl;
 
-	cout << "Player2: ";
-	for (std::vector<int>::size_type i = 0; i != whathand2.size(); i++) {
-		if (i == 0) cout << ranka(whathand2[i]) << " ";
-		if (i>0) cout << fig(whathand2[i]) << " ";
-	}
-	cout << endl;
+	  //readRanges();
 
-	cout << "Player3: ";
-	for (std::vector<int>::size_type i = 0; i != whathand3.size(); i++) {
-		if (i == 0) cout << ranka(whathand3[i]) << " ";
-		if (i>0) cout << fig(whathand3[i]) << " ";
-	}
-	cout << endl;
+	//std::vector <std::vector<std::string> > a = alg_funkcje->readRangesFromFile();
 
-	cout << "Player4: ";
-	for (std::vector<int>::size_type i = 0; i != whathand4.size(); i++) {
-		if (i == 0) cout << ranka(whathand4[i]) << " ";
-		if (i>0) cout << fig(whathand4[i]) << " ";
-	}
-	cout << endl;
 
-	cout << "Player5: ";
-	for (std::vector<int>::size_type i = 0; i != whathand5.size(); i++) {
-		if (i == 0) cout << ranka(whathand5[i]) << " ";
-		if (i>0) cout << fig(whathand5[i]) << " ";
-	}
-	cout << endl;
-
-	cout << "Player6: ";
-	for (std::vector<int>::size_type i = 0; i != whathand6.size(); i++) {
-		
-		if (i==0) cout << ranka(whathand6[i]) << " ";
-		if (i>0) cout << fig(whathand6[i]) << " ";
-	}
-	cout << endl;
-
-	int ww = whoWins(
-		whathand1,
-		whathand2,
-		whathand3,
-		whathand4,
-		whathand5,
-		whathand6
-		);
-
-	cout << "Wygral gracz: " << ww << endl;
 
 
 	getchar();

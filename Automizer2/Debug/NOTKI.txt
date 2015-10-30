@@ -96,3 +96,129 @@ cout << "Player1: ";
 		cout << player6[j] << " - ";
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	int hand1[7];
+	int hand2[7];
+	int hand3[7];
+	int hand4[7];
+	int hand5[7];
+	int hand6[7];
+
+	for (int i = 0; i < 7; i++) {
+		hand1[i] = player1[i];
+		hand2[i] = player2[i];
+		hand3[i] = player3[i];
+
+		hand4[i] = player4[i];
+		hand5[i] = player5[i];
+		hand6[i] = player6[i];
+
+	}
+
+	vector<int> whathand1 = whatHand(hand1);
+	vector<int> whathand2 = whatHand(hand2);
+	vector<int> whathand3 = whatHand(hand3);
+	vector<int> whathand4 = whatHand(hand4);
+	vector<int> whathand5 = whatHand(hand5);
+	vector<int> whathand6 = whatHand(hand6);
+	cout << endl;
+	cout << "Player1: "  ;
+	for (std::vector<int>::size_type i = 0; i != whathand1.size(); i++) {
+		if (i == 0) cout << ranka(whathand1[i]) << " ";
+		if (i>0) cout << fig(whathand1[i]) << " ";
+	}
+	cout << endl;
+
+	cout << "Player2: ";
+	for (std::vector<int>::size_type i = 0; i != whathand2.size(); i++) {
+		if (i == 0) cout << ranka(whathand2[i]) << " ";
+		if (i>0) cout << fig(whathand2[i]) << " ";
+	}
+	cout << endl;
+
+	cout << "Player3: ";
+	for (std::vector<int>::size_type i = 0; i != whathand3.size(); i++) {
+		if (i == 0) cout << ranka(whathand3[i]) << " ";
+		if (i>0) cout << fig(whathand3[i]) << " ";
+	}
+	cout << endl;
+
+	cout << "Player4: ";
+	for (std::vector<int>::size_type i = 0; i != whathand4.size(); i++) {
+		if (i == 0) cout << ranka(whathand4[i]) << " ";
+		if (i>0) cout << fig(whathand4[i]) << " ";
+	}
+	cout << endl;
+
+	cout << "Player5: ";
+	for (std::vector<int>::size_type i = 0; i != whathand5.size(); i++) {
+		if (i == 0) cout << ranka(whathand5[i]) << " ";
+		if (i>0) cout << fig(whathand5[i]) << " ";
+	}
+	cout << endl;
+
+	cout << "Player6: ";
+	for (std::vector<int>::size_type i = 0; i != whathand6.size(); i++) {
+		
+		if (i==0) cout << ranka(whathand6[i]) << " ";
+		if (i>0) cout << fig(whathand6[i]) << " ";
+	}
+	cout << endl;
+
+
+
+
+	int ww = whoWins(
+		whathand1,
+		whathand2,
+		whathand3,
+		whathand4,
+		whathand5,
+		whathand6
+		);
+
+	cout << "Wygral gracz: " << ww << endl;
+
+
+
+		a	0x006e02c0 {...}	algo_funkcje *
+		i	0	unsigned int
+-		int_ranges	{ size=0 }	std::map<int,int,std::less<int>,std::allocator<std::pair<int const ,int> > >
++		[Raw View]	0x00ef2774 {Automizer2.exe!std::map<int,int,std::less<int>,std::allocator<std::pair<int const ,int> > > int_ranges} {...}	std::map<int,int,std::less<int>,std::allocator<std::pair<int const ,int> > > *
++		ranges	{ size=1405 }	std::vector<std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,std::allocator<std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > > > >
+
+
+
+

@@ -71,3 +71,11 @@ void Place::show(){
 bool Place::isActive(){
 	return this->active ? true : false;
 }
+
+vector<int> Place::getHand(){
+	return hand;
+}
+
+void Place::setHand(vector<int> a){
+	this->hand = a;
+}

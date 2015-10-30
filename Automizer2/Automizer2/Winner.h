@@ -239,7 +239,7 @@ vector<int> whatHand(
 			{
 				if (suma_figura[i] == 3)
 				{
-					cout << "FULL HOUSE OKO" << endl;
+
 					for (int j = 0; j < 13; j++)
 						if ((j != i) && (suma_figura[j] >= 2))
 						{
@@ -262,7 +262,7 @@ vector<int> whatHand(
 			{
 				if (suma_figura[i] == 3)
 				{
-					cout << "SET OKO" << endl;
+
 					kicker[0] = i;
 					for (int a = 0; a < 52; a++)
 					{

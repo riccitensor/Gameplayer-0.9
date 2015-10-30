@@ -466,7 +466,7 @@ class algo_funkcje {
 			}
 
 		}
-		cout << "For range:" << range << " lines: " << debug << endl;
+		//cout << "For range:" << range << " lines: " << debug << endl;
 		return v;
 	}
 
