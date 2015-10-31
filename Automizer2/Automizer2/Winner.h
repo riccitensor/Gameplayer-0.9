@@ -15,16 +15,12 @@ using namespace std;
 
 
 
-vector<int> whatHand(vector<int> seven_cards)  //do funkcji podajemy 2 karty gracz i board
+vector<int> whatHand(vector<int> seven_cards)  //do funkcji podajemy 2 karty gracza i board
 {
 
-
-	//kicker[0] bedzie informowal o kolorze pokera, flusha, stright flusha, wartosc 1 to h, 2 to d, 3 to c, 4 to s
-	//kicker [1]...kicker [5] to wysokosc karty pierwszej, drugiej, trzeciej o ile jest kickerem, przez wysokosc rozumiem 0 to as, 1 to krol, etc
-
-	int kicker[6] = { 0, 0, 0, 0, 0, 0 };
+	short kicker[5] = { -1, -1, -1, -1, -1 };
 	bool player[13][4];
-	int sprawdz[13];
+	
 	bool stop;
 	int konwersja = 0;
 	bool rank[10];  //ranking ukladow, dla true oznacza ze w rozdaniu pojawil sie ten uklad, mozna dodac drugi wymiar ktory bedzie okreslal dla ktorego gracza padl ten uklad
@@ -32,25 +28,17 @@ vector<int> whatHand(vector<int> seven_cards)  //do funkcji podajemy 2 karty gra
 	int blok_s[10];  // to przygotowalem dla strita, ale okazalo sie ze troche trudniej
 
 
-	int suma_figura[13]; //ogolnie mamy macierz, karty od A do 2 uszeregowane kolorami, tu sprawdzam ilo zosta³o wylosowanych tych samych figur, czyli sumuje 1 z danego wiersza
-	int suma_kolor[4]; //sumuje 1 z danej kolumny, jesli karta zosta³a wylosowana do w macierzy pojawia siê true, jesli nie pozostaje false
+	short suma_figura[13] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 }; //ogolnie mamy macierz, karty od A do 2 uszeregowane kolorami, tu sprawdzam ilo zosta³o wylosowanych tych samych figur, czyli sumuje 1 z danego wiersza
+	short sprawdz[13] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	short suma_kolor[4] = { 0, 0, 0, 0 }; //sumuje 1 z danej kolumny, jesli karta zosta³a wylosowana do w macierzy pojawia siê true, jesli nie pozostaje false
 
 	//G£OWNY PROGRAM !!!
 
 
 	//ponizej zerowanie zmiennych, to potem mozna wywalic, ale ze sa iteracje to musze zerowac zmienne
-	for (int i = 0; i < 4; i++) suma_kolor[i] = 0;
-	for (int i = 0; i < 6; i++) kicker[i] = -1;
 	for (int i = 0; i < 13; i++)
-		{
-			suma_figura[i] = 0; 
-			sprawdz[i] = 0;
 			for (int j = 0; j < 4; j++)
-				{
 					player[i][j] = false;
-
-				}
-		}
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -59,7 +47,7 @@ vector<int> whatHand(vector<int> seven_cards)  //do funkcji podajemy 2 karty gra
 			blok[i][j] = 0;
 			blok_s[i] = 0;
 		}
-		rank[i] = 0;
+		rank[i] = false;
 	}
 
 	stop = false;
@@ -307,11 +295,11 @@ vector<int> whatHand(vector<int> seven_cards)  //do funkcji podajemy 2 karty gra
 				ret.push_back(kicker[i]);
 			}
 
-			cout << "Player:\t";
-			wyswietl(player); //wyswietla rece gracza w postaci np "Ad"
-			for (int i = 1; i < 10; i++) if (rank[i] == true) cout << ranka(i) << " ";
-			for (int i = 0; i < 5; i++) if (kicker[i] >-1) cout << fig(kicker[i]) << " ";
-			cout << endl;
+			//cout << "Player:\t";
+			//wyswietl(player); //wyswietla rece gracza w postaci np "Ad"
+			//for (int i = 1; i < 10; i++) if (rank[i] == true) cout << ranka(i) << " ";
+			//for (int i = 0; i < 5; i++) if (kicker[i] >-1) cout << fig(kicker[i]) << " ";
+			//cout << endl;
 
 	return ret;
 }
@@ -344,6 +332,4 @@ int whoWins(vector<int> p1, vector<int> p2, vector<int> p3, vector<int> p4, vect
 		}
 	//podaje numer gracza przy stole ktory wygral rozdanie
 	return win;
-
-
 }

@@ -373,7 +373,7 @@ int main()
 
 	for (int i = 0; i < iloscProb; i++){//------------------------------------------------------------------
 
-	cout << "----------------ILOSC PROB" << i << "------------------------" << endl;
+	//cout << "----------------ILOSC PROB" << i << "------------------------" << endl;
 	
 	
 	Hand *hand = new Hand(places, BB, SB, pot, ante, board);
@@ -390,7 +390,7 @@ int main()
 	//moje rece nie moga byc losowane!!
 	used.insert(used.end(), myHand.begin(), myHand.end());
 
-	cout << "My hand: " << convert(myHand[0]) << " " << convert(myHand[1]) << endl;
+	//cout << "My hand: " << convert(myHand[0]) << " " << convert(myHand[1]) << endl;
 
 	//wszyscy przy stole
 	for (int i = 1; i < 6; i++){
@@ -417,7 +417,7 @@ int main()
 		temp.push_back(k1);
 		temp.push_back(k2);
 
-		cout << convert(k1) <<" "<< convert(k2) << endl;
+		//cout << convert(k1) <<" "<< convert(k2) << endl;
 
 		places[i].setHand(temp);
 
@@ -456,11 +456,11 @@ int main()
 	hand->setBoard(board);
 
 	vector<int> b1 = hand->getBoard();
-	cout << "BOARD" << endl;
-	for (std::vector<int>::size_type i = 0; i != b1.size(); i++) {
-		cout << convert(b1[i]) << " ";	
-	}
-	cout << endl;
+	//cout << "BOARD" << endl;
+	//for (std::vector<int>::size_type i = 0; i != b1.size(); i++) {
+	//	cout << convert(b1[i]) << " ";	
+	//}
+	//cout << endl;
 	
 
 
@@ -508,7 +508,7 @@ int main()
 		);
 
 	whoWon[ww]++;
-	cout << "===========================WYGRAL " << ww << "======================================" << endl;
+	//cout << "===========================WYGRAL " << ww << "======================================" << endl;
 
 
 
