@@ -13,59 +13,10 @@ using namespace std;
 
 
 
-/*
-LOSUJE 17 ROZNYCH KART Z 50 KART, MUSI WIEDZIEC TYLKO O MOJEJ RECE
-*/
-vector<int> drawAllCards(
-	/*
-	Moja reka jako integer
-	*/
-	int myHand1,
-	int myHand2
-	
-){
-
-		
-	vector<int> karta;
-	int wylosowanych = 0;
-	do//losowanie 17 kart sposrod 52-----------------------------------------POWINNO BYC 52 MINUS 2 KARTY NASZE!!!!!!!!!!!!
-	{
-		int liczba = wylosuj();
-		if (czyBylaWylosowana(liczba, karta, wylosowanych) == false)
-		{
-
-			karta.push_back(liczba);
-			//cout << karta[wylosowanych] << endl;
-
-			wylosowanych++;
-		} //if
-	} while (wylosowanych < 17);
-
-	
-	return karta;
-}
 
 
-vector<int> whatHand(
-
-	vector<int> seven_cards
-
-	/*
-
-	W TABLICY JEST SIEDEM KART GRACZA = 2 UNIKALNE JEGO i PIEC
-	dla gracza matrixa losujemy 5 kart z boardu bo na poaczatku jego tablica bedzie miala tylko dwa TRUE!!!!!!!!!!!!!!!!!!!!!!!
-	TA FUNKCJA DA SIE WYWOLAC 6 RAZY ALE TRZEBA PAMIETAC CO WYLOSOWAISMY DLA POPRZEDNIKOW RANGOW
-	TRZEBA PAMIETAC ZE PRZY LOSOWANIU ZAWSZE TRZEBA MOC WYLOSOWAC RECE
-	P1 10%
-	P2 20%
-	P3 30%
-	P4 40%
-	P5 50%
-	P6 60%
-
-
-	*/
-	){
+vector<int> whatHand(vector<int> seven_cards)  //do funkcji podajemy 2 karty gracz i board
+{
 
 
 	//kicker[0] bedzie informowal o kolorze pokera, flusha, stright flusha, wartosc 1 to h, 2 to d, 3 to c, 4 to s
@@ -83,11 +34,6 @@ vector<int> whatHand(
 
 	int suma_figura[13]; //ogolnie mamy macierz, karty od A do 2 uszeregowane kolorami, tu sprawdzam ilo zosta³o wylosowanych tych samych figur, czyli sumuje 1 z danego wiersza
 	int suma_kolor[4]; //sumuje 1 z danej kolumny, jesli karta zosta³a wylosowana do w macierzy pojawia siê true, jesli nie pozostaje false
-
-	for (int i = 0; i < 10; i++)
-	{
-		rank[i] = 0; 
-	}
 
 	//G£OWNY PROGRAM !!!
 
@@ -128,7 +74,6 @@ vector<int> whatHand(
 	}
 
 
-
 	//sumowanie dla straifght flush
 	for (int i = 0; i < 4; i++)
 		for (int j = 0; j < 13; j++)
@@ -136,17 +81,10 @@ vector<int> whatHand(
 			{
 				suma_kolor[i]++;//sumuje ile kart jest w danych kolorze
 				suma_figura[j]++;//sumuje jaka jest liczba danej figury
-				if (j >= 0 && j < 5) blok[0][i]++;//tworze bloki dla STRAIGHT FLUSHA, jesli wartosc bloku rowna siê 5 tzn ze jest zapelniony caly blok, czyli karty sa po kolei
-				if (j >= 1 && j < 6) blok[1][i]++;
-				if (j >= 2 && j < 7) blok[2][i]++;
-				if (j >= 3 && j < 8) blok[3][i]++;
-				if (j >= 4 && j < 9) blok[4][i]++;
-				if (j >= 5 && j < 10) blok[5][i]++;
-				if (j >= 6 && j < 11) blok[6][i]++;
-				if (j >= 7 && j < 12) blok[7][i]++;
-				if (j >= 8 && j < 13) blok[8][i]++;
+				for (int k = 0; k < 9; k++) if ((j >= k) && (j < 5 + k)) blok[k][i]++;//tworze bloki dla STRAIGHT FLUSHA, jesli wartosc bloku rowna siê 5 tzn ze jest zapelniony caly blok, czyli karty sa po kolei
 				if ((j >= 9 && j < 13) || (j == 0)) blok[9][i]++;
 			}
+
 	//sumowanie dla strita
 	for (int j = 0; j < 13; j++)
 		for (int i = 0; i < 4; i++)
@@ -186,7 +124,6 @@ vector<int> whatHand(
 			if (suma_figura[i] == 4)
 			{
 				rank[2] = true;
-				//kickery dla karety
 				kicker[0] = i;//jaka kareta
 
 				for (int a = 0; a < 52; a++)
@@ -371,21 +308,16 @@ vector<int> whatHand(
 			}
 
 			cout << "Player:\t";
-			wyswietl(player); //wyswietla rece gracza w postaci np Ad
-			for (int i=1; i<10; i++) if (rank[i]==true) cout << ranka(i);
+			wyswietl(player); //wyswietla rece gracza w postaci np "Ad"
+			for (int i = 1; i < 10; i++) if (rank[i] == true) cout << ranka(i) << " ";
+			for (int i = 0; i < 5; i++) if (kicker[i] >-1) cout << fig(kicker[i]) << " ";
 			cout << endl;
 
 	return ret;
 }
 
-int whoWins(
-	vector<int> p1,
-	vector<int> p2,
-	vector<int> p3,
-	vector<int> p4,
-	vector<int> p5,
-	vector<int> p6
-	){
+int whoWins(vector<int> p1, vector<int> p2, vector<int> p3, vector<int> p4, vector<int> p5, vector<int> p6)
+{
 	int min = 0;
 	int value_hand[6] = { 0, 0, 0, 0, 0, 0 };
 
