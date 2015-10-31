@@ -270,7 +270,7 @@ vector<int> whatHand(vector<int> seven_cards)  //do funkcji podajemy 2 karty gra
 					kicker[zlicz] = (int)floor(a / 4);
 					zlicz++;
 				}
-				if (zlicz == 6) break;
+				if (zlicz == 5) break;
 			}
 			rank[9] = true;
 		}
