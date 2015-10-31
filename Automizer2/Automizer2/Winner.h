@@ -227,6 +227,7 @@ vector<int> whatHand(
 						{
 							kicker[zlicz] = a;
 							zlicz++;
+							if (zlicz == 5) break;
 						}
 					}
 				}
