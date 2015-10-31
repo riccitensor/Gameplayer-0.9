@@ -410,7 +410,7 @@ int whoWins(
 			win = i;
 		}
 	//podaje numer gracza przy stole ktory wygral rozdanie
-	return win+1;
+	return win;
 
 
 }

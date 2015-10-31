@@ -111,4 +111,6 @@ vector<int> Hand::getBoard(){
 	return this->board;
 }
 
-
+void Hand::clearBoard(){
+	this->board.clear();
+}

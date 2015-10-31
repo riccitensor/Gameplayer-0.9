@@ -317,37 +317,37 @@ int main()
 	//place 0
 	places[0].setPosition(0);
 	places[0].setStack(300);
-	places[0].setRange(range6);
+	places[0].setRange(range34);
 	places[0].setActive(1);//-----------------------------------ACTIVE
 
 	//place 1
 	places[1].setPosition(1);
 	places[1].setStack(500);
-	places[1].setRange(range6);
+	places[1].setRange(range34);
 	places[1].setActive(0);
 
 	//place 2
 	places[2].setPosition(2);
 	places[2].setStack(222);
-	places[2].setRange(range6);
+	places[2].setRange(range34);
 	places[2].setActive(1);//-----------------------------------ACTIVE
 
 	//place 3
 	places[3].setPosition(3);
 	places[3].setStack(111);
-	places[3].setRange(range6);
+	places[3].setRange(range34);
 	places[3].setActive(0);
 
 	//place 4
 	places[4].setPosition(4);
 	places[4].setStack(345);
-	places[4].setRange(range6);
+	places[4].setRange(range34);
 	places[4].setActive(0);
 
 	//place 5
 	places[5].setPosition(5);
 	places[5].setStack(321);
-	places[5].setRange(range6);
+	places[5].setRange(range34);
 	places[5].setActive(1);//-----------------------------------ACTIVE
 
 	int BB = 20;
@@ -357,21 +357,43 @@ int main()
 
 	vector<int> board;
 
-	Hand *hand = new Hand(places, BB, SB, pot, ante, board);
+
 
 
 	/*
 	NIEAKTYWNI GRACZE MAJA RANGE OD 60 - 100%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! STRATEGIA ZALEZY OD M
 	*/
 
-	//karta 2 do 53
 
+
+	//--------------------------------------------MC--------------------------------------------------
+
+	int iloscProb = 1000;
+	int whoWon[6] = { 0, 0, 0, 0, 0, 0 };
+
+	for (int i = 0; i < iloscProb; i++){//------------------------------------------------------------------
+
+	cout << "----------------ILOSC PROB" << i << "------------------------" << endl;
+	
+	
+	Hand *hand = new Hand(places, BB, SB, pot, ante, board);
+
+
+	//MOJE RECE PODANE Z OCR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+	vector <int> myHand;
+	myHand.push_back(13);
+	myHand.push_back(14);
 
 	//uzywane rece
 	vector<int> used;
+	
+	//moje rece nie moga byc losowane!!
+	used.insert(used.end(), myHand.begin(), myHand.end());
+
+	cout << "My hand: " << convert(myHand[0]) << " " << convert(myHand[1]) << endl;
 
 	//wszyscy przy stole
-	for (int i = 0; i < 6; i++){
+	for (int i = 1; i < 6; i++){
 
 		int k1;
 		int k2;
@@ -402,6 +424,8 @@ int main()
 		//dodajemy obie karty reki do USED
 		used.push_back(k1);
 		used.push_back(k2);
+
+		
 
 	}
 	
@@ -448,8 +472,12 @@ int main()
 	
 
 	//rece
-	vector<int> h0 = places[0].getHand();
-	h0.insert(h0.end(), b.begin(), b.end());
+	///////////////--------moja reka z dodanym boardem
+	myHand.insert(myHand.end(), b.begin(), b.end());
+	//ustawiamy reke 
+	places[0].setHand(myHand);
+
+	///////////////--------pozostali gracze
 	vector<int> h1 = places[1].getHand();
 	h1.insert(h1.end(), b.begin(), b.end());
 	vector<int> h2 = places[2].getHand();
@@ -463,13 +491,12 @@ int main()
 						
 
 
-	vector<int> a0 = whatHand(h0);
+	vector<int> a0 = whatHand(myHand);
 	vector<int> a1 = whatHand(h1);
 	vector<int> a2 = whatHand(h2);
 	vector<int> a3 = whatHand(h3);
 	vector<int> a4 = whatHand(h4);
 	vector<int> a5 = whatHand(h5);
-
 
 	int ww = whoWins(
 		a0,
@@ -480,7 +507,43 @@ int main()
 		a5
 		);
 
-	cout << "Wygral gracz: " << ww << endl;
+	whoWon[ww]++;
+	cout << "===========================WYGRAL " << ww << "======================================" << endl;
+
+
+
+
+
+	//czyscimy USED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	used.clear();
+	board.clear();
+	hand->clearBoard();
+	h1.clear();
+	h2.clear();
+	h3.clear();
+	h4.clear();
+	h5.clear();
+
+	myHand.clear();
+
+
+
+
+
+}//---------------------------------------------------koniec MC
+
+cout << "DISTRIBUTION" << endl;
+
+int equity = 0;
+int sum = 0;
+for (int i = 0; i < 6; i++){
+	sum += whoWon[i];
+}
+
+for (int i = 0; i < 6; i++){
+	cout << i << "has " << ((double)whoWon[i] / sum * 100) << "%" << endl;
+}
+
 
 
 

@@ -82,6 +82,7 @@ public:
 
 	void setBoard(vector<int> board);
 	vector<int> getBoard();
+	void clearBoard();
 
 
 
