@@ -474,21 +474,39 @@ int main()
 	//rece
 	///////////////--------moja reka z dodanym boardem
 	myHand.insert(myHand.end(), b.begin(), b.end());
+
+	sort(myHand.begin(), myHand.end());
+
+/*	for (std::vector<int>::size_type i = 0; i != myHand.size(); i++) {
+		cout << myHand[i] << " - " << convert(myHand[i]) << endl;
+
+	}
+	
+	_getch();*/
+
 	//ustawiamy reke 
 	places[0].setHand(myHand);
 
 	///////////////--------pozostali gracze
 	vector<int> h1 = places[1].getHand();
 	h1.insert(h1.end(), b.begin(), b.end());
+	sort(h1.begin(), h1.end());
+
 	vector<int> h2 = places[2].getHand();
 	h2.insert(h2.end(), b.begin(), b.end());
+	sort(h2.begin(), h2.end());
+
 	vector<int> h3 = places[3].getHand();
 	h3.insert(h3.end(), b.begin(), b.end());
+	sort(h3.begin(), h3.end());
+
 	vector<int> h4 = places[4].getHand();
 	h4.insert(h4.end(), b.begin(), b.end());
+	sort(h4.begin(), h4.end());
+
 	vector<int> h5 = places[5].getHand();
 	h5.insert(h5.end(), b.begin(), b.end());
-						
+	sort(h5.begin(), h5.end());
 
 
 	vector<int> a0 = whatHand(myHand);
