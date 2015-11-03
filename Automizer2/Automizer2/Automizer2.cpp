@@ -152,7 +152,13 @@ void saveScreenshotToDirPeriodically( const wchar_t *fName, int amount, unsigned
 		wchar_t val[256];
 
 		swprintf_s(val, L"%d", i);
+		wchar_t val1[256];
+
 		s += std::wstring(val);
+
+		swprintf_s(val1, L".png");
+
+		s += std::wstring(val1);
 		const wchar_t *a = s.c_str();
 
 		saveScreenshotToFile(a, hBitmap);
@@ -357,7 +363,7 @@ int main()
 	//save screenshot
 	HBITMAP hBitmap = GetScreenShot();
 	//saveScreenshotToFile(L"dupaxxx.png", hBitmap);
-	saveScreenshotToDirPeriodically(L"dupa.png", 10, 500, hBitmap);
+	saveScreenshotToDirPeriodically(L"dupa", 10, 500, hBitmap);
 
 	//-------------------------------------------------------CALA REKA Z KLASY HAND
 	Place places[6];
