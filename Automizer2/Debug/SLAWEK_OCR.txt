@@ -27,3 +27,23 @@
 
 	}
 	*/
+
+
+void saveScreenshotToDirPeriodically( wchar_t *fName, int amount, unsigned int interval, HBITMAP hBitmap) {
+
+	
+	for (int i = 0; i < amount; i++){
+
+		wstring ws(fName);
+		string str(ws.begin(), ws.end());
+		str += amount;
+		cout << " str: " << str << endl;
+
+		saveScreenshotToFile(fName + i, hBitmap);
+		
+
+		//saveScreenshotToFile(szName, hBitmap);
+		std::this_thread::sleep_for(std::chrono::milliseconds(interval));
+
+
+	}	

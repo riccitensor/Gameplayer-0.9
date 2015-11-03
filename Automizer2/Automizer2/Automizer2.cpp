@@ -21,6 +21,10 @@
 #include <tuple>
 #include <vector>   
 #include <map>
+#include <chrono>
+#include <thread>
+
+#include <wchar.h>
 
 #include "ocr.h"
 #include "Winner.h"
@@ -112,7 +116,7 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid)
 }
 
 //saving screenshots
-void saveScreenshotToFile(const WCHAR *fName, HBITMAP hBitmap) {
+void saveScreenshotToFile(const wchar_t *fName, HBITMAP hBitmap) {
 
 	GdiplusStartupInput gdiplusStartupInput;
 	ULONG_PTR gdiplusToken;
@@ -123,12 +127,51 @@ void saveScreenshotToFile(const WCHAR *fName, HBITMAP hBitmap) {
 	CLSID myClsId;
 	int retVal = GetEncoderClsid(L"image/png", &myClsId);
 
+	
+
 	image->Save(fName, &myClsId, NULL);
 	delete image;
 
 	GdiplusShutdown(gdiplusToken);
 
 }
+
+
+/*saving screenshots
+fName - file name
+amount - how many times
+interval - amount of secs
+hBitmap - bitmap handle
+*/
+void saveScreenshotToDirPeriodically( const wchar_t *fName, int amount, unsigned int interval, HBITMAP hBitmap) {
+
+	
+	for (int i = 0; i < amount; i++){
+
+		std::wstring s(fName);
+		wchar_t val[256];
+
+		swprintf_s(val, L"%d", i);
+		s += std::wstring(val);
+		const wchar_t *a = s.c_str();
+
+		saveScreenshotToFile(a, hBitmap);
+		
+
+
+		//saveScreenshotToFile(szName, hBitmap);
+		std::this_thread::sleep_for(std::chrono::milliseconds(interval));
+
+
+	}	
+
+
+
+
+}
+
+
+
 
 //unit testing
 void testMzJpgFiile(ILubyte * bytes) {
@@ -310,6 +353,11 @@ int main()
 
 	//wcztujemy zakresy
 	readRanges();
+
+	//save screenshot
+	HBITMAP hBitmap = GetScreenShot();
+	//saveScreenshotToFile(L"dupaxxx.png", hBitmap);
+	saveScreenshotToDirPeriodically(L"dupa.png", 10, 500, hBitmap);
 
 	//-------------------------------------------------------CALA REKA Z KLASY HAND
 	Place places[6];
