@@ -9,6 +9,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <windows.h>
+#include <WinUser.h>
 #include <gdiplus.h>
 
 #include <algorithm>
@@ -157,8 +158,22 @@ void saveScreenshotToDirPeriodically(const wchar_t *fName, int amount, unsigned 
 
 }
 
+BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam)
+{
 
-HBITMAP GetScreenShot(void)
+	LPWSTR class_name = NULL, title = NULL;
+
+	GetClassName(hwnd, class_name, sizeof(class_name));
+	GetWindowText(hwnd, title, sizeof(title));
+	cout << "Window title: " << title << endl;
+	cout << "Class name: " << class_name << endl << endl;
+
+
+	return TRUE;
+}
+
+
+HBITMAP GetScreenShot(LPCTSTR wind=NULL)
 {
 	int x1, y1, x2, y2, w, h;
 
@@ -171,11 +186,33 @@ HBITMAP GetScreenShot(void)
 	h = y2 - y1;
 
 	// copy screen to bitmap
-	HDC     hScreen = GetDC(NULL);
-	HDC     hDC = CreateCompatibleDC(hScreen);
+	HDC     hScreen;
+	HDC     hDC;
+
+	if (wind != NULL){
+		// Get the window handle of calculator application.
+		//HWND hWnd = ::FindWindow(0, _T("Calculator"));
+		HWND hWnd = ::FindWindow(0, wind);
+
+		// copy screen to bitmap
+		hScreen = GetDC(hWnd);
+		hDC = CreateCompatibleDC(hScreen);
+	}
+	else{
+
+		// copy screen to bitmap
+		//hScreen = GetDC(NULL);
+		hScreen = GetDC(GetActiveWindow());
+
+		hDC = CreateCompatibleDC(hScreen);
+
+	}
+
+
 	HBITMAP hBitmap = CreateCompatibleBitmap(hScreen, w, h);
 	HGDIOBJ old_obj = SelectObject(hDC, hBitmap);
 	BOOL    bRet = BitBlt(hDC, 0, 0, w, h, hScreen, x1, y1, SRCCOPY);
+
 
 	return hBitmap;
 }
@@ -183,9 +220,11 @@ HBITMAP GetScreenShot(void)
 
 int main(){
 
+	//EnumWindows(EnumWindowsProc, NULL);
+
 	//save screenshot
 	HBITMAP hBitmap = GetScreenShot();
 	//saveScreenshotToFile(L"dupaxxx.png", hBitmap);
-	saveScreenshotToDirPeriodically(L"dupa", 10, 500, hBitmap);
+	saveScreenshotToDirPeriodically(L"C:\\Users\\Public\\Documents\\Dokumenty\\dupa", 10, 500, hBitmap);
 
 }
