@@ -217,13 +217,84 @@ HBITMAP GetScreenShot(LPCTSTR wind=NULL)
 	return hBitmap;
 }
 
+HBITMAP  MonitorEnumProcCallback(_In_  HMONITOR hMonitor, _In_  HDC DevC, _In_  LPRECT lprcMonitor, _In_  LPARAM dwData) {
+	int screenCounter = 0;
+
+	screenCounter++;
+
+	char*BmpName;
+
+	if (screenCounter == 1){
+		BmpName = "1 screen.bmp";
+	}
+	else {
+		BmpName = "2 screen.bmp";
+	}
+
+	MONITORINFO  info;
+	info.cbSize = sizeof(MONITORINFO);
+
+	BOOL monitorInfo = GetMonitorInfo(hMonitor, &info);
+
+	HBITMAP CaptureBitmap;
+
+	if (monitorInfo) {
+
+		DWORD Width = info.rcMonitor.right - info.rcMonitor.left;
+		DWORD Height = info.rcMonitor.bottom - info.rcMonitor.top;
+
+		DWORD FileSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + (sizeof(RGBTRIPLE) + 1 * (Width*Height * 4));
+		char *BmpFileData = (char*)GlobalAlloc(0x0040, FileSize);
+
+		PBITMAPFILEHEADER BFileHeader = (PBITMAPFILEHEADER)BmpFileData;
+		PBITMAPINFOHEADER  BInfoHeader = (PBITMAPINFOHEADER)&BmpFileData[sizeof(BITMAPFILEHEADER)];
+
+		BFileHeader->bfType = 0x4D42; // BM
+		BFileHeader->bfSize = sizeof(BITMAPFILEHEADER);
+		BFileHeader->bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
+
+		BInfoHeader->biSize = sizeof(BITMAPINFOHEADER);
+		BInfoHeader->biPlanes = 1;
+		BInfoHeader->biBitCount = 24;
+		BInfoHeader->biCompression = BI_RGB;
+		BInfoHeader->biHeight = Height;
+		BInfoHeader->biWidth = Width;
+
+		RGBTRIPLE *Image = (RGBTRIPLE*)&BmpFileData[sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER)];
+		RGBTRIPLE color;
+
+		HDC CaptureDC = CreateCompatibleDC(DevC);
+		CaptureBitmap = CreateCompatibleBitmap(DevC, Width, Height);
+
+
+	
+		/*
+				SelectObject(CaptureDC, CaptureBitmap);
+		BitBlt(CaptureDC, 0, 0, Width, Height, DevC, info.rcMonitor.left, info.rcMonitor.top, SRCCOPY | CAPTUREBLT);
+		GetDIBits(CaptureDC, CaptureBitmap, 0, Height, Image, (LPBITMAPINFO)BInfoHeader, DIB_RGB_COLORS);
+
+		DWORD Junk;
+		HANDLE FH = CreateFileA(BmpName, GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
+		WriteFile(FH, BmpFileData, FileSize, &Junk, 0);
+		CloseHandle(FH);
+		GlobalFree(BmpFileData);
+		*/
+
+	}
+
+	return CaptureBitmap;
+}
+
+
 
 int main(){
 
-	//EnumWindows(EnumWindowsProc, NULL);
+	HDC DevC = GetDC(NULL);
+	//BOOL b = EnumDisplayMonitors(DevC, NULL, MonitorEnumProcCallback, 0);
 
 	//save screenshot
-	HBITMAP hBitmap = GetScreenShot();
+	//HBITMAP hBitmap = GetScreenShot();
+	HBITMAP hBitmap = MonitorEnumProcCallback();
 	//saveScreenshotToFile(L"dupaxxx.png", hBitmap);
 	saveScreenshotToDirPeriodically(L"C:\\Users\\Public\\Documents\\Dokumenty\\dupa", 10, 500, hBitmap);
 
