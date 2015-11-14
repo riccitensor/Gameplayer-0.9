@@ -79,6 +79,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="devil_internal_exports.h" />
+    <ClInclude Include="il.h" />
+    <ClInclude Include="ilu.h" />
+    <ClInclude Include="ilut.h" />
+    <ClInclude Include="ilut_config.h" />
+    <ClInclude Include="ilu_region.h" />
+    <ClInclude Include="il_wrap.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
