@@ -5,7 +5,11 @@
 
 #endif
 
+
+
 #include "stdafx.h"
+
+//#include <afxwin.h>
 
 #include <iostream>
 #include <stdlib.h>
@@ -347,6 +351,10 @@ void testFileRGBs(){
 
 
 
+
+
+
+
 int main()
 {
 	srand((unsigned int)time(NULL));
@@ -359,11 +367,17 @@ int main()
 
 	//wcztujemy zakresy
 	readRanges();
+	
+	//OCR window handling
+	DWORD pid = pokerId();
+	cout << "Poker id: " << pid << endl;
+	printScreenWindow();
+	//getchar();
 
 	//save screenshot
-	HBITMAP hBitmap = GetScreenShot();
+	//HBITMAP hBitmap = GetScreenShot();
 	//saveScreenshotToFile(L"dupaxxx.png", hBitmap);
-	saveScreenshotToDirPeriodically(L"dupa", 10, 500, hBitmap);
+	//saveScreenshotToDirPeriodically(L"dupa", 10, 500, hBitmap);
 
 	//-------------------------------------------------------CALA REKA Z KLASY HAND
 	Place places[6];
@@ -570,7 +584,8 @@ int main()
 	vector<int> a4 = whatHand(h4);
 	vector<int> a5 = whatHand(h5);
 
-	int ww = whoWins(
+	/*
+		int ww = whoWins(
 		a0,
 		a1,
 		a2,
@@ -580,10 +595,10 @@ int main()
 		);
 
 	whoWon[ww]++;
-	//cout << "===========================WYGRAL " << ww << "======================================" << endl;
+	
+	*/
 
-
-
+	
 
 
 	//czyscimy USED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -615,6 +630,7 @@ for (int i = 0; i < 6; i++){
 for (int i = 0; i < 6; i++){
 	cout << i << "has " << ((double)whoWon[i] / sum * 100) << "%" << endl;
 }
+
 
 
 

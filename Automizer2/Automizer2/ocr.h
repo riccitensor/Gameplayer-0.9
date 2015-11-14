@@ -21,6 +21,8 @@
 #include <time.h>
 #include <tuple>
 
+#include <tlhelp32.h>
+#include <winuser.h>
 
 
 #undef _UNICODE
@@ -333,3 +335,105 @@ void pixelListTest2(){
 	
 
 }
+
+HWND g_HWND = NULL;
+
+BOOL CALLBACK EnumWindowsProcMy(HWND hwnd, LPARAM lParam)
+{
+	DWORD lpdwProcessId;
+	GetWindowThreadProcessId(hwnd, &lpdwProcessId);
+	if (lpdwProcessId == lParam)
+	{
+		g_HWND = hwnd;
+		return FALSE;
+	}
+	int max = 256;
+	LPTSTR out = new TCHAR[max];
+	cout << "DUPA: " << hwnd << " - " << GetWindowText(hwnd,out,max)<< lParam << endl;
+
+	return TRUE;
+}
+
+DWORD  pokerId(){
+
+	//program TASKLIST do przegladania id procesow w windows
+	//1324 - id obecnie
+
+	PROCESSENTRY32 entry;
+	entry.dwSize = sizeof(PROCESSENTRY32);
+
+	HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+
+
+	const char *d = "poker.exe";	
+	wchar_t wstr[20];
+	std::mbstowcs(wstr, d, 20);
+
+
+	if (Process32First(snapshot, &entry) == TRUE)
+	{
+		while (Process32Next(snapshot, &entry) == TRUE)
+		{
+
+			
+			if (wcscmp(entry.szExeFile, wstr) == 0)
+			{
+				HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, entry.th32ProcessID);
+
+				return entry.th32ProcessID;
+
+
+				CloseHandle(hProcess);
+			}
+		}
+	}
+
+	CloseHandle(snapshot);
+
+	
+
+}
+
+
+void findChildHWNDVals(){
+
+	DWORD dwThreadId = pokerId();
+
+	//pobieranie hwnd okna
+	EnumWindows(EnumWindowsProcMy, dwThreadId);
+
+}
+
+
+//robi sccreen okna
+void printScreenWindow(){
+
+	RECT rc;
+
+	rc.left = 0;
+	rc.top = 0;
+	rc.right = 1000;
+	rc.bottom = 1000;
+
+	HWND hWnd = GetActiveWindow();
+
+	//create
+	HDC hdcScreen = GetDC(hWnd);
+	HDC hdc = CreateCompatibleDC(hdcScreen);
+	HBITMAP hbmp = CreateCompatibleBitmap(hdcScreen,
+		rc.right - rc.left, rc.bottom - rc.top);
+	SelectObject(hdc, hbmp);
+
+
+	//Print to memory hdc
+	PrintWindow(hWnd, hdc, PW_CLIENTONLY);
+
+	//copy to clipboard
+	OpenClipboard(NULL);
+	EmptyClipboard();
+	SetClipboardData(CF_BITMAP, hbmp);
+	CloseClipboard();
+
+}
+
+
