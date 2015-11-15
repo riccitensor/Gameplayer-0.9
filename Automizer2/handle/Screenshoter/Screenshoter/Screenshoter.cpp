@@ -206,30 +206,10 @@ void printScreen(HWND hwnd){
 
 }
 
-struct handle_data {
-	unsigned long process_id;
-	HWND best_handle;
-};
 
 
-BOOL is_main_window(HWND handle)
+void printScreenSaveToFile(HWND handle, int iter)
 {
-	return GetWindow(handle, GW_OWNER) == (HWND)0 && IsWindowVisible(handle);
-}
-
-int i = 1;
-
-BOOL CALLBACK enum_windows_callback(HWND handle, LPARAM lParam)
-{
-	handle_data& data = *(handle_data*)lParam;
-	unsigned long process_id = 0;
-	GetWindowThreadProcessId(handle, &process_id);
-
-
-
-
-	cout << " HWND: " << handle << " --- " << i << endl;
-	i++;
 
 	RECT rc;
 	GetClientRect(handle, &rc);
@@ -248,7 +228,6 @@ BOOL CALLBACK enum_windows_callback(HWND handle, LPARAM lParam)
 	OpenClipboard(NULL);
 	EmptyClipboard();
 	SetClipboardData(CF_BITMAP, hbmp);
-
 	CloseClipboard();
 
 	//release
@@ -256,100 +235,37 @@ BOOL CALLBACK enum_windows_callback(HWND handle, LPARAM lParam)
 	DeleteObject(hbmp);
 	ReleaseDC(NULL, hdcScreen);
 
-	saveScreenshot1(L"dupa", 1, 1, hbmp, i);
-
-
-	if (data.process_id != process_id || !is_main_window(handle)) {
-		return TRUE;
-	}
-	data.best_handle = handle;
-	return FALSE;
+	saveScreenshot1(L"screen", 1, 1, hbmp, iter);
 }
 
-HWND find_main_window(unsigned long process_id)
-{
-	handle_data data;
-	data.process_id = process_id;
-	data.best_handle = 0;
-	EnumWindows(enum_windows_callback, (LPARAM)&data);
-	return data.best_handle;
-}
-
-
-DWORD  pokerId(){
-
-	//program TASKLIST do przegladania id procesow w windows
-	//1324 - id obecnie
-
-	PROCESSENTRY32 entry;
-	entry.dwSize = sizeof(PROCESSENTRY32);
-
-	HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
-
-
-	const char *d = "poker.exe";
-	wchar_t wstr[20];
-//	std::mbstowcs(wstr, d, 20);
-
-
-	if (Process32First(snapshot, &entry) == TRUE)
-	{
-		while (Process32Next(snapshot, &entry) == TRUE)
-		{
-
-
-			if (strcmp(entry.szExeFile, d) == 0)
-			{
-				HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, entry.th32ProcessID);
-
-				return entry.th32ProcessID;
-
-
-				CloseHandle(hProcess);
-			}
-		}
-	}
-
-	CloseHandle(snapshot);
-
-
-
-}
+int counter = 1;
 
 BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam)
 {
+	//ustawaienia: multi-byte zamiast unicode do odczytu danych
+
 
 	char class_name[80];
 	char title[80];
 	GetClassName(hwnd, class_name, sizeof(class_name));
 	GetWindowText(hwnd, title, sizeof(title));
-	if (IsWindowVisible(hwnd) && strcmp(class_name,"#32770")==0){
+
+	//czy classname i widoczne okno
+	if (IsWindowVisible(hwnd) && strcmp(class_name, "#32770") == 0 && strcmp(title,"Lobby")!=0){
 		cout << "Hwnd: " << hwnd << endl;
 		cout << "Window title: " << title << endl;
 		cout << "Class name: " << class_name << endl << endl;
+
+		//printScreenSaveToFile(hwnd, counter);
+		printScreenSaveToFile(hwnd, counter);
+		counter++;
 	}
-
-
-
 	return TRUE;
 }
 
 int main(){
-
-	LPSTR s = new TCHAR[100];
-	s = "#32770";
-	HWND poker = FindWindow(_T("#32770"), NULL);
-	HWND b = GetWindow(poker, SW_SHOWNORMAL);
-
+	//printScreenSaveToFile((HWND)0x008E0664, 1);
 	EnumWindows(EnumWindowsProc, NULL);
-
-
-	cout << "Handle" <<b<< endl;
-
-
-
-
-		
-
+	
 	getchar();
 }
